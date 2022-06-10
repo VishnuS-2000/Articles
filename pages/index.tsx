@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center px-10 py-2">
       <h1 className='text-5xl font-bold'>Article Publishing App</h1>
     </div>
   )
