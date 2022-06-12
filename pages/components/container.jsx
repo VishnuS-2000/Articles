@@ -4,16 +4,14 @@ import Link from "next/link";
 import axios from 'axios'
 
 
-export const ArticlesContainer=({options,all})=>{
+export const ArticlesContainer=({options,all,articles,setArticles})=>{
 
 
-  const [articles,setArticles]=useState([])
+
   const[count,setCount]=useState(0)
 
   
-useEffect(()=>{
-  setArticles([])
-  },[all])
+
 
   
   useEffect(()=>{
