@@ -1,1 +1,85 @@
-// just a comment
+import { useEffect,useState } from "react"
+
+export const SearchBar  = ({articles}) => {
+
+
+    const [topics,setTopics]=useState([])
+
+    useEffect(()=>{
+
+        const uniqueTopics=[]
+        articles.rows.map((e)=>{
+            if(!uniqueTopics.includes(e.topic)){
+                uniqueTopics.push(e.topic)
+            }
+        })
+
+
+        setTopics(uniqueTopics)
+
+
+    },[])
+
+
+
+    return(
+
+       
+        <div className=" sticky max-w-[400px] flex-[0.25] flex left-0 right-0 top-0 flex-col text-base border-line border-l px-4 h-[full] justify-start py-12">
+     
+        <form className="flex  flex-col items-start w-full space-y-6" action="">
+           
+            <div className="w-full">
+
+            <input className="rounded-[20px] w-full max-h-[41px] p-2 border border-slate-300" type="text" placeholder="Search" name="search"></input>
+            <p className="text-base font-[500] m-2 ">Filter</p>  
+            <input className="rounded-[15px] w-full max-h-[41px]  p-2 border border-slate-300" type="text" placeholder="Keyword" name="keyword"></input>
+
+            </div>
+            
+            <input className="rounded-[15px] w-full p-2 border border-slate-300" type="text" placeholder="Author name" name="author"></input>
+      
+          
+            <input className=" rounded-[15px] w-full  p-2 border border-slate-300" type="text" placeholder="Book Title" name="title"></input>
+ 
+            <div className="flex flex-row w-full space-x-2">
+                
+                <input className="rounded-[15px] w-1/2 max-h-[41px]  p-2 border border-slate-300" type="text" placeholder="Pages" name="page"></input>
+                <input className="rounded-[15px] w-1/2 max-h-[41px]  p-2 border border-slate-300 " type="text" placeholder="Issue" name="issue"></input>    
+            </div>
+            
+            
+          
+            <button className="w-full max-h-[41px]  bg-primary p-2 rounded-[20px] font-semibold text-white " type='submit' >Search</button>
+ 
+
+
+
+        
+        <div className='py-6 space-y-2 ' >
+        <p className='text-base font-[400]'>Select Topic</p>
+    
+        
+        <div className='flex flex-wrap space-x-2'>
+        {topics.map((topic)=>{
+                    return <button  className="rounded-[20px] bg-line p-2 text-secondary text-sm " name='topic' value={topic}>
+                        {topic}
+                    </button>
+                })}
+        </div>
+
+        </div>
+
+        </form>
+        
+
+
+  
+    
+     
+            
+
+    </div>
+        
+    )
+}

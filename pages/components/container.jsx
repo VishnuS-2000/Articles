@@ -1,19 +1,86 @@
 import {ArticleCard} from "./card" 
 import { useEffect, useState } from 'react';
+import Link from "next/link";
+import axios from 'axios'
 
 
+export const ArticlesContainer=({options,all})=>{
 
-export const ArticlesContainer=({articles,limit})=>{
+
+  const [articles,setArticles]=useState([])
+  const[count,setCount]=useState(0)
+
+  
+useEffect(()=>{
+  setArticles([])
+  },[all])
+
+  
+  useEffect(()=>{
 
     
-    
-    return <div className="flex max-w-[730px] flex-col min-h-screen">
 
-            {articles.rows.slice(0,limit).map((element)=>{
-                return <ArticleCard key={element.id}  data={element}/>
-            })}
+    const fetchData=async()=>{
+
+
+         try{
+         const response=await axios.get(options.url,{
+              headers:{
+                orderField:options.orderField,
+                orderType:options.orderType,
+                limit:options.limit,
+                offset:options.offset
+              }
+         })
+
+
+        
+         setArticles(articles.concat(response.data.result.rows))
+
+         if(count==0){
+           setCount(response.data.result.count)
+         }
+
+       
+       }
+       
+       catch(err){
+          console.log(err)
+           return {response:{}}
+       }
+       
+       }
+     
+
+       fetchData()
+       },[all,options.offset])
+
+
+  console.log(articles)
+
+
+
+
+  
+
+
+  
+
+    
+
+    
+    return<div className="flex  flex-col min-h-screen items-center ">
+
+     {articles?articles.map((element)=>{
+      
+      return <ArticleCard data={element}/>
+     }):<h1>Loading...</h1>}
+   
+
     </div>
 }
+
+
 
 
 

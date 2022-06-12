@@ -1,94 +1,69 @@
 import type { NextPage } from 'next'
 import axios from "axios"
-import Head from 'next/head'
-import Image from "next/image"
-import { useState } from 'react'
-
-import Logo from "../public/assets/index/cusat-logo.png"
-import { useEffect } from 'react';
 import { ArticlesContainer } from './components/container';
+import {SearchBar} from "./components/search"
+
+import { useEffect,useState } from 'react';
 
 
 
 
-const Home: NextPage = ({data}) => {  
+
+const Home: NextPage = () => {  
+
+  const [all,setAll]=useState(true)
+  const [options,setOptions]=useState({url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:3})
 
 
 
   useEffect(()=>{
+    const customOptions=!all?{url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:3}:{url:'http://localhost:4000/articles',orderField:'createdAt',orderType:'DESC',limit:3,offset:0}
     
-
-  },[])
-
-  
-  const [all,setAll]=useState<boolean>()
-  const [limit,setLimit]=useState<number>(3)
+    setOptions(customOptions)
+  },[all])
 
   useEffect(()=>{
-    console.log(data)
+        
     window.addEventListener('scroll',(e)=>{
-      if(window.innerHeight+window.scrollY>=document.body.offsetHeight&&limit<=data.result.count){
-        setLimit(limit+3)
+      if(window.innerHeight+window.scrollY>=document.body.offsetHeight){
+        
+        setOptions({...options,offset:options.offset+options.limit})
+        
+
       }
     })
 
+
+    
   })
 
 
 
   return (
+    <div className="flex min-h-screen justify-between items-start w-[100%]  ">
+    <div className='flex-[0.75] flex flex-col px-4 py-5 self-center space-y-5  '>
 
-    <div className="flex min-h-screen items-start justify-start w-full">
-        <div className="h-screen flex-[0.10] px-2 py-2">
-            <Image src={Logo} height={'88px'} width={'148px'}/>
-           
+    <div className="flex flex-col items-center  ">
 
-        </div>
+<div className="flex  px-2 py-2 space-x-3 w-[720px] ">
 
-    <div className='flex flex-[0.70] px-4 py-5 flex-col space-y-5 justify-end relative'>
-    
+<button className={`text-base transition duration-200 ${all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(true); }}>All Articles</button>
 
-          <div className="flex space-x-8 w-[75%] p-2">
-          <button className={`text-base transition duration-200 ${all?'text-primary ':'text-quarternary '}`} onClick={()=>setAll(true)}>All Articles</button>
-          <button className={`text-base transition duration-200 ${!all?'text-primary ':'text-quarternary '}`} onClick={()=>setAll(false)}>New Articles</button>
-        
+<button className={`text-base transition duration-200 ${!all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(false); } }>New Articles</button>
 
-        </div>
+</div>
+</div>
 
-    <ArticlesContainer articles={data.result} limit={limit}/>
+    <ArticlesContainer all={all} options={options}/>
 
     </div>
 
-        
-
-
+    {/* <SearchBar articles={data.result}/> */}
+      
     </div>
   )
   }
 
-
-
-  export async function getServerSideProps(){
-
-
-    try{
-  
-      const response=await axios.get('http://localhost:4000/articles')
-      return {props:{
-        data:response.data
-      }}
-      
-    }
-  
-    catch(err){
-        return {
-          props:{
-            data:{}
-          }
-        }
-    }
-  
-  }
 
 
 
