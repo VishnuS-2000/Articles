@@ -36,6 +36,7 @@ export const ArticleCard=({data})=>{
     
 
     return <div className="flex  px-2 py-8 max-w-[720px] space-y-2  border-line border-t font-[300] ">
+    
 
     <div className="flex flex-col space-y-2 ">
     <div className="flex space-x-3 justify-start item-center space-y-0 ">

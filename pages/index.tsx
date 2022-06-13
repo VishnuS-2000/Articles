@@ -57,7 +57,7 @@ const Home: NextPage = () => {
 
     </div>
 
-    <SearchBar options={options} setOptions={setOptions}/>
+    <SearchBar />
       
     </div>
   )

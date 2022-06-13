@@ -2,7 +2,7 @@ import { useEffect,useState } from "react"
 import axios from 'axios'
 import {useRouter} from 'next/router'
 
-export const SearchBar  = ({options,setOptions}) => {
+export const SearchBar  = () => {
 
 
     const [topics,setTopics]=useState([])
@@ -63,6 +63,13 @@ export const SearchBar  = ({options,setOptions}) => {
     }
 
 
+    const handleTopic=(e)=>{
+    e.preventDefault()
+        
+    router.push(`/search?topic=${e.target.value}`)        
+    }
+
+
 
     return(
 
@@ -104,7 +111,7 @@ export const SearchBar  = ({options,setOptions}) => {
         
         <div className='flex flex-wrap  w-full'>
         {topics.map((topic)=>{
-                    return<button  className="rounded-[20px] my-1 mx-1 bg-line p-2 text-secondary text-sm " name='topic' value={params.topic}  onChange={(e)=>{setParams({...params,topic:{topic}})}}>
+                    return<button  className="rounded-[20px] my-1 mx-1 bg-line p-2 text-secondary text-sm " name='topic' onClick={handleTopic} value={topic} >
                         {topic}
                     </button>
                 })}
