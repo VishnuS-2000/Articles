@@ -1,5 +1,5 @@
 import Image from "next/image"
-import moment, { min } from "moment"
+import moment from "moment"
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 
