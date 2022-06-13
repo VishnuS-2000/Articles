@@ -7,8 +7,13 @@ module.exports = {
     extend: {
       'colors':{
         'primary':'#14274E',
-        'secondary':'#292929'
+        'secondary':'#292929',
+        'tertiary':'#394867',
+        'quarternary':'#757575',
+        'line':'#E6E6E6'
+        
       }
+      
 
     },
   },
