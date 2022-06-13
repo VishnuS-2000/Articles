@@ -10,8 +10,6 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
 
   const[count,setCount]=useState(0)
 
-  
-
 
   
   useEffect(()=>{
@@ -44,7 +42,7 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
        
        catch(err){
           console.log(err)
-           return {response:{}}
+          return {response:{}}
        }
        
        }
@@ -54,7 +52,7 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
        },[all,options.offset])
 
 
-  console.log(articles)
+
 
 
 
