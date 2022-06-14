@@ -6,6 +6,7 @@ const Article=({article}) => {
 
 
 
+
     return (
         <div className="article-content space-y-3">
             {/* Article Heading */}
@@ -15,10 +16,14 @@ const Article=({article}) => {
                 <img className='w-100 rounded-md' src='https://picsum.photos/700/300'></img>
             </div>
             {/* Article Content */}
-            <div className='my-4'>
-            <p className='text-xl text-secondary font-[300] '>
-                    {article.content}
-            </p>
+            <div className='my-4 text-xl text-secondary font-[300] '>
+                {article.content.split('\n').map((element)=>{
+
+                    return <p className='mt-8'>{element}</p>
+
+                })
+            
+            }
             </div>
         </div>
     )
