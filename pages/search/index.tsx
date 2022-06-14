@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import {useRouter} from 'next/router'
 import axios from 'axios'
-import { ArticleCard } from "../components/card";
+import { ArticleCard } from "../components/articleCard";
 import { SearchBar } from "../components/search";
 import { useEffect, useState } from 'react';
+
 
 
 
@@ -37,6 +38,7 @@ const resultPage:NextPage=({data})=>{
     const handleScroll=()=>{
       if(window.innerHeight+window.scrollY>=document.body.offsetHeight&&offset<=count){
         setOffset(offset+3)
+        console.log("scrolled")
       }
     }
 
@@ -49,25 +51,33 @@ const resultPage:NextPage=({data})=>{
 
 
 
-  return <div className="flex min-h-screen items-start justify-between">
-       {articles?<div className='flex-[0.75] flex flex-col px-4 py-5 self-center'>
+  return <div className="flex min-h-screen items-start justify-between  ">
 
-        <div className="flex flex-col  items-center ">
-            <div className="flex w-[720px] px-2 py-2 space-x-3 items-center">
+       {articles?
+       
+  
+        <div className="flex flex-[0.75]  justify-center  ">
 
-            <h1 className='text-2xl text-primary font-[500]'>Results</h1>
-            <p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
+          
+        <div className="flex  px-10  space-x-3 justify-center ">
 
-            </div>
-         
-        </div>
+<div className='flex flex-col'>
 
-        <div className="flex flex-col items-center min-h-screen">
-      
+<div className='flex p-5 items-baseline space-x-3'>
+<h1 className='text-2xl text-primary font-[500]'>Results</h1>
+<p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
+
+</div>
+
+
         {articles.map((article)=>{
             return <ArticleCard data={article}/>
-        })}</div>
-      </div>:<h1>No Search Results</h1>} 
+        })}
+              </div>
+        </div>
+        </div>
+      :<h1>No Search Results</h1>} 
+
       <SearchBar />
   
   </div>  
