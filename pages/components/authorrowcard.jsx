@@ -7,7 +7,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 
 
-export const AuthorCard = ()=>{
+export const AuthorRowCard = ()=>{
 
     return(
         <div className="flex flex-row h-[50px]  space-x-2 border-t-2 border-b-2 m-0 mt-0">
