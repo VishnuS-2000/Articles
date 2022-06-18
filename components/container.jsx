@@ -2,6 +2,7 @@ import {ArticleCard} from "./articleCard"
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import axios from 'axios'
+import { Spinner } from "@chakra-ui/react";
 
 
 export const ArticlesContainer=({options,all,articles,setArticles})=>{
@@ -9,7 +10,7 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
 
 
   const[count,setCount]=useState(0)
-
+  const[loading,setLoading]=useState(true)
 
   
   useEffect(()=>{
@@ -28,6 +29,8 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
                 offset:options.offset
               }
          })
+
+         setLoading(false)
 
 
         
@@ -58,11 +61,12 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
 
     
     return<div className="flex  flex-col  items-center min-h-screen">
-
-     {articles?articles.map((element)=>{
+      
+    {loading&&<Spinner/>}
+     {articles&&articles.map((element)=>{
       
       return <ArticleCard data={element}/>
-     }):<h1>Loading...</h1>}
+     })}
    
 
     </div>
@@ -88,7 +92,7 @@ export const MoreContainer=({id,name})=>{
 
       try{
 
-        const response=await axios.get(`http://localhost:4000/articles/search/?author=${name}`)
+        const response=await axios.get(`/api/articles/query/?author=${name}`)
         
         setCount(response.data.result.count)
         setArticles(response.data.result.rows.filter((element)=>{

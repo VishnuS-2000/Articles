@@ -3,12 +3,18 @@ import moment from "moment"
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 
+
+
+//Article Card Component
+
 export const ArticleCard=({data})=>{
     
     const [extras,setExtras]=useState({
         ago:'',
         minRead:''
     })
+
+    
     useEffect(()=>{
        
         const diff=['seconds','minutes','hours','days','months','years']

@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
+
+//Article Body
 
 
 const Article=({article}) => {
-
-
-
-
 
     return (
         <div className="article-content space-y-3">

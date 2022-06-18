@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react"
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import { loadGetInitialProps } from "next/dist/shared/lib/utils"
 
 export const SearchBar  = () => {
 
@@ -74,7 +75,7 @@ export const SearchBar  = () => {
     return(
 
        
-        <div className=" sticky max-w-[400px] flex-[0.25] flex left-0 right-0 top-0 flex-col text-base border-line border-l px-4 min-h-screen justify-start py-12">
+        <div className=" fixed  max-w-[25%] flex-[0.25] flex right-0 top-0 flex-col text-base border-line border-l px-4 min-h-screen justify-start py-12">
      
         <form className="flex  flex-col items-start w-full space-y-6"  >
            

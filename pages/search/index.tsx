@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import {useRouter} from 'next/router'
 import axios from 'axios'
-import { ArticleCard } from "../components/articleCard";
-import { SearchBar } from "../components/search";
+import { ArticleCard } from "../../components/articleCard";
+import { SearchBar } from "../../components/searchBar";
 import { useEffect, useState } from 'react';
 
 
@@ -18,8 +18,13 @@ const resultPage:NextPage=({data})=>{
 
   const router=useRouter()
 
+  if(!data){
+    return
+  }
+
   useEffect(()=>{
 
+    console.log(data)
     setCount(data.result.count)
     setArticles(data.result.rows.slice(0,offset))
 
@@ -61,10 +66,10 @@ const resultPage:NextPage=({data})=>{
           
         <div className="flex  px-10  space-x-3 justify-center ">
 
-<div className='flex flex-col'>
+<div className='flex flex-col w-[600px]'>
 
-<div className='flex p-5 items-baseline space-x-3'>
-<h1 className='text-2xl text-primary font-[500]'>Results</h1>
+<div className='flex px-2 py-2 items-baseline space-x-3'>
+<h1 className='text-xl text-primary font-[500]'>Results</h1>
 <p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
 
 </div>

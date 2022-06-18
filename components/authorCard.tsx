@@ -1,9 +1,5 @@
 
-
 export const AuthorCard=({name,extras}) => {
-
-
-
 
     return (
         <div className="user-card py-10 flex items-center">

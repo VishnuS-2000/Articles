@@ -1,15 +1,15 @@
 import moment from "moment";
 import type { NextPage } from "next";
 import axios from 'axios'
-import Article from "../components/article";
-import { SearchBar } from "../components/search";
+import Article from "../../components/article";
+import { SearchBar } from "../../components/searchBar";
 
-import { AuthorCard } from "../components/authorCard";
+import { AuthorCard } from "../../components/authorCard";
 
 import { useState,useEffect } from "react";
 
 
-import { MoreContainer } from "../components/container";
+import { MoreContainer } from "../../components/container";
 
 
 const ArticlePage:NextPage=({data})=>{
