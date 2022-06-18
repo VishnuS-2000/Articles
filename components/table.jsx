@@ -4,14 +4,18 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import Link from 'next/link'
 
+import {AuthorsHeader} from '../components/authorHeader'
+import {AuthorRow} from '../components/authorRow'
+
 
 import {ArticleRow} from '../components/articleRow'
 import {ArticleHeader} from '../components/articleHeader'
 
 
-export const DisplayTable=({data,count,page,navigationURL,limit})=>{
 
-    console.log(data)
+export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
+
+    console.log(data,count)
 
 
         return <div className='flex flex-col min-h-screen justify-start items-start flex-1'>  
@@ -25,6 +29,9 @@ export const DisplayTable=({data,count,page,navigationURL,limit})=>{
                 <div className='flex space-x-5 px-5 '>
                     <p className='text-lg font-[400] text-[#343A40] font-[400]'>{`All (${count})`}</p>
                     <div className='flex items-center space-x-5'>
+
+
+                    <Link href={`${navigationURL}/create`}>
                     <button className='flex items-center space-x-1  justify-center  w-[120px] bg-[#394867] text-white rounded-[20px] py-2 shadow-sm text-sm'>
                     
                     <p>ADD NEW </p>
@@ -34,7 +41,9 @@ export const DisplayTable=({data,count,page,navigationURL,limit})=>{
                     </svg>
                     
                     </button>
-                    
+                    </Link>
+
+
                     <button className='rounded-full'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M3 6H5H21" stroke="#9BA4B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -48,9 +57,11 @@ export const DisplayTable=({data,count,page,navigationURL,limit})=>{
                     </div>
 
                 
-             <div className='flex  space-x-3 absolute right-0 top-30px items-baseline'>
+             <div className='flex  space-x-3 absolute right-0 top-30px items-baseline '>
                     
-                    <p>{(page-1)*limit+1}-{(page-1)*limit+limit} of {count}</p>
+                    {(page-1)*limit+limit>count?
+                        <p>{(page-1)*limit+1}-{count} of {count}</p>:
+                        <p>{(page-1)*limit+1}-{(page-1)*limit+limit} of {count}</p>}
 
                     
                     {Number(page)>=2&&<Link href={`${navigationURL}/${Number(page)-1}`}>
@@ -86,6 +97,14 @@ export const DisplayTable=({data,count,page,navigationURL,limit})=>{
 
 
 
+        {authorsType?
+        <div className='flex flex-col w-full text-[#6C757D]'>
+        <AuthorsHeader/>
+        {data.map((element)=>{
+            return <AuthorRow element={element}/>
+        })}
+        
+        </div>:
         <div className='flex flex-col w-full text-[#6C757D]'>
         <ArticleHeader/>
         {data.map((element)=>{
@@ -93,7 +112,7 @@ export const DisplayTable=({data,count,page,navigationURL,limit})=>{
         })}
         
         
-        </div>
+        </div>}
        
 </div>
 

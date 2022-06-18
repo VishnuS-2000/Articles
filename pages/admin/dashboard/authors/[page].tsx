@@ -5,7 +5,7 @@ import { SideBar } from '../../../../components/sideBar'
 import { DisplayTable } from '../../../../components/table'
 import { useRouter } from 'next/router'
 
-const ArticleDashBoard:NextPage=({data})=>{
+const AuthorDashBoard:NextPage=({data})=>{
 
     console.log(data)
 
@@ -15,8 +15,8 @@ const ArticleDashBoard:NextPage=({data})=>{
                 
     
 
-     <SideBar/>
-     <DisplayTable data={data.result.rows} count={data.result.count} page={(router.query.page)} navigationURL='/admin/dashboard/articles/' limit={15}/>
+      <SideBar/>
+     <DisplayTable data={data.result.rows} count={data.result.rows.length} page={(router.query.page)} navigationURL='/admin/dashboard/authors/' limit={15} authorsType={true}/> 
 
 
     </div>
@@ -25,7 +25,7 @@ const ArticleDashBoard:NextPage=({data})=>{
 
 }
 
-export default ArticleDashBoard;
+export default AuthorDashBoard;
 
 
 

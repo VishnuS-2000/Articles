@@ -35,7 +35,7 @@ export const SideBar = ()=>{
 
               
               
-                <SideBarOption link='/admin/dashboard/authors'>
+                <SideBarOption link='/admin/dashboard/authors/1'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.8935 10.87C12.7935 10.86 12.6735 10.86 12.5635 10.87C10.1835 10.79 8.29346 8.84 8.29346 6.44C8.29346 3.99 10.2735 2 12.7335 2C15.1835 2 17.1735 3.99 17.1735 6.44C17.1635 8.84 15.2735 10.79 12.8935 10.87Z"  strokeWidth="1.5" strokeLineCap="round" strokeLineJoin="round"/>
                 <path d="M7.89337 14.56C5.47337 16.18 5.47337 18.82 7.89337 20.43C10.6434 22.27 15.1534 22.27 17.9034 20.43C20.3234 18.81 20.3234 16.17 17.9034 14.56C15.1634 12.73 10.6534 12.73 7.89337 14.56Z"  strokeWidth="1.5" strokeLinecap="round" strokeLineJoin="round"/>

@@ -1,5 +1,4 @@
-
-export const ArticleHeader=()=>{
+export const AuthorsHeader=()=>{
 
 
     return   <div className="flex  relative flex-row h-[60px] items-center justify-between w-full  border-b  px-2 space-x-5 font-[800] text-secondary text-base">
@@ -10,20 +9,20 @@ export const ArticleHeader=()=>{
 
 
 <div className="w-[200px]  ">
-    <p>Title</p>
+    <p>Author</p>
 </div>
 
 <div className="w-[230px]">
-    <h4>Date</h4>
+    <h4>Created</h4>
 </div>
 
 <div className="w-[230px] flex space-x-2">
 
-    <h4>Author</h4>
+    <h4>Designation</h4>
 </div>
 
 <div className="w-[140px] ">
-    <h4> Topic</h4>
+    <h4>Published</h4>
    
 
 </div>
@@ -31,7 +30,6 @@ export const ArticleHeader=()=>{
 
 
 <div className="max-w-[60px] flex space-x-4">
-
 
 <h4>Actions</h4>
 </div>
