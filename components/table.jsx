@@ -11,14 +11,48 @@ import {AuthorRow} from '../components/authorRow'
 import {ArticleRow} from '../components/articleRow'
 import {ArticleHeader} from '../components/articleHeader'
 
+import axios from 'axios'
+import {useRouter} from 'next/router'
+
+
+import { useSession } from 'next-auth/react'
 
 
 export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
+
+
+    const {data:session}=useSession()
+    console.log(session)
+
+    const router=useRouter()
+
+    const handleDelete=async(id)=>{
+        
+        const url=authorsType?'http://localhost:4000/admin/author/':'http://localhost:4000/admin/article';
+        try{
+            await axios.delete(`${url}${id}`,{
+                headers:{
+                    
+                    'Authorization':`Bearer ${session.accessToken}`}
+            })
+
+            router.push(`${navigationURL}${page}`)            
+        }
+
+
+        catch(err){
+            console.log(err)
+        }
+
+
+    }
+
+
     console.log(data,count)
 
 
-        return <div className='flex flex-col min-h-screen justify-start items-start flex-1'>  
+        return <div className='flex flex-col min-h-screen justify-start items-start flex-[1]'>  
         <div className='flex flex-col  py-2 h-[120px] w-full border-b border-slate-300'>
 
             
@@ -31,7 +65,7 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
                     <div className='flex items-center space-x-5'>
 
 
-                    <Link href={`${navigationURL}/create`}>
+                    <Link href={`${navigationURL}create`}>
                     <button className='flex items-center space-x-1  justify-center  w-[120px] bg-[#394867] text-white rounded-[20px] py-2 shadow-sm text-sm'>
                     
                     <p>ADD NEW </p>
@@ -101,14 +135,14 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
         <div className='flex flex-col w-full text-[#6C757D]'>
         <AuthorsHeader/>
         {data.map((element)=>{
-            return <AuthorRow element={element}/>
+            return <AuthorRow element={element} handleDelete={handleDelete}/>
         })}
         
         </div>:
         <div className='flex flex-col w-full text-[#6C757D]'>
         <ArticleHeader/>
         {data.map((element)=>{
-            return <ArticleRow element={element}/>
+            return <ArticleRow element={element} handleDelete={handleDelete}/>
         })}
         
         

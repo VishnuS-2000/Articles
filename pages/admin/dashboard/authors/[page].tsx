@@ -11,7 +11,7 @@ const AuthorDashBoard:NextPage=({data})=>{
 
     const router=useRouter()
 
-    return <div className='flex w-full min-h-screen'>
+    return <div className='flex  min-h-screen'>
                 
     
 

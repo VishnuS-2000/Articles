@@ -9,20 +9,20 @@ export const ArticleHeader=()=>{
 
 
 
-<div className="w-[200px]  ">
+<div className="max-w-[200px]  ">
     <p>Title</p>
 </div>
 
-<div className="w-[230px]">
+<div className="max-w-[230px]">
     <h4>Date</h4>
 </div>
 
-<div className="w-[230px] flex space-x-2">
+<div className="max-w-[230px] flex space-x-2">
 
     <h4>Author</h4>
 </div>
 
-<div className="w-[140px] ">
+<div className="max-w-[140px] ">
     <h4> Topic</h4>
    
 

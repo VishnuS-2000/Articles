@@ -1,6 +1,14 @@
 import moment from 'moment'
+import { useSession } from 'next-auth/react'
+
 
 export const ArticleRow = ({element})=>{
+
+
+    const {data:session}=useSession()
+
+    console.log(session)
+
     return(
             <div className="flex   flex-row h-[60px] items-center justify-between w-full  border-b  px-2 font-poppins space-x-5">
                 <div  className="w-[20px]">
