@@ -1,11 +1,26 @@
 import type { NextPage } from 'next'
 import { SideBar } from '../../../../components/sideBar';
 
+import dynamic from 'next/dynamic'
+import {useState} from 'react'
+
+
+
+const RichTextEditor= dynamic(() => import('@mantine/rte'), { ssr: false });
+
+
 const ArticleCreate = () => {
+
+   
+    const initialValue='Type Here'.repeat(1500)
+    const [text,setText]=useState(initialValue)
+
+
+
     return (
-        <div className='flex'>
-            <SideBar />
-            <form className='flex-1 p-5 flex flex-col justify-start align-top'>
+        <div className='flex w-full h-screen'>
+            <SideBar/>
+            <form className='flex-1 p-5 flex flex-col justify-start bg-green-200 align-top  h-full'>
                 <div className='flex flex-row-reverse gap-5 mr-5 items-center'>
                     <a className='' href="#">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,10 +37,13 @@ const ArticleCreate = () => {
                     </a>
                     <button className='bg-[#394867] text-white px-8 py-1 rounded-full'>Publish</button>
                 </div>
+
+
                 <div className="flex px-5 py-2 space-x-3 ">
                     <label className="w-36 text-3xl text-gray-600 pr-5 border-r-4 border-gray-300">Title</label>
                     <input className="w-full px-3 py-2 text-xl focus:outline-none caret-gray-600 text-gray-600 placeholder:text-slate-600" type="text" placeholder='Enter a title' />
                 </div>
+
                 <div className="flex px-5 py-2 space-x-3 ">
                     <label className="w-36 text-3xl text-gray-600 pr-5 border-r-4 border-gray-300">By</label>
                     <select name="author_select" className="w-full px-3 py-2 text-xl focus:outline-none text-gray-600 appearance-none caret-gray-400">
@@ -35,11 +53,21 @@ const ArticleCreate = () => {
                         <option className='text-gray-600' value="3">Author 3</option>
                     </select>
                 </div>
-                <div className="flex px-5 py-2 space-x-3 ">
-                    <label className="w-36 text-3xl text-gray-600">Content</label>
-                    <textarea className="w-full px-3 py-2 text-xl focus:outline-none caret-gray-400 placeholder:text-slate-600" placeholder="Enter your content here" />
-                </div>
+                
+                
+                
+                
+                
+
+
+                <RichTextEditor value={text} onChange={setText} className='w-full h-[90%] overflow-y-auto text-2xl'/>
+     
+                
+               
             </form>
+
+             
+         
         </div>
     );
 }
