@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import 'react-quill/dist/quill.snow.css'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import type { AppProps } from 'next/app'
 import {SessionProvider} from 'next-auth/react'
 import { ChakraProvider } from '@chakra-ui/react'
