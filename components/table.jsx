@@ -29,7 +29,7 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
     const handleDelete=async(id)=>{
         
-        const url=authorsType?'http://localhost:4000/admin/author/':'http://localhost:4000/admin/article';
+        const url=authorsType?'http://localhost:4000/admin/author/':'http://localhost:4000/admin/article/';
         try{
             await axios.delete(`${url}${id}`,{
                 headers:{

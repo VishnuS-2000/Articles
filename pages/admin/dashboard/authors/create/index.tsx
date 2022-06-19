@@ -8,7 +8,7 @@ import Link from 'next/link'
 import {useSession} from 'next-auth/react'
 
 import axios from 'axios'
-import {Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
+import {Alert,AlertIcon,AlertDescription} from '@chakra-ui/react'
 import { useRouter } from 'next/router';
 
 

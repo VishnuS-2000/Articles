@@ -12,6 +12,7 @@ import { useState,useEffect } from "react";
 import { MoreContainer } from "../../components/container";
 
 
+
 const ArticlePage:NextPage=({data})=>{
 
     

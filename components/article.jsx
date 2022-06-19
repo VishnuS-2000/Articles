@@ -1,26 +1,27 @@
-
+import {useRef,useEffect} from 'react'
 //Article Body
 
 
 const Article=({article}) => {
 
+const refContainer=useRef()
+
+
+
+useEffect(()=>{
+
+refContainer.current.innerHTML=article.richText;
+
+},[])
+
     return (
-        <div className="article-content space-y-3">
+        <div className="article-content space-y-3 font-poppins">
             {/* Article Heading */}
-            <h1 className='text-3xl font-[400] pb-4 text-primary'>{article.title}</h1>
-            {/* Article Image */}
-            <div className='pb-4'>
-                <img className='w-100 rounded-md' src='https://picsum.photos/700/300'></img>
-            </div>
+            <h1 className='text-3xl font-[500] pb-4 text-primary'>{article.title}</h1>
+          
             {/* Article Content */}
-            <div className='my-4 text-xl text-secondary font-[300] '>
-                {article.content.split('\n').map((element)=>{
+            <div ref={refContainer} className='my-4 text-lg text-secondary  space-y-5'>
 
-                    return <p className='mt-8'>{element}</p>
-
-                })
-            
-            }
             </div>
         </div>
     )
