@@ -4,7 +4,7 @@ import axios from 'axios'
 import { ArticleCard } from "../../components/articleCard";
 import { SearchBar } from "../../components/searchBar";
 import { useEffect, useState } from 'react';
-
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 
 
 
@@ -54,15 +54,27 @@ const resultPage:NextPage=({data})=>{
     }
   })
 
+  const handleClick = (e)=>{
+    e.preventDefault();
+    router.push('/')
+  }
+
 
 
   return <div className="flex min-h-screen items-start justify-between  ">
+      
+      
+      
+      
 
        {articles?
        
   
-        <div className="flex flex-[0.75]  justify-center  ">
-
+        <div className="flex flex-[0.75]  justify-center   ">
+          <div className="absolute left-4 top-4 hover:bg-slate-200 rounded " onClick={handleClick}>
+          <KeyboardBackspaceRoundedIcon sx={{ fontSize: 30 }}/>
+          </div>
+          
           
         <div className="flex  px-10  space-x-3 justify-center ">
 
