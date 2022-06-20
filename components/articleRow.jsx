@@ -27,7 +27,7 @@ export const ArticleRow = ({element,handleDelete})=>{
                 </div>
                 
                 <div className="w-[140px] ">
-                    <button className='text-white flex justify-center text-sm w-[100px] rounded-[20px] bg-primary shadow-sm p-1 py-2'>
+                    <button className='text-white flex justify-center text-sm w-[130px] rounded-[20px] bg-primary shadow-sm p-1 py-2'>
                     {element.topic.slice(0,10)}
                     </button>
                 </div>
