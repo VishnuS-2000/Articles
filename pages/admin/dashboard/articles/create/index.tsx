@@ -64,7 +64,7 @@ const ArticleCreate:NextPage=({authors,topics}) => {
 
         catch(err){
 
-            setError({message:err.message})            
+            setNotification({message:err.message})            
         }
 
 

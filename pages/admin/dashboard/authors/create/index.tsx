@@ -7,10 +7,13 @@ import Link from 'next/link'
 
 import {useSession} from 'next-auth/react'
 
-import axios from 'axios'
-import {Alert,AlertIcon,AlertDescription} from '@chakra-ui/react'
-import { useRouter } from 'next/router';
+import {useSelector,useDispatch} from 'react-redux'
 
+
+import axios from 'axios'
+
+import { useRouter } from 'next/router';
+import {Notification} from '../../../../../components/notification'
 
 
 const AuthorCreate:NextPage=()=>{
@@ -25,7 +28,7 @@ const AuthorCreate:NextPage=()=>{
 
     })
 
-    const [err,setError]=useState(null)
+    const [notification,setNotification]=useState({})
     const[image,setImage]=useState({})
 
     const router=useRouter()
@@ -41,6 +44,8 @@ const AuthorCreate:NextPage=()=>{
             })
             console.log(url)
         }
+
+
 
 
     }
@@ -63,7 +68,7 @@ const AuthorCreate:NextPage=()=>{
     
                 catch(err){
                     
-                    setError({message:err.response.data.message})
+                    setNotification({status:'error',message:'Image Upload Failed!'})
                 }
     
         
@@ -103,12 +108,15 @@ const AuthorCreate:NextPage=()=>{
 
         })  
 
+        setNotification({status:'success',message:'Author Created',float:true})
         router.push('/admin/dashboard/authors/1')
+
+   
 
         }catch(err){
             
             console.log(err)
-            setError({message:err.message})
+            setNotification({status:'error',message:err.message})
 
         }
         
@@ -156,10 +164,7 @@ return <div className='flex min-h-screen'>
 
 
         <div className='max-w-[700px] w-full'>
-                {err&&<Alert status='error'>
-                <AlertIcon />
-                <AlertDescription>{err.message}</AlertDescription>
-                 </Alert>}
+                {notification.update&&<Notification options={notification}/>}
 
         </div>
 
