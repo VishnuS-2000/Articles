@@ -6,27 +6,27 @@ export const ArticleRow = ({element,handleDelete})=>{
 
 
     return(
-            <div className="flex   flex-row h-[60px] items-center justify-between w-full  border-b  px-2 font-poppins space-x-5">
-                <div  className="max-w-[20px]">
+            <div className="flex  flex-row h-[60px]  items-center justify-between w-full  border-b  px-2 font-poppins space-x-2">
+                <div  className="w-[20px] ">
                     <input className="w-[20px] h-[20px]" type='checkbox'></input>                    
                 </div>
                 
               
                 
-                <div className="max-w-[200px]  ">
-                    <p>{element?.title.slice(0,40) } ...</p>
+                <div className="w-[200px]  ">
+                    <p>{element?.title.slice(0,35)} ... </p>
                 </div>
                 
-                <div className="max-w-[230px]">
+                <div className="w-[230px] ">
                     <h4>{moment(element.createdAt).format('LL')   }</h4>
                 </div>
                 
-                <div className="max-w-[230px] flex space-x-2">
+                <div className="w-[230px] flex space-x-2 ">
                 <img src="https://static.independent.co.uk/2022/04/26/16/054348ef248cdd6196d71ae7a049b305Y29udGVudHNlYXJjaGFwaSwxNjUxMDcxMzkz-2.66390146.jpg?quality=75&width=982&height=726&auto=webp" className="rounded-full w-[24px] h-[24px]"/>
                     <h4>{element.author.name}</h4>
                 </div>
                 
-                <div className="max-w-[140px] ">
+                <div className="w-[140px] ">
                     <button className='text-white flex justify-center text-sm w-[100px] rounded-[20px] bg-primary shadow-sm p-1 py-2'>
                     {element.topic.slice(0,10)}
                     </button>
@@ -34,7 +34,7 @@ export const ArticleRow = ({element,handleDelete})=>{
                 
             
                 
-                <div className="max-w-[60px] flex space-x-4">
+                <div className="w-[60px] flex space-x-4 ">
                 <Link href={`/admin/dashboard/articles/edit/${element.id}`}>
                 <button>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
