@@ -4,7 +4,7 @@ import { SideBar } from '../../../../../components/sideBar'
 const AuthorView:NextPage=()=>{
 
 
-return <div className='w-full min-h-screen flex'>
+return <div className='w-full min-h-screen flex '>
     <SideBar/>
 
     <div className=''>

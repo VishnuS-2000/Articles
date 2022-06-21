@@ -10,11 +10,11 @@ const ArticleDashBoard:NextPage=({data})=>{
 
     const router=useRouter()
 
-    return <div className='flex w-full min-h-screen'>
+    return <div className='flex w-full min-h-screen font-poppins '>
                 
     
 
-     <SideBar/>
+     <SideBar active='articles'/>
      <DisplayTable data={data.result.rows} count={data.result.count} page={(router.query.page)} navigationURL='/admin/dashboard/articles/' limit={15}/>
 
 

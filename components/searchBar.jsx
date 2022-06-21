@@ -94,8 +94,7 @@ export const SearchBar  = () => {
  
             <div className="flex flex-row w-full space-x-2">
                 
-                <input className="rounded-[15px] w-1/2 max-h-[41px]   border border-slate-300 px-8 py-2 outline-none" type="number" placeholder="Pages" name="page" value={params.pages} onChange={(e)=>{setParams({...params,pages:e.target.value})}} />
-                <input className="rounded-[15px] w-1/2 max-h-[41px]   border border-slate-300 px-8 py-2 outline-none" type="number" placeholder="Issue" name="issue" value={params.issue} onChange={(e)=>{setParams({...params,issue:e.target.value})}}/>
+
             </div>
             
             

@@ -14,10 +14,10 @@ const Home:NextPage=()=>{
     
             return (
                 
-                <div className='flex  w-full min-h-screen'>
+                <div className='flex  w-full min-h-screen font-poppins'>
                 
         
-                <SideBar/>
+                <SideBar active='home'/>
 
 
 

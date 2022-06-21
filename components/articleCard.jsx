@@ -2,7 +2,7 @@ import Image from "next/image"
 import moment from "moment"
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 //Article Card Component
@@ -45,10 +45,10 @@ export const ArticleCard=({data})=>{
     
 
     <div className="flex flex-col space-y-2 ">
-    <div className="flex space-x-3 justify-start item-center space-y-0 ">
-    <img src="https://static.independent.co.uk/2022/04/26/16/054348ef248cdd6196d71ae7a049b305Y29udGVudHNlYXJjaGFwaSwxNjUxMDcxMzkz-2.66390146.jpg?quality=75&width=982&height=726&auto=webp" className="rounded-full w-[24px] h-[24px]"/>
-    <p className="text-sm text-secondary">{data.author.name}</p>
-    <p className="text-sm text-quarternary">{extras.ago}</p>
+    <div className="flex space-x-3 justify-start items-center space-y-0 ">
+    {data.author.photo?<img src={data.author.photo} className="rounded-full w-[24px] h-[24px]"/>:<AccountCircleIcon style={{fontSize:'2rem'}}/>}
+    <p className="text-base text-secondary">{data.author.name}</p>
+    <p className="text-base text-quarternary">{extras.ago}</p>
     </div>
 
     <div className="flex flex-col justify-start space-y-1 mr-6">

@@ -39,7 +39,7 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className="flex items-start  justify-between min-h-screen ">
+    <div className="flex items-start  justify-between min-h-screen font-poppins">
 
         <div className="flex flex-[0.75]  justify-center  ">
 
@@ -49,8 +49,8 @@ const Home: NextPage = () => {
   
         <div className="flex px-5 py-2 space-x-3 ">
 
-<button className={`text-base transition duration-200 ${all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(true); setArticles([]); setOptions(!all?{url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:'http://localhost:4000/articles',orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})}}>All Articles</button>
-<button className={`text-base transition duration-200 ${!all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(false); setArticles([]); setOptions(!all?{url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:'http://localhost:4000/articles',orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
+<button className={` text-lg font-[500] transition duration-200 ${all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(true); setArticles([]); setOptions(!all?{url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:'http://localhost:4000/articles',orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})}}>All Articles</button>
+<button className={`text-lg  font-[500] transition duration-200 ${!all?'text-primary ':'text-quarternary '}`} onClick={()=>{setAll(false); setArticles([]); setOptions(!all?{url:'http://localhost:4000/articles',orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:'http://localhost:4000/articles',orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
 
 </div>
 

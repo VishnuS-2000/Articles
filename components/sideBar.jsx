@@ -1,25 +1,49 @@
 import Link from "next/link"
 import Button from '@mui/material/Button'; 
 import Image from "next/image";
+import { IconButton } from '@chakra-ui/react';
+import { useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+
+
+export const SideBar = ({active})=>{
+    
+    const navBarHidden=['articles','authors']
 
 
 
 
-export const SideBar = ()=>{
 
+    const [show,setShow]=useState(navBarHidden.includes(active)?false:true)
 
-    return( <div className="flex flex-col w-[250px] items-center min-h-screen  justify-between border-r border-[#E6E6E6] ">
-     
+    return(<div className='font-poppins'>
+        
+        {navBarHidden.includes(active)&&<div className='fixed top-0 left-0 '>
+        <IconButton onClick={()=>{setShow(!show)}}>
+        <MenuIcon/>
+        </IconButton>
+        </div>}
 
-                <div className="flex flex-col items-center  px-2 py-2  max-w-[80%]">
+        {show&&<div className={navBarHidden.includes(active)?"flex flex-col  w-[250px] items-center min-h-screen  justify-between border-r border-[#E6E6E6]   bg-white fixed z-50 drop-shadow left-0":"flex flex-col  w-[250px] items-center min-h-screen  justify-between border-r border-[#E6E6E6]  bg-white "}>
+
+                {navBarHidden.includes(active)&&<div className='absolute top-0 right-0 '>
+                <IconButton onClick={()=>{setShow(!show)}}>
+                <CloseIcon/>
+                </IconButton>
+                </div>}
+                
+                
+        
+               <div className="flex flex-col items-center  px-2 py-2  max-w-[80%]">
                     <Image className="" src='/assets/index/cusat-logo.png' width='140px' height='88px' ></Image>
                   
             
                 </div>
             
                 <div className="w-full flex-[0.80] flex flex-col items-center space-y-20">
-          
-       
+                
+            
                 <div className='space-y-5 self-center flex-[0.20]'>
                 
                 <SideBarOption link='/admin/dashboard'>
@@ -91,19 +115,17 @@ export const SideBar = ()=>{
         </div>
         
         </div>
+
         
         
         
-        </div>
+        </div>}
 
 
 
 
 
-    );
-
-
-
+  </div>  );
 
 
 
@@ -111,10 +133,11 @@ export const SideBar = ()=>{
 
 const SideBarOption=({children,link})=>{
 
+    
 
     return<div className="flex min-w-[180px] rounded-[4px] cursor-pointer justify-start items-baseline">
            
- 
+    
     <Link href={link}>
     <button className="w-full p-4 h-[60px] hover:bg-slate-100 flex items-center justify-center space-x-5 stroke-primary font-[400] text-lg">
         {children}
