@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { SearchBar } from '../../../../../components/searchBar'
 import { useState } from 'react'
 
+// UI by Sharun
 const AuthorView: NextPage = () => {
     const [isArticle, setIsArticle] = useState(true);
     return <div className='w-full min-h-screen flex'>
