@@ -8,7 +8,7 @@ import Link from 'next/link'
 import {useSession} from 'next-auth/react'
 
 import axios from 'axios'
-import {Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
+import {Notification} from '../../../../../components/notification'
 import { useRouter } from 'next/router';
 
 
@@ -27,7 +27,7 @@ const AuthorEdit:NextPage=({data})=>{
 
     })
 
-    const [err,setError]=useState(null)
+    const[notification,setNotification]=useState({})
     const[image,setImage]=useState({url:data.result.photo})
     
     const [previous,setPrevious]=useState({
@@ -82,7 +82,7 @@ const AuthorEdit:NextPage=({data})=>{
     
                 catch(err){
                     
-                    setError({message:err.response.data.message})
+                    SetNotification({message:err.response.data.message})
                 }
     
         
@@ -122,12 +122,13 @@ const AuthorEdit:NextPage=({data})=>{
 
         })  
 
+        setNotification({message:'Updated Author',status:'success',float:true})
         router.push('/admin/dashboard/authors/1')
 
         }catch(err){
             
             console.log(err)
-            setError({message:err.message})
+            setNotification({message:err.message,status:'error'})
 
         }
         
@@ -174,11 +175,8 @@ return <div className='flex min-h-screen'>
 
 
 
-        <div className='max-w-[720px]'>
-                {err&&<Alert status='error'>
-                <AlertIcon />
-                <AlertDescription>{err.message}</AlertDescription>
-                 </Alert>}
+        <div className='w-full'>
+                {notification.message&&<Notification options={notification}/>}
         </div>
   
         <form onSubmit={handleSubmit}>

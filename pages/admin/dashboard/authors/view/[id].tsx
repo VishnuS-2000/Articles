@@ -55,7 +55,6 @@ const AuthorView: NextPage = () => {
                     </div>
                 </div>
             </div>
-
             {/* Group tabs */}
             <div className='flex justify-between m-8'>
                 <div className='flex gap-8'>

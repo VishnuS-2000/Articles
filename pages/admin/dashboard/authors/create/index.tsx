@@ -133,7 +133,7 @@ return <div className='flex min-h-screen'>
 
 
 
-    <div className='flex flex-col items-center  flex-[0.60]   p-10  space-y-5'>
+    <div className='flex flex-col items-center  flex-[0.60]   p-10  space-y-5 font-poppins'>
         
 
         <div className='flex space-x-3 justify-between  w-[650px]  '>
@@ -163,8 +163,8 @@ return <div className='flex min-h-screen'>
 
 
 
-        <div className='max-w-[700px] w-full'>
-                {notification.update&&<Notification options={notification}/>}
+        <div className=' w-full'>
+                {notification.message&&<Notification options={notification}/>}
 
         </div>
 

@@ -12,7 +12,7 @@ useEffect(()=>{
 
 refContainer.current.innerHTML=article.richText;
 
-},[])
+},[article.id])
 
     return (
         <div className="article-content space-y-3 font-poppins">
@@ -20,7 +20,7 @@ refContainer.current.innerHTML=article.richText;
             <h1 className='text-3xl font-[500] pb-4 text-primary'>{article.title}</h1>
           
             {/* Article Content */}
-            <div ref={refContainer} className='my-4 text-lg text-secondary  space-y-5'>
+            <div ref={refContainer} className='my-4 text-xl text-secondary  space-y-5'>
 
             </div>
         </div>

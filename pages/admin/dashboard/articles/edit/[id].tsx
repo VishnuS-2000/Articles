@@ -15,6 +15,9 @@ import {useSession} from 'next-auth/react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 
+import {Notification} from '../../../../../components/notification'
+
+
 
 const RichTextEditor= dynamic(() => import('@mantine/rte'), { ssr: false });
 
@@ -32,7 +35,7 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
     })
     const [text,setText]=useState(data.result.richText)
 
-    const [error,setError]=useState({
+    const [notification,setNotification]=useState({
         message:null
     })
 
@@ -58,13 +61,14 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
             }
         })
 
-        router.push('/admin/dashboard/articles/create')
+        setNotification({status:'success',message:'Article Edited',float:true})
+        router.push('/admin/dashboard/articles/1')
 
         }
 
         catch(err){
 
-            setError({message:err.message})            
+            setNotification({status:'error',message:err.message})            
         }
 
 
@@ -77,7 +81,7 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
             <form  onSubmit={handleSubmit} className=' p-5 flex flex-col justify-start  align-top w-[75%] h-full font-poppins'>
                 <div className='flex flex-row-reverse gap-5 mr-5 items-center'>
                     
-             
+                {notification.message&&<Notification options={notification}/>}
                     
                     <Link href='/admin/dashboard/articles/1'>
                     <button className='' >
@@ -98,12 +102,6 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
                     <button type='submit' className='bg-[#394867] text-white px-8 py-1 rounded-full'>Publish</button>
               
                        
-                    {error.message&&<Alert status='error'>
-                        <AlertIcon/>
-                        <AlertDescription>
-                            {error.message}
-                        </AlertDescription>
-                    </Alert>}
               
               
               

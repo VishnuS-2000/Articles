@@ -8,8 +8,8 @@ import { AuthorCard } from "../../components/authorCard";
 
 import { useState,useEffect } from "react";
 
+import {MoreContainer} from '../../components/container'
 
-import { MoreContainer } from "../../components/container";
 
 
 
@@ -32,11 +32,11 @@ const ArticlePage:NextPage=({data})=>{
     },[])
 
 
-return <div className='flex min-h-screen items-start justify-between pb-10 '>
+return <div className='flex min-h-screen items-start justify-center pb-10 '>
 
         <div className="flex-[0.75] flex justify-center w-full  ">
-        <div className=" max-w-[800px] flex flex-col px-10">
-                <AuthorCard name={data.result.author.name} extras={extras}/>
+        <div className=" max-w-[850px] flex flex-col px-10">
+                <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
                 <Article article={data.result}/>
                 <MoreContainer name={data.result.author.name} id={data.result.id}/>
 
@@ -46,7 +46,6 @@ return <div className='flex min-h-screen items-start justify-between pb-10 '>
       
 
 
-            <SearchBar/>
 
 
 

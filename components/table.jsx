@@ -2,18 +2,19 @@
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
+
 import Link from 'next/link'
 
-import {AuthorsHeader} from '../components/authorHeader'
-import {AuthorRow} from '../components/authorRow'
+import {AuthorsHeader} from './authorHeader'
+import {AuthorRow} from './authorRow'
 
 
-import {ArticleRow} from '../components/articleRow'
-import {ArticleHeader} from '../components/articleHeader'
+import {ArticleRow} from './articleRow'
+import {ArticleHeader} from './articleHeader'
 
 import axios from 'axios'
 import {useRouter} from 'next/router'
-
+import {useState} from 'react'
 
 import { useSession } from 'next-auth/react'
 
@@ -23,9 +24,17 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
 
     const {data:session}=useSession()
-    console.log(session)
+
 
     const router=useRouter()
+
+
+    const [multipleDelete,setMultipleDelete]=useState([])
+    const [selectAll,setSelectAll]=useState(false)
+
+
+    
+    console.log(multipleDelete)
 
     const handleDelete=async(id)=>{
         
@@ -36,6 +45,13 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
                     
                     'Authorization':`Bearer ${session.accessToken}`}
             })
+
+            if(multipleDelete.includes(id)){
+                setMultipleDelete(multipleDelete.filter((e)=>{
+                    return e!==id
+                }))
+            }
+
 
             router.push(`${navigationURL}${page}`)            
         }
@@ -52,16 +68,21 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
     console.log(data,count)
 
 
-        return <div className='flex flex-col min-h-screen justify-start items-start flex-[1]'>  
+        return <div className='flex flex-col min-h-screen justify-start items-start flex-[1] font-poppins'>  
+
+
+
+
+        
         <div className='flex flex-col  py-2 h-[120px] w-full border-b border-slate-300'>
 
             
-                <div className='flex'> 
+                <div className='flex justify-center'> 
                 <input type='text' className='flex-[0.40] p-2 text-base font-[400] rounded-[30px] outline-none border border-slate-300 ml-20 my-4 placeholder-secondary bg-[#FAFAFA]' placeholder='Search writers,articles,topic'/>
                 </div>
 
                 <div className='flex space-x-5 px-5 '>
-                    <p className='text-lg font-[400] text-[#343A40] font-[400]'>{`All (${count})`}</p>
+                    <p className='text-lg  text-[#343A40] font-[400]'>{`All (${count})`}</p>
                     <div className='flex items-center space-x-5'>
 
 
@@ -133,16 +154,16 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
         {authorsType?
         <div className='flex flex-col w-full text-[#6C757D]'>
-        <AuthorsHeader/>
+        <AuthorsHeader setSelectAll={setSelectAll} selectAll={selectAll}/>
         {data.map((element)=>{
-            return <AuthorRow element={element} handleDelete={handleDelete}/>
-        })}
-        
+            return <AuthorRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} selectAll={selectAll}/>
+        })}                
+
         </div>:
         <div className='flex flex-col w-full text-[#6C757D]'>
-        <ArticleHeader/>
+        <ArticleHeader setSelectAll={setSelectAll} selectAll={selectAll}/>
         {data.map((element)=>{
-            return <ArticleRow element={element} handleDelete={handleDelete}/>
+            return <ArticleRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} selectAll={selectAll}/>
         })}
         
         

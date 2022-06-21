@@ -5,7 +5,7 @@ import { ArticleCard } from "../../components/articleCard";
 import { SearchBar } from "../../components/searchBar";
 import { useEffect, useState } from 'react';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
-
+import Link from "next/link";
 
 
 const resultPage:NextPage=({data})=>{
@@ -54,14 +54,11 @@ const resultPage:NextPage=({data})=>{
     }
   })
 
-  const handleClick = (e)=>{
-    e.preventDefault();
-    router.push('/')
-  }
+  
 
 
 
-  return <div className="flex min-h-screen items-start justify-between  ">
+  return <div className="flex min-h-screen items-start justify-between font-poppins ">
       
       
       
@@ -71,8 +68,9 @@ const resultPage:NextPage=({data})=>{
        
   
         <div className="flex flex-[0.75]  justify-center   ">
-          <div className="absolute left-4 top-4 hover:bg-slate-200 rounded " onClick={handleClick}>
-          <KeyboardBackspaceRoundedIcon sx={{ fontSize: 30 }}/>
+          <div className="absolute left-4 top-3 hover:bg-slate-200 rounded  cursor-pointer" >
+          
+          <Link href='/'><KeyboardBackspaceRoundedIcon sx={{ fontSize: 30 }}/></Link>
           </div>
           
           

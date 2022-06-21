@@ -1,17 +1,33 @@
 import moment from 'moment'
 import Link from 'next/link'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export const ArticleRow = ({element,handleDelete})=>{
+export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelete,selectAll})=>{
 
 
+    const handleChange=()=>{
+
+        if(multipleDelete.includes(element.id)){
+            setMultipleDelete(multipleDelete.filter((e)=>{
+            return e!==element.id
+            }))
+        }
+
+        else{
+
+        setMultipleDelete([...multipleDelete,element.id])}
+
+    }
 
     return(
             <div className="flex  flex-row h-[60px]  items-center justify-between w-full  border-b  px-2 font-poppins space-x-2">
                 <div  className="w-[20px] ">
-                    <input className="w-[20px] h-[20px]" type='checkbox'></input>                    
-                </div>
+                   {selectAll?
+                    <input className="w-[20px] h-[20px]" type='checkbox' checked />:
+                    <input className="w-[20px] h-[20px]" type='checkbox' onChange={handleChange} />     
+                   }
+                    </div>
                 
-              
                 
                 <div className="w-[200px]  ">
                     <p>{element?.title.slice(0,35)} ... </p>
@@ -22,13 +38,13 @@ export const ArticleRow = ({element,handleDelete})=>{
                 </div>
                 
                 <div className="w-[230px] flex space-x-2 ">
-                <img src="https://static.independent.co.uk/2022/04/26/16/054348ef248cdd6196d71ae7a049b305Y29udGVudHNlYXJjaGFwaSwxNjUxMDcxMzkz-2.66390146.jpg?quality=75&width=982&height=726&auto=webp" className="rounded-full w-[24px] h-[24px]"/>
+                {element.author.photo?<img src={`${element.author.photo}`} alt="." className="rounded-full w-[20px] h-[20px]"/>:<AccountCircleIcon/>}
                     <h4>{element.author.name}</h4>
                 </div>
                 
                 <div className="w-[140px] ">
                     <button className='text-white flex justify-center text-sm w-[130px] rounded-[20px] bg-primary shadow-sm p-1 py-2'>
-                    {element.topic.slice(0,10)}
+                    {element.topic.slice(0,15)}
                     </button>
                 </div>
                 

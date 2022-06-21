@@ -7,6 +7,7 @@ export const Notification=({options})=>{
     const toast=useToast()   
 
     return (options.float?toast({
+    position: 'top-right',
     title: options.title,
     description:options.message,
     status: options.status,

@@ -84,7 +84,7 @@ export const MoreContainer=({id,name})=>{
   const [articles,setArticles]=useState([])
   const [count,setCount]=useState(0)
   const [offset,setOffset]=useState(1)
-
+  
   useEffect(()=>{
 
 
@@ -92,9 +92,14 @@ export const MoreContainer=({id,name})=>{
 
       try{
 
-        const response=await axios.get(`/api/articles/query/?author=${name}`)
+        const response=await axios.get(`http://localhost:4000/articles/search?author=${name}`,{
+
+
+
+        })
         
         setCount(response.data.result.count)
+        console.log(response.data.result)
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
         }))
@@ -109,7 +114,7 @@ export const MoreContainer=({id,name})=>{
 
     fetchData()
 
-  },[])
+  },[id])
 
 
   const handleClick=()=>{
@@ -121,7 +126,7 @@ export const MoreContainer=({id,name})=>{
 
   return <div>
   
-  {articles.length>0?<div className="flex flex-col items-center py-10">
+  {articles.length>0?<div className="flex flex-col items-center py-10 font-poppins">
 
       <div className="flex flex-col items-start w-full">
       <h1 className="text-2xl text-primary font-[500]">More From {name}</h1>
@@ -132,7 +137,7 @@ export const MoreContainer=({id,name})=>{
 
       </div>
 
-     <button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>
+<button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>
 
   </div>:<h1></h1>}
 

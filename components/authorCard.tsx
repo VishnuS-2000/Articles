@@ -1,10 +1,15 @@
-
-export const AuthorCard=({name,extras}) => {
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+export const AuthorCard=({name,extras,photo}) => {
 
     return (
         <div className="user-card py-10 flex items-center">
             <div className="user-card__avatar pr-5 flex-none">
-                <img className='w-[60px] h-[60px] rounded-full' src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="avatar" />
+                
+                
+                {photo?
+                <img className='w-[60px] h-[60px] rounded-full' src={photo} alt="avatar" />:
+                <AccountCircleIcon style={{fontSize:'4rem'}}/>}
+              
             </div>
             <div className="user-card__info flex-1">
                 <div className="user-card__name pb-1">

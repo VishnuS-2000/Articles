@@ -11,11 +11,11 @@ const AuthorDashBoard:NextPage=({data})=>{
 
     const router=useRouter()
 
-    return <div className='flex  min-h-screen'>
+    return <div className='flex  min-h-screen font-poppins'>
                 
     
 
-      <SideBar/>
+      <SideBar active='authors'/>
      <DisplayTable data={data.result.rows} count={data.result.rows.length} page={(router.query.page)} navigationURL='/admin/dashboard/authors/' limit={15} authorsType={true}/> 
 
 
