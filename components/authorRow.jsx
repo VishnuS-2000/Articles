@@ -9,28 +9,28 @@ export const AuthorRow = ({element,handleDelete})=>{
 
 
     return(
-            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-5">
-                <div  className="max-w-[20px]">
+            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-2">
+                <div  className="w-[20px]">
                     <input className="w-[20px] h-[20px]" type='checkbox'></input>                    
                 </div>
                 
               
                 
-                <div className="max-w-[200px]  flex space-x-3 justify-start">
-                <img src={`${element.photo}`} className="rounded-full w-[24px] h-[24px]"/>
+                <div className="w-[200px]  flex space-x-3 justify-start">
+                <img src={`${element.photo}`} alt="." className="rounded-full w-[24px] h-[24px]"/>
                 <p>{element?.name}</p>
                 </div>
                 
-                <div className="max-w-[250px]">
+                <div className="w-[230px]">
                     <h4>{element.email}</h4>
                 </div>
    
                 
-                <div className="max-w-[200px] ">
+                <div className="w-[230px] ">
                 <h4>{element?.specialization}</h4>
             </div>
 
-                <div className="max-w-[140px] ">
+                <div className="w-[140px] ">
                     <h4 className='w-[60px]'>
                     {element?.articles.length}
                     </h4>
@@ -38,7 +38,7 @@ export const AuthorRow = ({element,handleDelete})=>{
                 
             
                 
-                <div className="max-w-[60px] flex space-x-4" >
+                <div className="w-[60px] flex space-x-4" >
 
                 <Link href={`/admin/dashboard/authors/edit/${element.id}`}>
                 <button>
