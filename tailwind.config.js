@@ -4,6 +4,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens:{
+      'mobile' : '300px',
+      'tablet' : '600px',
+      'desktop' : '1000px'
+    },
     extend: {
       'colors':{
         'primary':'#14274E',
