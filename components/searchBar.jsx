@@ -75,7 +75,7 @@ export const SearchBar  = () => {
     return(
 
        
-        <div className=" fixed  max-w-[25%] flex-[0.25] flex right-0 top-0 flex-col text-base border-line border-l px-4 min-h-screen justify-start py-12">
+        <div className="mobile:hidden desktop:flex  fixed  max-w-[25%] flex-[0.25]  right-0 top-0 flex-col text-base border-line border-l px-4 min-h-screen justify-start py-12">
      
         <form className="flex  flex-col items-start w-full space-y-6"  >
            
