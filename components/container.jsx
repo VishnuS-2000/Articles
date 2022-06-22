@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import Link from "next/link";
 import axios from 'axios'
 import { Spinner } from "@chakra-ui/react";
+import {useSession} from 'next-auth/react'
 
+import {useRouter} from 'next/router'
 
 export const ArticlesContainer=({options,all,articles,setArticles})=>{
 
@@ -12,6 +14,7 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
   const[count,setCount]=useState(0)
   const[loading,setLoading]=useState(true)
 
+  const router=useRouter()
   
   useEffect(()=>{
 
@@ -142,5 +145,40 @@ export const MoreContainer=({id,name})=>{
   </div>:<h1></h1>}
 
   </div> 
+
+}
+
+
+export const ViewContainer=({data})=>{
+
+  const {data:session}=useSession()
+
+  const router=useRouter()
+
+  console.log(data)
+  const handleDelete=async(id)=>{
+    console.log(id)
+    try{
+        const response=await axios.delete(`http://localhost:4000/admin/article/${id}`,{
+            headers:{
+                'Authorization':`Bearer ${session.accessToken}`
+            }
+        })
+        router.push(`/admin/dashboard/authors/view/${data.result.id}`)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
+  return <div className='overflow-y-auto max-h-[650px] w-[650px]'>
+  {data.result.articles.map((element)=>{
+
+    console.log(element)
+    return <ArticleCard data={{author:{photo:data.result.photo,name:data.result.name,id:data.result.id},content:element.content,topic:element.topic,createdAt:element.createdAt,richText:element.richText,id:element.id}} deleteOption={true} handleDelete={handleDelete}/>
+})}
+
+  </div>
 
 }

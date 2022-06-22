@@ -41,8 +41,8 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
 
 
 
-    return(<Link href={`/admin/dashboard/authors/view/${element.id}`}>
-            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-2 cursor-pointer hover:bg-gray-100 duration-200">
+    return(
+            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-2 ">
                 <div  className="w-[20px]">
                
                 <Modal isOpen={isOpen} onClose={onClose} >
@@ -74,7 +74,9 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
                 
                 <div className="w-[200px]  flex space-x-3 justify-start">
                 {element.photo?<img src={`${element.photo}`} alt="." className="rounded-full w-[20px] h-[20px]"/>:<AccountCircleIcon/>}
-                <p>{element.name.length>30?element.name.slice(0,30)+'...':element.name}</p>
+                <Link href={`/admin/dashboard/authors/view/${element.id}`}>
+                <p className='cursor-pointer'>{element.name.length>30?element.name.slice(0,30)+'...':element.name}</p>
+                </Link>
                 </div>
                 
                 <div className="w-[250px]">
@@ -120,7 +122,7 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
                 </div>
             
         </div>
-        </Link>
+
         )
 
     }
