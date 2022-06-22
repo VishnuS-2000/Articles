@@ -1,9 +1,9 @@
-export const AuthorsHeader=({selectAll,setSelectAll})=>{
+export const AuthorsHeader=()=>{
 
 
     return   <div className="flex flex-row h-[60px] items-center justify-between   border-b  px-2  font-[600] text-secondary text-base">
     <div  className="w-[20px]">
-        <input className="w-[20px] h-[20px]" type='checkbox' onClick={()=>{setSelectAll(!selectAll)}}/>                 
+        <input className="w-[20px] h-[20px] hidden" type='checkbox' />                 
     </div>
 
 
