@@ -12,6 +12,8 @@ useEffect(()=>{
 
 refContainer.current.innerHTML=article.richText;
 
+console.log(refContainer.current.getElementsByTagName('img')[0].getAttribute('src'))
+
 },[article.id])
 
     return (

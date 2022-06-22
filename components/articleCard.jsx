@@ -1,6 +1,6 @@
 import Image from "next/image"
 import moment from "moment"
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 import Link from "next/link";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -14,6 +14,9 @@ export const ArticleCard=({data})=>{
         minRead:''
     })
 
+    const [imageUrl,setImageUrl]=useState()
+
+    const refContainer=useRef()
     
     useEffect(()=>{
        
@@ -35,6 +38,17 @@ export const ArticleCard=({data})=>{
         setExtras({
             ...extras,minRead,ago
         })
+
+
+
+    },[])
+
+
+    useEffect(()=>{
+
+        refContainer.current.innerHTML=data.richText
+
+        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src'))
 
 
 
@@ -76,10 +90,11 @@ export const ArticleCard=({data})=>{
     </div>
 
     <div className="drop-shadow-sm abolute min-w-[150px]">
-    <Image src="http://picsum.photos/300/300" height="150px" width="150px" className="float-right cursor-pointer" alt="article-image" />
+    <img src={imageUrl?imageUrl:'https://picsum.photos/300/300'}  height="150px" width="150px" className="float-right cursor-pointer" alt="article-image" />
     </div>
     
 
+    <div ref={refContainer} className="hidden"></div>
 
 
     </div>

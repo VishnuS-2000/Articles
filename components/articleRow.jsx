@@ -33,8 +33,8 @@ export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelet
 
     }
 
-    return(
-            <div className="flex  flex-row h-[60px]  items-center justify-between w-full  border-b  px-2 font-poppins space-x-2">
+    return(<Link href={`/articles/${element.id}`}>
+            <div className="flex  flex-row h-[60px]  items-center justify-between w-full  border-b  px-2 font-poppins space-x-2 cursor-pointer hover:bg-gray-100 duration-200">
                
             
             <Modal isOpen={isOpen} onClose={onClose} className='font-poppins'>
@@ -116,6 +116,8 @@ export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelet
                     </button>
                 </div>
             
-        </div>)
+        </div>
+        </Link>
+        )
 
     }

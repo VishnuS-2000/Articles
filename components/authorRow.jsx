@@ -41,8 +41,8 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
 
 
 
-    return(
-            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-2">
+    return(<Link href={`/admin/dashboard/authors/view/${element.id}`}>
+            <div className="flex   flex-row h-[60px] items-center justify-between  border-b  px-2 font-poppins space-x-2 cursor-pointer hover:bg-gray-100 duration-200">
                 <div  className="w-[20px]">
                
                 <Modal isOpen={isOpen} onClose={onClose} >
@@ -119,6 +119,8 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
  
                 </div>
             
-        </div>)
+        </div>
+        </Link>
+        )
 
     }
