@@ -48,7 +48,8 @@ export const ArticleCard=({data})=>{
 
         refContainer.current.innerHTML=data.richText
 
-        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src')||'https://picsum.photos/300/300')
+        const id=Math.ceil(Math.random()*1000)
+        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src')||`https://picsum.photos/id/${id}/300/300`)
 
 
 
