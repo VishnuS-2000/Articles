@@ -48,7 +48,7 @@ export const ArticleCard=({data})=>{
 
         refContainer.current.innerHTML=data.richText
 
-        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src'))
+        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src')||'https://picsum.photos/300/300')
 
 
 
@@ -90,7 +90,7 @@ export const ArticleCard=({data})=>{
     </div>
 
     <div className="drop-shadow-sm abolute min-w-[150px]">
-    <img src={imageUrl?imageUrl:'https://picsum.photos/300/300'}  height="150px" width="150px" className="float-right cursor-pointer" alt="article-image" />
+    <img src={imageUrl}  height="150px" width="150px" className="float-right cursor-pointer" alt="article-image" />
     </div>
     
 
