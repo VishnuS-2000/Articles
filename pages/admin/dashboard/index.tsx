@@ -101,7 +101,31 @@ const Home:NextPage=({authors , articles , topics , topicwise})=>{
 
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+
+
+  const session=await getSession(context)
+
+  
+
+  if(!session){
+
+    return{
+
+        redirect:{
+            destination:'/login',
+            permanent:false
+        }
+
+    }
+
+
+  }
+
+
+
+
+
     try {
         const response = await axios.get("http://localhost:4000/articles")
         const res = await axios.get("http://localhost:4000/authors")

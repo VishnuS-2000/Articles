@@ -4,7 +4,7 @@ import { SideBar } from '../../../../../components/sideBar'
 
 import dynamic from 'next/dynamic'
 import {useState,useEffect} from 'react'
-
+import { getSession } from 'next-auth/react'
 
 import axios from 'axios'
 
@@ -158,7 +158,25 @@ const ArticleCreate:NextPage=({authors,topics}) => {
 }
 
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
+
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
 
 
     try{

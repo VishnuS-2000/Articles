@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 
+import { getSession } from 'next-auth/react'
+
 import { SideBar } from '../../../../../components/sideBar'
 
 import dynamic from 'next/dynamic'
@@ -157,7 +159,25 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
 }
 
 
-export async function getServerSideProps({query}){
+export async function getServerSideProps({query , context}){
+
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
 
 
     try{

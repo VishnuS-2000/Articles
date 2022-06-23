@@ -3,6 +3,7 @@ import { SideBar } from '../../../../components/sideBar';
 import { DisplayTable } from '../../../../components/table';
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import { getSession } from "next-auth/react";
 
 const ArticleDashBoard:NextPage=({data,err})=>{
 
@@ -28,7 +29,25 @@ export default ArticleDashBoard;
 
 
 
-export async function getServerSideProps({query}){
+export async function getServerSideProps({query , context}){
+
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
 
     const offset=(query.page-1)*15
 

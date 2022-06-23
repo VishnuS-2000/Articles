@@ -7,12 +7,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 
+import { signOut } from "next-auth/react";
+import { Alert } from "@mui/material";
+
 export const SideBar = ({active})=>{
     
     const navBarHidden=['articles','authors']
 
 
-
+  
 
 
     const [show,setShow]=useState(navBarHidden.includes(active)?false:true)
@@ -90,7 +93,7 @@ export const SideBar = ({active})=>{
             <h1>Settings</h1>
             </SideBarOption>
 
-            <SideBarOption link='/admin/dashboard/settings' >
+            <SideBarOption >
             <svg className='stroke-[#A65959]' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.4399 14.62L19.9999 12.06L17.4399 9.5"  stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M9.76001 12.06H19.93"  stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -133,17 +136,21 @@ export const SideBar = ({active})=>{
 
 const SideBarOption=({children,link})=>{
 
-    
+    const handleClick=async()=>{
+        await signOut({callbackUrl:'/login'})
+    }
 
     return<div className="flex min-w-[180px] rounded-[4px] cursor-pointer justify-start items-baseline">
            
     
-    <Link href={link}>
+   {link?<Link href={link}>
     <button className="w-full p-4 h-[60px] hover:bg-slate-100 flex items-center justify-center space-x-5 stroke-primary font-[400] text-lg">
         {children}
     </button>
 
-    </Link>
+    </Link>:  <button onClick={()=>{handleClick()} } className="w-full p-4 h-[60px] hover:bg-slate-100 flex items-center justify-center space-x-5 stroke-primary font-[400] text-lg">
+    {children}
+</button>}
     
 </div>
 }

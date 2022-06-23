@@ -13,6 +13,8 @@ import { Notification } from '../../../../../components/notification';
 import {useRouter} from 'next/router'
 
 import {useSession} from 'next-auth/react'
+import { getSession } from 'next-auth/react'
+
 
 // UI by Sharun
 const AuthorView: NextPage = ({data}) => {
@@ -138,7 +140,24 @@ const AuthorView: NextPage = ({data}) => {
 
 
 
-export async function getServerSideProps({query}){
+export async function getServerSideProps({query , context}){
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
 
     try{
 

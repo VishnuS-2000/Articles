@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 
 import {useState,useEffect} from 'react'
 import axios from 'axios'
+import { getSession } from 'next-auth/react'
 
 import {Notification} from '../../../components/notification'
 import { fetchData } from 'next-auth/client/_utils'
@@ -138,6 +139,27 @@ const SettingsPage:Nextpage=()=>{
         </div>
 
     </div>
+}
+
+export async function getServerSideProps(context) {
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
+    
 }
 
 

@@ -10,7 +10,7 @@ import {useSession} from 'next-auth/react'
 import axios from 'axios'
 import {Notification} from '../../../../../components/notification'
 import { useRouter } from 'next/router';
-
+import { getSession } from 'next-auth/react'
 
 
 const AuthorEdit:NextPage=({data})=>{
@@ -336,7 +336,25 @@ return <div className='flex min-h-screen'>
 
 }
 
-export async function getServerSideProps({query}){
+export async function getServerSideProps({query , context}){
+
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
 
     try{
 

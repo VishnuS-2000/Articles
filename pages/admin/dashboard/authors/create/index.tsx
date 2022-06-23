@@ -14,6 +14,7 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router';
 import {Notification} from '../../../../../components/notification'
+import { getSession } from 'next-auth/react'
 
 
 const AuthorCreate:NextPage=()=>{
@@ -272,6 +273,28 @@ return <div className='flex min-h-screen'>
 
 }
 
+
+export async function getServerSideProps(context) {
+
+    const session=await getSession(context)
+
+  
+
+    if(!session){
+  
+      return{
+  
+          redirect:{
+              destination:'/login',
+              permanent:false
+          }
+  
+      }
+  
+  
+    }
+    
+}
 
 
 
