@@ -3,13 +3,30 @@ import { SideBar } from '../../../../components/sideBar';
 import { DisplayTable } from '../../../../components/table';
 import axios from 'axios'
 import {useRouter} from 'next/router'
-import { getSession } from "next-auth/react";
+import { useSession,getSession } from "next-auth/react";
 
-const ArticleDashBoard:NextPage=({data,err})=>{
 
-    console.log(data,err)
+import {useEffect} from 'react'
+
+
+
+const ArticleDashBoard:NextPage=({data})=>{
+
+    console.log(data)
+
+    
+    const {data:session}=useSession()
 
     const router=useRouter()
+
+    useEffect(()=>{
+
+        if(!session){
+            router.push('/login')
+        }
+
+    },[])
+
 
     return <div className='flex w-full min-h-screen font-poppins '>
                 
@@ -29,25 +46,11 @@ export default ArticleDashBoard;
 
 
 
-export async function getServerSideProps({query , context}){
+export async function getServerSideProps({query,context}){
 
-    const session=await getSession(context)
-
+    
   
-
-    if(!session){
-  
-      return{
-  
-          redirect:{
-              destination:'/login',
-              permanent:false
-          }
-  
-      }
-  
-  
-    }
+    
 
     const offset=(query.page-1)*15
 
@@ -65,7 +68,8 @@ export async function getServerSideProps({query , context}){
 
     return {
         props:{
-            data:response.data
+            data:response.data,
+            session:await getSession(context)
         }
     }
 
