@@ -64,8 +64,7 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
               </Modal>
 
 
-
-               {selectAll?<input className="w-[20px] h-[20px]" type='checkbox' checked />:                  
+                
                     <input className="w-[20px] h-[20px]" type='checkbox' onChange={handleChange} /> }             
                    
                     </div>

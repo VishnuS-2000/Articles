@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import {useRouter} from 'next/router'
 import axios from 'axios'
 import { ArticleCard } from "../../components/articleCard";
-import { SearchBar } from "../../components/searchBar";
+import { SearchBar ,SearchBarMobile} from "../../components/searchBar";
 import { useEffect, useState } from 'react';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import Link from "next/link";
@@ -64,9 +64,7 @@ const resultPage:NextPage=({data})=>{
       
       
 
-       {articles?
-       
-  
+
         <div className="flex flex-[0.75]  justify-center   ">
           <div className="absolute left-4 top-3 hover:bg-slate-200 rounded  cursor-pointer" >
           
@@ -77,7 +75,7 @@ const resultPage:NextPage=({data})=>{
         <div className="flex  px-10  space-x-3 justify-center ">
 
 <div className='flex flex-col w-[600px]'>
-
+<SearchBarMobile/>
 <div className='flex px-2 py-2 items-baseline space-x-3'>
 <h1 className='text-xl text-primary font-[500]'>Results</h1>
 <p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
@@ -85,13 +83,26 @@ const resultPage:NextPage=({data})=>{
 </div>
 
 
-        {articles.map((article)=>{
+        {articles.length>0?<div>{articles.map((article)=>{
             return <ArticleCard data={article}/>
-        })}
-              </div>
+        })}</div>:<div className="flex flex-col items-center text-gray-600 font-[400] desktop:items-start py-10">
+
+            <h1>
+            Make sure all words are spelled correctly. </h1>
+          
+          <h1>Try different keywords.</h1>
+
+          <h1>Try more general keywords.</h1>
+    
+          
+          </div>}
+
+
+        </div>
+            
         </div>
         </div>
-      :<h1>No Search Results</h1>} 
+
 
       <SearchBar />
   

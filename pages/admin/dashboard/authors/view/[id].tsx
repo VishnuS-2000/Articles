@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { SideBar } from '../../../../../components/sideBar'
 import Link from 'next/link'
 import { SearchBar } from '../../../../../components/searchBar'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 import {ArticleCard} from '../../../../../components/articleCard'
@@ -13,19 +13,35 @@ import { Notification } from '../../../../../components/notification';
 import {useRouter} from 'next/router'
 
 import {useSession} from 'next-auth/react'
-import { getSession } from 'next-auth/react'
+
 
 
 // UI by Sharun
 const AuthorView: NextPage = ({data}) => {
 
 
+    const router=useRouter()
+
+    const {data:session}=useSession()
+
+
+
+
+
+    useEffect(()=>{
+
+        if(!session){
+            router.push('/login')
+        }
+
+    },[])
+
 
     const [isArticle, setIsArticle] = useState(true);
     const [notification,setNotification]=useState({});
 
-    const {data:session}=useSession()
-    const router=useRouter()
+
+
     const handleDelete=async()=>{
         
         try{
@@ -35,8 +51,8 @@ const AuthorView: NextPage = ({data}) => {
             }
 
             })
-            setNotification({status:'success',message:'Successfully Deleted',float:true})
-            router.push('/admin/dashboard/authors/1')
+            setNotification({status:'warning',message:'Successfully Deleted',float:true})
+            router.push('/admin/dashboard/authors/?page=1')
         }
         catch(err){
             setNotification({status:'error',message:err.message,float:true})
@@ -104,9 +120,11 @@ const AuthorView: NextPage = ({data}) => {
             {
                 isArticle ? <div className='flex-1'>
                     <div className='flex flex-col items-start gap-5 px-10 py-5 '>
+                    <Link href={`/admin/dashboard/articles/create`}>
                     <button className='px-5 bg-[#394867] text-white rounded-[15px] w-[150px] py-2 shadow-sm text-base'>
                         ADD NEW +
                     </button>
+                    </Link>
                         {/* TODO: Article card list display */}
 
                     <ViewContainer data={data}/>
@@ -141,23 +159,7 @@ const AuthorView: NextPage = ({data}) => {
 
 
 export async function getServerSideProps({query , context}){
-    const session=await getSession(context)
-
-  
-
-    if(!session){
-  
-      return{
-  
-          redirect:{
-              destination:'/login',
-              permanent:false
-          }
-  
-      }
-  
-  
-    }
+   
 
     try{
 

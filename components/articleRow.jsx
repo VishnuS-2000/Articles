@@ -63,10 +63,9 @@ export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelet
             
             
             <div  className="w-[20px] ">
-                   {selectAll?
-                    <input className="w-[20px] h-[20px]" type='checkbox' checked />:
+                
                     <input className="w-[20px] h-[20px]" type='checkbox' onChange={handleChange} />     
-                   }
+           
                     </div>
                 
                 

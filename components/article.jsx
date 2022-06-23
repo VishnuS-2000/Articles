@@ -17,12 +17,12 @@ refContainer.current.innerHTML=article.richText;
 },[article.id])
 
     return (
-        <div className="article-content space-y-3 font-poppins">
+        <div className="article-content space-y-2  font-poppins flex flex-col">
             {/* Article Heading */}
-            <h1 className='text-3xl font-[500] pb-4 text-primary'>{article.title}</h1>
+            <h1 className='text-primary font-[500] text-2xl desktop:text-3xl  pb-4 '>{article.title}</h1>
           
             {/* Article Content */}
-            <div ref={refContainer} className='my-4 text-xl text-secondary  space-y-5'>
+            <div ref={refContainer} className=' text-sm    desktop:text-xl text-secondary  my-4  text-justify space-y-5'>
 
             </div>
         </div>

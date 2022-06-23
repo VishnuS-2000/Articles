@@ -14,7 +14,7 @@ import {ArticleHeader} from './articleHeader'
 
 import axios from 'axios'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import {useState,useRef} from 'react'
 
 import { useSession } from 'next-auth/react'
 
@@ -40,16 +40,17 @@ import {
 
 export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
+    const finalRef=useRef(null)
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const {data:session}=useSession()
-
 
     const router=useRouter()
 
 
     const [multipleDelete,setMultipleDelete]=useState([])
-    const [selectAll,setSelectAll]=useState(false)
+
 
     const [notification,setNotification]=useState({})
     
@@ -133,7 +134,7 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
         {notification.message&&<Notification options={notification}/>}
 
 
-        <Modal isOpen={isOpen} onClose={onClose} >
+        <Modal isOpen={isOpen} onClose={onClose} finalFocusRef={finalRef}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className='font-poppins'>Confirm Deletion</ModalHeader>
@@ -252,16 +253,16 @@ export const DisplayTable=({data,count,page,navigationURL,limit,authorsType})=>{
 
         {authorsType?
         <div className='flex flex-col w-full text-[#6C757D]'>
-        <AuthorsHeader setSelectAll={setSelectAll} selectAll={selectAll} />
+        <AuthorsHeader  />
         {data.map((element)=>{
-            return <AuthorRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} selectAll={selectAll} />
+            return <AuthorRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} />
         })}                
 
         </div>:
         <div className='flex flex-col w-full text-[#6C757D]'>
-        <ArticleHeader setSelectAll={setSelectAll} selectAll={selectAll} />
+        <ArticleHeader />
         {data.map((element)=>{
-            return <ArticleRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} selectAll={selectAll}/>
+            return <ArticleRow element={element} handleDelete={handleDelete} setMultipleDelete={setMultipleDelete} multipleDelete={multipleDelete} />
         })}
         
         

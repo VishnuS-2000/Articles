@@ -15,9 +15,27 @@ import { getSession } from 'next-auth/react'
 
 const AuthorEdit:NextPage=({data})=>{
 
-    console.log(data)
 
     const {data:session}=useSession()
+
+
+    const router=useRouter()
+
+
+
+
+
+    useEffect(()=>{
+
+        if(!session){
+            router.push('/login')
+        }
+
+    },[])
+
+
+
+
 
     const [author,setAuthor]=useState({
         name:data.result.name,
@@ -47,7 +65,7 @@ const AuthorEdit:NextPage=({data})=>{
 
 
 
-    const router=useRouter()
+  
 
     const handleChange=({target})=>{
         if(target.files.length){
@@ -123,7 +141,7 @@ const AuthorEdit:NextPage=({data})=>{
         })  
 
         setNotification({message:'Updated Author',status:'success',float:true})
-        router.push('/admin/dashboard/authors/1')
+        router.push('/admin/dashboard/authors/?page=1')
 
         }catch(err){
             
@@ -336,25 +354,9 @@ return <div className='flex min-h-screen'>
 
 }
 
-export async function getServerSideProps({query , context}){
-
-    const session=await getSession(context)
+export async function getServerSideProps({query}){
 
   
-
-    if(!session){
-  
-      return{
-  
-          redirect:{
-              destination:'/login',
-              permanent:false
-          }
-  
-      }
-  
-  
-    }
 
     try{
 
