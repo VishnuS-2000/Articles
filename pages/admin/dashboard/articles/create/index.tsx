@@ -47,7 +47,9 @@ const ArticleCreate:NextPage=({authors,topics}) => {
 
         try{
         
-        const content=text.replace(/<[^>]+>/g,'')
+        let content=text.replace(/<[^>]+>/g,'')
+        content=content.replace('&nbsp;',' ')
+    
         
         await axios.post('http://localhost:4000/admin/articles',{
             title:article.title,

@@ -12,7 +12,7 @@ import {useEffect} from 'react'
 
 const ArticleDashBoard:NextPage=({data})=>{
 
-    console.log(data)
+    // console.log(data)
 
     
     const {data:session}=useSession()

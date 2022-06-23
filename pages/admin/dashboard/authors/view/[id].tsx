@@ -63,15 +63,17 @@ const AuthorView: NextPage = ({data}) => {
 
 
 
-    console.log(data)
+    // console.log(data)
     
     return <div className='w-full min-h-screen flex font-poppins'>
         <SideBar />
 
-        {notification.message&&<Notification options={notification}/>}
+    
         
         {/* Middle container */}
         <div className='flex flex-col w-full relative px-20 justify-center '>
+
+        {notification.message&&<Notification options={notification}/>}
             {/* Topbar */}
             <div className='flex  items-center justify-between m-8'>
                 <div className='flex gap-8'>

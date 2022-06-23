@@ -26,7 +26,7 @@ const Home:NextPage=({authors , articles , topics , topicwise})=>{
     // const {data:session}=useSession()
 
 
-    console.log(authors.result.rows.length);
+    // console.log(authors.result.rows.length);
     
     
    
@@ -160,7 +160,7 @@ export async function getServerSideProps(context) {
         
     }
     catch(err){
-        console.log(err);
+        // console.log(err);
         
         return({
             props : {

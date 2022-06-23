@@ -64,17 +64,17 @@ export const AuthorRow = ({element,handleDelete,multipleDelete,setMultipleDelete
               </Modal>
 
 
-                
-                    <input className="w-[20px] h-[20px]" type='checkbox' onChange={handleChange} /> }             
+              
+                    <input className="w-[20px] h-[20px]" type='checkbox' onChange={handleChange} />         
                    
                     </div>
                 
               
                 
-                <div className="w-[200px]  flex space-x-3 justify-start">
-                {element.photo?<img src={`${element.photo}`} alt="." className="rounded-full w-[20px] h-[20px]"/>:<AccountCircleIcon/>}
+                <div className="w-[200px]  flex space-x-3 justify-start items-center">
+                {element.photo?<img src={`${element.photo}`} alt="." className="rounded-full w-[30px] h-[30px] "/>:<AccountCircleIcon style={{fontSize:'2rem'}}/>}
                 <Link href={`/admin/dashboard/authors/view/${element.id}`}>
-                <p className='cursor-pointer'>{element.name.length>30?element.name.slice(0,30)+'...':element.name}</p>
+                <p className='cursor-pointer font-[500] text-gray-700 hover:underline underline-primary duration-300 '>{element.name.length>30?element.name.slice(0,30)+'...':element.name}</p>
                 </Link>
                 </div>
                 

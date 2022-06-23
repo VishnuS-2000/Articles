@@ -77,7 +77,7 @@ const handleVerify=async(e)=>{
 
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
         setNotification({status:'error',message:err.message})
     }
 }

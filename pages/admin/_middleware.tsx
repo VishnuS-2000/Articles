@@ -7,7 +7,7 @@ import { NextResponse } from "next/server"
 export async function middleware(req) {
   const session = await getSession({req})
 
-  console.log('middleware',session)
+  // console.log('middleware',session)
   if(!session){
       NextResponse.redirect('http://localhost:3000/login')
   }

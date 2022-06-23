@@ -112,12 +112,12 @@ const ArticleEdit:NextPage=({authors,topics,data}) => {
         })
 
         setNotification({status:'warning',message:'Article Deleted',float:true})
-        
+
         router.push(`/admin/dashboard/articles/?page=1`)
         }
 
         catch(err){
-            console.log(err)
+            // console.log(err)
             setNotification({status:'error',message:err.message})
         }   
 

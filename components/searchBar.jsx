@@ -32,7 +32,7 @@ export const SearchBar  = () => {
 
         }
         catch(err){
-            console.log(err)
+            // console.log(err)
         }
     
 
@@ -46,7 +46,7 @@ export const SearchBar  = () => {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        console.log(params)
+        // console.log(params)
         
         var url='/search?'
         url+=params.term?`&term=${params.term}`:''

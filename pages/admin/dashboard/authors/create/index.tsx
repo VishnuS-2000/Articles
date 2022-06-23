@@ -43,7 +43,7 @@ const AuthorCreate:NextPage=()=>{
                 raw:raw,
                 url:url
             })
-            console.log(url)
+            // console.log(url)
         }
 
 
@@ -82,17 +82,17 @@ const AuthorCreate:NextPage=()=>{
      
         e.preventDefault()
 
-        console.log(author)
+        // console.log(author)
         try{
         var imageURL={}
         
         if(image.raw){
         imageURL=await uploadImage()
-        console.log(imageURL)
+        // console.log(imageURL)
 
         }
 
-        console.log(imageURL.url)
+        // console.log(imageURL.url)
 
         await axios.post('http://localhost:4000/admin/authors',{
             name:author.name,
@@ -116,7 +116,7 @@ const AuthorCreate:NextPage=()=>{
 
         }catch(err){
             
-            console.log(err)
+            // console.log(err)
             setNotification({status:'error',message:err.message})
 
         }

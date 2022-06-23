@@ -47,7 +47,7 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
        }
        
        catch(err){
-          console.log(err)
+          
           return {response:{}}
        }
        
@@ -102,7 +102,7 @@ export const MoreContainer=({id,name})=>{
         })
         
         setCount(response.data.result.count)
-        console.log(response.data.result)
+        c
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
         }))
@@ -155,9 +155,9 @@ export const ViewContainer=({data})=>{
 
   const router=useRouter()
 
-  console.log(data)
+  // console.log(data)
   const handleDelete=async(id)=>{
-    console.log(id)
+    // console.log(id)
     try{
         const response=await axios.delete(`http://localhost:4000/admin/article/${id}`,{
             headers:{
@@ -167,7 +167,7 @@ export const ViewContainer=({data})=>{
         router.push(`/admin/dashboard/authors/view/${data.result.id}`)
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -175,8 +175,8 @@ export const ViewContainer=({data})=>{
   return <div className='overflow-y-auto max-h-[650px] w-[650px]'>
   {data.result.articles.map((element)=>{
 
-    console.log(element)
-    return <ArticleCard data={{author:{photo:data.result.photo,name:data.result.name,id:data.result.id},content:element.content,topic:element.topic,createdAt:element.createdAt,richText:element.richText,id:element.id}} deleteOption={true} handleDelete={handleDelete}/>
+    // console.log(element)
+    return <ArticleCard data={{author:{photo:data.result.photo,name:data.result.name,id:data.result.id},content:element.content,topic:element.topic,createdAt:element.createdAt,richText:element.richText,id:element.id,title:element.title}} deleteOption={true} handleDelete={handleDelete}/>
 })}
 
   </div>

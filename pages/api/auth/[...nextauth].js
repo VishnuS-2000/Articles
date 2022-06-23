@@ -31,7 +31,7 @@ export default NextAuth({
     secret:process.env.AUTH_SECRET,
     callbacks:{
         async jwt({token,user}){
-            console.log(token,user)
+            // console.log(token,user)
             if(user){
                 token.user=user;
                 token.accessToken=user.data.token,

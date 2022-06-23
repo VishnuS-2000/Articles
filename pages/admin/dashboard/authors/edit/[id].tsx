@@ -76,7 +76,7 @@ const AuthorEdit:NextPage=({data})=>{
                 raw:raw,
                 url:url
             })
-            console.log(url)
+            // console.log(url)
         }
 
 
@@ -113,17 +113,17 @@ const AuthorEdit:NextPage=({data})=>{
      
         e.preventDefault()
 
-        console.log(author)
+        // console.log(author)
         try{
         var imageURL={}
         
         if(image.raw){
         imageURL=await uploadImage()
-        console.log(imageURL)
+        // console.log(imageURL)
 
         }
 
-        console.log(imageURL.url)
+        // console.log(imageURL.url)
 
         await axios.put(`http://localhost:4000/admin/author/${data.result.id}`,{
             name:author.name,
@@ -145,7 +145,7 @@ const AuthorEdit:NextPage=({data})=>{
 
         }catch(err){
             
-            console.log(err)
+            // console.log(err)
             setNotification({message:err.message,status:'error'})
 
         }

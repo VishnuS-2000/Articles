@@ -71,7 +71,7 @@ export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelet
                 
                 <div className="w-[200px]  ">
                 <Link href={`/articles/${element.id}`}>
-                    <p className='cursor-pointer'>{element.title.length>25?`${element.title.slice(0,25)}...`:element.title} </p>
+                    <p className='cursor-pointer font-[500] text-gray-700 hover:underline underline-primary duration-300'>{element.title.length>25?`${element.title.slice(0,25)}...`:element.title} </p>
                   </Link>
 
                 </div>
@@ -80,8 +80,8 @@ export const ArticleRow = ({element,handleDelete,multipleDelete,setMultipleDelet
                     <h4>{moment(element.createdAt).format('LL')   }</h4>
                 </div>
                 
-                <div className="w-[230px] flex space-x-2 ">
-                {element.author.photo?<img src={`${element.author.photo}`} alt="." className="rounded-full w-[20px] h-[20px]"/>:<AccountCircleIcon/>}
+                <div className="w-[230px] flex space-x-2 items-center">
+                {element.author.photo?<img src={`${element.author.photo}`} alt="." className="rounded-full w-[30px] h-[30px]"/>:<AccountCircleIcon style={{fontSize:'2rem'}}/>}
                     <h4>{element.author.name}</h4>
                 </div>
                 

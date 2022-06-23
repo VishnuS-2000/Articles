@@ -70,7 +70,7 @@ export async function getServerSideProps({params}){
 try{
     const response=await axios.get(`http://localhost:4000/articles/${params.id}`)
 
-    console.log(response)
+    // console.log(response)
     return {props:{
         data:response.data
     }}

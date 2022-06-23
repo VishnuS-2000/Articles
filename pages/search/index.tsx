@@ -24,7 +24,7 @@ const resultPage:NextPage=({data})=>{
 
   useEffect(()=>{
 
-    console.log(data)
+    // console.log(data)
     setCount(data.result.count)
     setArticles(data.result.rows.slice(0,offset))
 
@@ -43,7 +43,7 @@ const resultPage:NextPage=({data})=>{
     const handleScroll=()=>{
       if(window.innerHeight+window.scrollY>=document.body.offsetHeight&&offset<=count){
         setOffset(offset+3)
-        console.log("scrolled")
+        // console.log("scrolled")
       }
     }
 
@@ -114,7 +114,7 @@ const resultPage:NextPage=({data})=>{
 
 
 export async function getServerSideProps({query}){
-  console.log(query)
+  // console.log(query)
   try{
 
 
@@ -132,7 +132,7 @@ export async function getServerSideProps({query}){
 
 
   catch(err){
-    console.log(err)
+    // console.log(err)
     return {
       props:{
         data:{}
