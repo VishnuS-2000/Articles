@@ -4,9 +4,9 @@ import { DisplayTable } from '../../../../components/table';
 import axios from 'axios'
 import {useRouter} from 'next/router'
 
-const ArticleDashBoard:NextPage=({data})=>{
+const ArticleDashBoard:NextPage=({data,err})=>{
 
-    console.log(data)
+    console.log(data,err)
 
     const router=useRouter()
 
@@ -32,12 +32,16 @@ export async function getServerSideProps({query}){
 
     const offset=(query.page-1)*15
 
+    const url=query.term?`http://localhost:4000/admin/search/`:'http://localhost:4000/articles'
+
     try{
-    const response=await axios.get('http://localhost:4000/articles',{
+    const response=await axios.get(url,{
         headers:{
             offset:offset,
-            limit:15
-        }
+            limit:15,
+            article:true
+        },
+        params:query
     })
 
     return {
@@ -48,10 +52,14 @@ export async function getServerSideProps({query}){
 
 }
 
-catch(err){
+catch(err){ 
+    
+
     return {
         props:{
-            data:{}
+            data:{},
+            err:err.message,
+            url:url
         }
     }
 }

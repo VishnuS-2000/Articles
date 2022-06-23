@@ -109,7 +109,7 @@ const AuthorCreate:NextPage=()=>{
         })  
 
         setNotification({status:'success',message:'Author Created',float:true})
-        router.push('/admin/dashboard/authors/1')
+        router.push('/admin/dashboard/authors/?page=1')
 
    
 
