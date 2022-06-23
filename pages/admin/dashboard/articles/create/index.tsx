@@ -63,7 +63,7 @@ const ArticleCreate:NextPage=({authors,topics}) => {
         })
         
         setNotification({status:'success',message:'Article Created',float:true})
-        router.push('/admin/dashboard/articles/1')
+        router.push('/admin/dashboard/articles/?page=1')
 
         }
 
@@ -84,7 +84,7 @@ const ArticleCreate:NextPage=({authors,topics}) => {
                     
                 {notification.message&&<Notification options={notification}/>}
                     
-                    <Link href='/admin/dashboard/articles/1'>
+                    <Link href='/admin/dashboard/articles/?page=1'>
                     <button className='' href="#">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 6H5H21" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
