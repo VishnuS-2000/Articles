@@ -26,7 +26,8 @@ const Home:NextPage=({authors , articles , topics , topicwise})=>{
     // const {data:session}=useSession()
 
 
-    console.log(topicwise);
+    console.log(authors.result.rows.length);
+    
     
    
         
@@ -51,7 +52,8 @@ const Home:NextPage=({authors , articles , topics , topicwise})=>{
                     
                     
                     <div className='bg-[#f2f2f2] shadow-lg shadow-gray-400 flex flex-col rounded-[10px] h-[100px] w-[180px] justify-center items-center'>
-                        <h1 className='text-[32px] font-[500] text-[#4C4C4C]'>{authors.result.count}</h1>
+                        <h1 className='text-[32px] font-[500] text-[#4C4C4C]'>{authors.result.rows.length}</h1>
+                        
                         <p className='text-[16px] font-[500] text-[#4C4C4C]'>Total Authors</p>
                     </div>
                     
