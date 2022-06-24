@@ -13,6 +13,11 @@ export default NextAuth({
                     const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/login`,{
                         username:credentials.username,
                         password:credentials.password
+                    },{
+                        headers: {
+                            Accept: 'application/json, text/plain, */*',
+                            'User-Agent': '*',
+                          }
                     })
 
                     if(response.data.user){
