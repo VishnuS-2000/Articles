@@ -32,39 +32,32 @@ const ArticlePage=({data})=>{
 
 
 return <>
-<div className='flex min-h-screen items-start  w-full'>
+<div className='flex min-h-screen items-start  pb-10 w-full  '>
 
-        <div className="flex-[1] desktop:flex-[0.75] flex w-full">
-        
-  
-        <div className=" px-5 desktop:px-8 flex flex-col w-full">
-                <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
-                <Article article={data.result}/>
-
-        <div className='flex flex-col'>
-        <MoreContainer name={data.result.author.name} id={data.result.id}/>
-
-        </div>
- 
-       
-        </div>
+<div className="flex-[1]   flex   justify-center w-full  ">
 
 
-        
-        <div>
-     
-            <AuthorDetail author={data.result.author}/>
-        </div>
-    </div>
+<div className=" px-5 desktop:px-8  flex flex-col w-full ">
+        <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
+        <Article article={data.result}/>
+           <MoreContainer name={data.result.author.name} id={data.result.id}/>
 
-      
+</div>
+
+<div>
+
+    <AuthorDetail author={data.result.author}/>
+</div>
+</div>
 
 
 
 
 
 
-    </div>
+
+
+</div>
 
 
 
