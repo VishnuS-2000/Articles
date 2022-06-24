@@ -1,4 +1,4 @@
-import {ArticleCard} from "./articleCard" 
+import {ArticleCard,ArticleCardMobile} from "./articleCard" 
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import axios from 'axios'
@@ -63,17 +63,116 @@ export const ArticlesContainer=({options,all,articles,setArticles})=>{
     
 
     
-    return<div className="flex  flex-col  items-center min-h-screen">
-      
-    {loading&&<Spinner/>}
-     {articles&&articles.map((element)=>{
-      
-      return <ArticleCard data={element}/>
-     })}
+    return<div className="hidden desktop:flex  flex-col  items-center min-h-screen">
+    
+
+  {loading&&<Spinner/>}
+  {articles&&articles.map((element)=>{
    
+   return <ArticleCard data={element}/>
+  })}
+   
+
+
 
     </div>
 }
+
+
+
+export const ArticlesContainerMobile=({options,all,articles,setArticles})=>{
+
+
+
+  const[count,setCount]=useState(0)
+  const[loading,setLoading]=useState(true)
+
+  const router=useRouter()
+  
+  useEffect(()=>{
+
+    
+
+    const fetchData=async()=>{
+
+
+         try{
+         const response=await axios.get(options.url,{
+              headers:{
+                orderField:options.orderField,
+                orderType:options.orderType,
+                limit:options.limit,
+                offset:options.offset
+              }
+         })
+
+         setLoading(false)
+
+
+        
+         setArticles(articles.concat(response.data.result.rows))
+
+         if(count==0){
+           setCount(response.data.result.count)
+         }
+
+       
+       }
+       
+       catch(err){
+          
+          return {response:{}}
+       }
+       
+       }
+     
+
+       fetchData()
+       },[all,options.offset])
+
+
+  
+
+    
+
+    
+    return<div className="flex  flex-col  items-center min-h-screen desktop:hidden">
+    
+    {loading&&<Spinner/>}
+    {articles&&articles.map((element)=>{
+     
+     return <ArticleCardMobile data={element}/>
+    })}
+
+
+
+
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,14 +231,23 @@ export const MoreContainer=({id,name})=>{
   {count&&<div className="flex flex-col   py-10 font-poppins my-10">
 
       <div className="flex flex-col   items-center">
-      <h1 className="text-2xl text-primary font-[500]">More From {name}</h1>
+      <h1 className="text-lg desktop:text-2xl text-primary font-[500]">More From {name}</h1>
 
 
+      <div className='hidden tablet:flex'>
           {articles.slice(0,offset).map((article)=>{
 
             return <ArticleCard data={article}/>
           })}
+          </div>
 
+          <div className='flex w-full  tablet:hidden'>
+
+          {articles.slice(0,offset).map((article)=>{
+
+            return <ArticleCardMobile data={article}/>
+          })}
+          </div>
 
       
 {(offset+1<count)&&<button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>}

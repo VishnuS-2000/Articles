@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import {useRouter} from 'next/router'
 import axios from 'axios'
-import { ArticleCard } from "../../components/articleCard";
+import { ArticleCard ,ArticleCardMobile} from "../../components/articleCard";
 import { SearchBar ,SearchBarMobile} from "../../components/searchBar";
 import { useEffect, useState } from 'react';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
@@ -65,7 +65,7 @@ const resultPage:NextPage=({data})=>{
       
 
 
-        <div className="flex flex-[0.75]  justify-center   ">
+        <div className="hidden desktop:flex flex-[0.75]  justify-center   ">
           <div className="absolute left-4 top-3 hover:bg-slate-200 rounded  cursor-pointer" >
           
           <Link href='/'><KeyboardBackspaceRoundedIcon sx={{ fontSize: 30 }}/></Link>
@@ -75,7 +75,7 @@ const resultPage:NextPage=({data})=>{
         <div className="flex  px-10  space-x-3 justify-center ">
 
 <div className='flex flex-col w-[600px]'>
-<SearchBarMobile/>
+
 <div className='flex px-2 py-2 items-baseline space-x-3'>
 <h1 className='text-xl text-primary font-[500]'>Results</h1>
 <p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
@@ -85,7 +85,7 @@ const resultPage:NextPage=({data})=>{
 
         {articles.length>0?<div>{articles.map((article)=>{
             return <ArticleCard data={article}/>
-        })}</div>:<div className="flex flex-col items-center text-gray-600 font-[400] desktop:items-start py-10">
+        })}</div>:<div className="flex flex-coltext-gray-600 font-[400] items-start py-10">
 
             <h1>
             Make sure all words are spelled correctly. </h1>
@@ -101,10 +101,46 @@ const resultPage:NextPage=({data})=>{
         </div>
             
         </div>
+        <SearchBar />
         </div>
 
 
-      <SearchBar />
+
+        <div className='flex flex-col items-center space-y-5 desktop:hidden'>
+
+
+        <Link href='/' >
+        <button className='p-2 absolute left-0'>
+          <KeyboardBackspaceRoundedIcon style={{ fontSize: 30}}/>
+         </button>
+          </Link>
+        
+        
+        <SearchBarMobile/>
+        <div className='flex p-1 items-baseline space-x-3'>
+      <h1 className='text-lg text-primary font-[500]'>Results</h1>
+      <p className="text-base  text-quarternary  font-[200]">Total Count:{count}</p>
+
+        </div>
+
+      {articles.length>0?<div>{articles.map((article)=>{
+            return <ArticleCardMobile data={article}/>
+        })}</div>:<div className="flex flex-col text-gray-600 font-[400] items-start py-10">
+
+            <h1>
+            Make sure all words are spelled correctly. </h1>
+          
+          <h1>Try different keywords.</h1>
+
+          <h1>Try more general keywords.</h1>
+    
+          
+          </div>}
+
+
+
+          </div>
+ 
   
   </div>  
 
