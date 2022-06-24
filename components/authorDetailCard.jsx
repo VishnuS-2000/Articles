@@ -9,8 +9,10 @@ export const AuthorDetail = ({author})=>{
         
         <h1 className='text-2xl font-[500] text-[#757575] '>{author.name}</h1>
         <p className='text-[#757575] text-lg font-[400]'>{author.bio}</p>
-        
-        
-        </div>
+        {author.specialization.split(',').map((e)=>{
+            return <p>{e}</p>
+        })
+    } </div>
+       
     )
 }

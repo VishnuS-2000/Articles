@@ -1,8 +1,9 @@
 import type {NextPage} from 'next'
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router';
 
+import {useSession} from 'next-auth/react'
 import {Notification} from '../components/notification'
 
 import axios from 'axios'
@@ -18,7 +19,12 @@ const [notification,setNotification]=useState(false)
 const[forgotPassword,setForgotPassword]=useState(false)
 const[emailSent,setEmailSent]=useState(false)
 
+
+
+const {data:session}=useSession()
+
 const router=useRouter()
+
 
 const handleSubmit=async(e)=>{
 
@@ -42,6 +48,9 @@ else{
 
    
 }
+
+
+
 
 
 

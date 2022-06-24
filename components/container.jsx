@@ -85,8 +85,8 @@ export const MoreContainer=({id,name})=>{
 
 
   const [articles,setArticles]=useState([])
-  const [count,setCount]=useState(0)
   const [offset,setOffset]=useState(1)
+  const[count,setCount]=useState(0)
   
   useEffect(()=>{
 
@@ -100,13 +100,13 @@ export const MoreContainer=({id,name})=>{
 
 
         })
-        
-        setCount(response.data.result.count)
-        c
+
+
+        setCount(response.data.result.rows.length)
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
         }))
-  
+     
       }
   
       catch(err){
@@ -122,27 +122,30 @@ export const MoreContainer=({id,name})=>{
 
   const handleClick=()=>{
   
-    setOffset(offset+2)
+    setOffset(offset+1)
 
 
   }
 
-  return <div>
+  return <div className='flex flex-col   '>
   
-  {articles.length>0?<div className="flex flex-col items-center py-10 font-poppins">
+  {count&&<div className="flex flex-col   py-10 font-poppins my-10">
 
-      <div className="flex flex-col items-start w-full">
+      <div className="flex flex-col   items-center">
       <h1 className="text-2xl text-primary font-[500]">More From {name}</h1>
+
+
           {articles.slice(0,offset).map((article)=>{
 
             return <ArticleCard data={article}/>
           })}
 
+
+      
+{(offset+1<count)&&<button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>}
       </div>
 
-<button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>
-
-  </div>:<h1></h1>}
+  </div>}
 
   </div> 
 
