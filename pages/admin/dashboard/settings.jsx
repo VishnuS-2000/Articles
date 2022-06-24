@@ -1,4 +1,3 @@
-import type {Nextpage} from 'next'
 import {SideBar} from '../../../components/sideBar'
 import {Switch} from '@chakra-ui/react'
 
@@ -12,7 +11,7 @@ import {Notification} from '../../../components/notification'
 import { fetchData } from 'next-auth/client/_utils'
 
 
-const SettingsPage:Nextpage=()=>{
+const SettingsPage=()=>{
 
 
     const [newEmail,setNewEmail]=useState(false)

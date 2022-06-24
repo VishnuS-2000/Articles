@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import {useRouter} from 'next/router'
 import axios from 'axios'
 import { ArticleCard ,ArticleCardMobile} from "../../components/articleCard";
@@ -8,7 +7,7 @@ import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceR
 import Link from "next/link";
 
 
-const resultPage:NextPage=({data})=>{
+const resultPage=()=>{
 
 
   const [offset,setOffset]=useState(3)

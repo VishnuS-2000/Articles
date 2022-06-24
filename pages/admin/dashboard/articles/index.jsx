@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import { SideBar } from '../../../../components/sideBar';
 import { DisplayTable } from '../../../../components/table';
 
@@ -7,7 +6,7 @@ import { useSession,getSession } from "next-auth/react";
 
 
 
-const ArticleDashBoard:NextPage=()=>{
+const ArticleDashBoard=()=>{
 
 
     const router=useRouter()

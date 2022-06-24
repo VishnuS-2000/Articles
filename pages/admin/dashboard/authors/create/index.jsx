@@ -1,4 +1,3 @@
-import type {NextPage} from 'next'
 import Image from 'next/image'
 import {useState,useEffect} from 'react'
 
@@ -17,7 +16,7 @@ import {Notification} from '../../../../../components/notification'
 import { getSession } from 'next-auth/react'
 
 
-const AuthorCreate:NextPage=()=>{
+const AuthorCreate=()=>{
 
     const {data:session}=useSession()
 

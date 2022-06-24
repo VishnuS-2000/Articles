@@ -1,4 +1,4 @@
-import type {NextPage} from 'next'
+
 import {useState,useEffect} from "react"
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ import {Notification} from '../components/notification'
 
 import axios from 'axios'
 
-const AuthPage:NextPage=()=>{
+const AuthPage=()=>{
 
 const [admin,setAdmin]=useState({
     username:'',password:'',
@@ -36,6 +36,8 @@ const handleSubmit=async(e)=>{
         password:admin.password,
         redirect:false
     })
+
+    console.log(response)
 
     if(response.ok){
         router.push('/admin/dashboard')

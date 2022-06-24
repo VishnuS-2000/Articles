@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default NextAuth({
 
-    site:'http://localhost:3001',
+    site:process.env.NEXTAUTH_URL,
     providers:[
         CredentialsProvider({
             async authorize(credentials,req){

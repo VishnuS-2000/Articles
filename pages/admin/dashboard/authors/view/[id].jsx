@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import { SideBar } from '../../../../../components/sideBar'
 import Link from 'next/link'
 import { SearchBar } from '../../../../../components/searchBar'
@@ -17,7 +16,7 @@ import {useSession} from 'next-auth/react'
 
 
 // UI by Sharun
-const AuthorView: NextPage = ({data}) => {
+const AuthorView=({data}) => {
 
 
     const router=useRouter()

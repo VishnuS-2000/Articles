@@ -1,4 +1,4 @@
-import type {NextPage} from 'next'
+
 import { useRef , useEffect, useState } from 'react';
 import {RadialChart} from 'react-vis';
 
@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 
-const Home:NextPage=({authors , articles , topics , topicwise})=>{
+const Home=({authors , articles , topics , topicwise})=>{
     
 
     

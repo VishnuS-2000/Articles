@@ -1,5 +1,5 @@
 import moment from "moment";
-import type { NextPage } from "next";
+
 import axios from 'axios'
 import Article from "../../components/article";
 import { SearchBar } from "../../components/searchBar";
@@ -12,7 +12,7 @@ import {MoreContainer} from '../../components/container'
 import {Footer} from '../../components/footer'
 
 
-const ArticlePage:NextPage=({data})=>{
+const ArticlePage=({data})=>{
 
     
     const [extras,setExtras]=useState({})

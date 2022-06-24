@@ -1,4 +1,4 @@
-import type {NextPage} from 'next'
+
 import axios from 'axios'
 
 import { SideBar } from '../../../../components/sideBar'
@@ -8,7 +8,7 @@ import { getSession } from 'next-auth/react'
 
 
 
-const AuthorDashBoard:NextPage=()=>{
+const AuthorDashBoard=()=>{
 
     const router=useRouter()
 

@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+
 
 import { ArticlesContainer,ArticlesContainerMobile } from '../components/container'
 import {SearchBar,SearchBarMobile} from "../components/searchBar"
@@ -9,7 +9,7 @@ import { useEffect,useState } from 'react';
 
 
 
-const Home: NextPage = () => {  
+const Home= () => {  
 
   const [all,setAll]=useState(true)
   const [options,setOptions]=useState({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})

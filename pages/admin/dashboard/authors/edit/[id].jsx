@@ -1,4 +1,3 @@
-import type {NextPage} from 'next'
 import Image from 'next/image'
 import {useState,useEffect} from 'react'
 
@@ -13,7 +12,7 @@ import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react'
 
 
-const AuthorEdit:NextPage=({data})=>{
+const AuthorEdit=({data})=>{
 
 
     const {data:session}=useSession()
