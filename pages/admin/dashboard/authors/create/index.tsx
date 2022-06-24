@@ -57,14 +57,14 @@ const AuthorCreate:NextPage=()=>{
         
             try{
     
-                const response=await axios.post('http://localhost:4000/admin/upload',{file:image.raw},{
+                const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/upload`,{file:image.raw},{
                     headers:{
                         "Content-Type": "multipart/form-data",
                         "Authorization":'Bearer '+session.accessToken
                     }
                 })
     
-                return {url:`http://localhost:4000/images/${response.data.filename}`}            
+                return {url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/images/${response.data.filename}`}            
                 }
     
                 catch(err){
@@ -94,7 +94,7 @@ const AuthorCreate:NextPage=()=>{
 
         // console.log(imageURL.url)
 
-        await axios.post('http://localhost:4000/admin/authors',{
+        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/authors`,{
             name:author.name,
             bio:author.bio,
             email:author.email,

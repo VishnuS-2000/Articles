@@ -76,7 +76,7 @@ export async function getServerSideProps({params}){
 
 
 try{
-    const response=await axios.get(`http://localhost:4000/articles/${params.id}`)
+    const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/${params.id}`)
 
     // console.log(response)
     return {props:{

@@ -88,14 +88,14 @@ const AuthorEdit:NextPage=({data})=>{
         
             try{
     
-                const response=await axios.post('http://localhost:4000/admin/upload',{file:image.raw},{
+                const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/upload`,{file:image.raw},{
                     headers:{
                         "Content-Type": "multipart/form-data",
                         "Authorization":'Bearer '+session.accessToken
                     }
                 })
     
-                return {url:`http://localhost:4000/images/${response.data.filename}`}            
+                return {url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/images/${response.data.filename}`}            
                 }
     
                 catch(err){
@@ -125,7 +125,7 @@ const AuthorEdit:NextPage=({data})=>{
 
         // console.log(imageURL.url)
 
-        await axios.put(`http://localhost:4000/admin/author/${data.result.id}`,{
+        await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/author/${data.result.id}`,{
             name:author.name,
             bio:author.bio,
             email:author.email,
@@ -360,7 +360,7 @@ export async function getServerSideProps({query}){
 
     try{
 
-        const response=await axios.get(`http://localhost:4000/authors/${query.id}`)
+        const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors/${query.id}`)
         
         return {
             props:{

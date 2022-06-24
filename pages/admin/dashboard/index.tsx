@@ -127,8 +127,8 @@ export async function getServerSideProps(context) {
 
 
     try {
-        const response = await axios.get("http://localhost:4000/articles")
-        const res = await axios.get("http://localhost:4000/authors")
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors`)
 
         const uniqueTopics = []
         const topicWise =[]

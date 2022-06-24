@@ -51,7 +51,7 @@ const ArticleCreate:NextPage=({authors,topics}) => {
         content=content.replace('&nbsp;',' ')
     
         
-        await axios.post('http://localhost:4000/admin/articles',{
+        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/articles`,{
             title:article.title,
             topic:article.topic,
             authorId:article.authorId,
@@ -183,8 +183,8 @@ export async function getServerSideProps(context){
 
     try{
         const uniqueTopics=[]
-        const authorResponse=await axios.get('http://localhost:4000/authors')
-        const articleResponse=await axios.get('http://localhost:4000/articles')
+        const authorResponse=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors`)
+        const articleResponse=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`)
 
         articleResponse.data.result.rows.map((e)=>{
             if(!uniqueTopics.includes(e.topic)){

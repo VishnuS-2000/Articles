@@ -64,7 +64,7 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
  
     
 
-    return <div className="flex  px-2 py-8 desktop: space-y-2  border-line border-t font-[300] ">
+    return <div className="flex  px-2 py-8 max-w-[900px] space-y-2  border-line border-t font-[300] ">
     
 
     <div className="flex flex-col space-y-2 ">

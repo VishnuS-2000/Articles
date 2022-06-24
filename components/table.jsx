@@ -64,7 +64,7 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
 
     const handleDelete=async(id)=>{
         
-        const url=authorsType?'http://localhost:4000/admin/author/':'http://localhost:4000/admin/article/';
+        const url=authorsType?`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/author/`:`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/article/`;
         try{
             await axios.delete(`${url}${id}`,{
                 headers:{
@@ -93,7 +93,7 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
     
 
     const handleDeleteMany=async()=>{
-        const url=authorsType?'http://localhost:4000/admin/authors/':'http://localhost:4000/admin/articles/';
+        const url=authorsType?`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/authors/`:`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/articles/`;
         // console.log(url)
        
        if(multipleDelete.length>0){

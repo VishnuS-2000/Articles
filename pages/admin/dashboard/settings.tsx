@@ -37,7 +37,7 @@ const SettingsPage:Nextpage=()=>{
         e.preventDefault()
 
         try{
-            const response=await axios.post('http://localhost:4000/admin/changeemail',{
+            const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/changeemail`,{
                 username:session.user.name,
                 email:admin.email
             },{
@@ -61,7 +61,7 @@ const SettingsPage:Nextpage=()=>{
         e.preventDefault()
 
         try{
-            const response=await axios.post('http://localhost:4000/admin/changepassword',{
+            const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/changepassword`,{
                 username:session.user.name,
                 password:admin.currentPassword,
                 newPassword:admin.newPassword

@@ -59,7 +59,7 @@ const handleForgot=async(e)=>{
 
     e.preventDefault()
     try{
-        const response=await axios.post('http://localhost:4000/admin/forgotpassword',{email:admin.email})
+        const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/forgotpassword`,{email:admin.email})
         
         setEmailSent(true)
         setNotification({status:'success',message:'Email Sent'})
@@ -75,7 +75,7 @@ const handleForgot=async(e)=>{
 const handleVerify=async(e)=>{
     e.preventDefault()
     try{
-        const response=await axios.post('http://localhost:4000/admin/verifypassword',{
+        const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/verifypassword`,{
             token:admin.code,
             password:admin.password,
             email:admin.email

@@ -45,7 +45,7 @@ const AuthorView: NextPage = ({data}) => {
     const handleDelete=async()=>{
         
         try{
-            const response=await axios.delete(`http://localhost:4000/admin/author/${data.result.id}`,{
+            const response=await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/author/${data.result.id}`,{
             headers:{
                 'Authorization':`Bearer ${session.accessToken}`
             }
@@ -165,7 +165,7 @@ export async function getServerSideProps({query , context}){
 
     try{
 
-    const response=await axios.get(`http://localhost:4000/authors/${query.id}`)
+    const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors/${query.id}`)
 
     return {props:{
         data:response.data

@@ -19,7 +19,7 @@ export const SearchBar  = () => {
     
         try{
 
-            const response=await axios.get('http://localhost:4000/articles')
+            const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`)
 
             response.data.result.rows.map((e)=>{
                 if(!uniqueTopics.includes(e.topic)){

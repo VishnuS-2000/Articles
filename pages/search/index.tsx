@@ -154,7 +154,7 @@ export async function getServerSideProps({query}){
   try{
 
 
-    const response=await axios.get('http://localhost:4000/articles/search/',{
+    const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/search/`,{
       params:query
     })
 

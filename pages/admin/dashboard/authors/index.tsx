@@ -14,7 +14,7 @@ const AuthorDashBoard:NextPage=()=>{
 
     const args={
         
-        url:router.query.term?`http://localhost:4000/admin/search/`:'http://localhost:4000/authors',
+        url:router.query.term?`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/search/`:`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors`,
         options:{
                     headers:{
                         offset:(router.query.page-1)*15,

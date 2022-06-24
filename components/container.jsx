@@ -194,7 +194,7 @@ export const MoreContainer=({id,name})=>{
 
       try{
 
-        const response=await axios.get(`http://localhost:4000/articles/search?author=${name}`,{
+        const response=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/search?author=${name}`,{
 
 
 
@@ -270,7 +270,7 @@ export const ViewContainer=({data})=>{
   const handleDelete=async(id)=>{
     // console.log(id)
     try{
-        const response=await axios.delete(`http://localhost:4000/admin/article/${id}`,{
+        const response=await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/article/${id}`,{
             headers:{
                 'Authorization':`Bearer ${session.accessToken}`
             }
