@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.jsx", "pages/index.jsx", "components/article.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.jsx", "pages/index.jsx", "components/article.jsx", "components/authorCard.jsx", "components/footer.jsx", "pages/admin/dashboard/articles/create/index.jsx", "pages/admin/dashboard/articles/edit/[id].jsx", "pages/admin/dashboard/articles/index.jsx", "pages/admin/dashboard/authors/create/index.jsx", "pages/admin/dashboard/authors/edit/[id].jsx", "pages/admin/dashboard/authors/view/[id].jsx", "pages/admin/dashboard/authors/index.jsx", "pages/admin/dashboard/index.jsx", "pages/admin/dashboard/settings.jsx", "pages/articles/[id].jsx", "pages/search/index.jsx", "pages/login.jsx"],
   "exclude": ["node_modules"]
 }
