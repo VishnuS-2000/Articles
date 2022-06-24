@@ -34,7 +34,7 @@ const ArticlePage=({data})=>{
 return <>
 <div className='flex min-h-screen items-start  pb-10 w-full  '>
 
-<div className="flex-[1]   flex   justify-center w-full  ">
+<div className="flex-[1]   flex desktop:flex-[0.75]  justify-center w-full  ">
 
 
 <div className=" px-5 desktop:px-8  flex flex-col w-full ">

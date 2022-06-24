@@ -200,7 +200,7 @@ export const MoreContainer=({id,name})=>{
 
         })
 
-
+        console.log(response.data.result)
         setCount(response.data.result.rows.length)
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
@@ -231,7 +231,7 @@ export const MoreContainer=({id,name})=>{
   {count&&<div className="flex flex-col   py-10 font-poppins my-10">
 
       <div className="flex flex-col   items-center">
-      <h1 className="text-lg desktop:text-2xl text-primary font-[500]">More From {name}</h1>
+      <h1 className="text-lg desktop:text-2xl text-primary font-[500] mb-5">More From {name}</h1>
 
 
       <div className='hidden tablet:flex'>

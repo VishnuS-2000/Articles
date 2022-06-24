@@ -7,7 +7,7 @@ import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceR
 import Link from "next/link";
 
 
-const resultPage=()=>{
+const resultPage=({data})=>{
 
 
   const [offset,setOffset]=useState(3)
@@ -167,7 +167,7 @@ export async function getServerSideProps({query}){
 
 
   catch(err){
-    // console.log(err)
+    console.log(err)
     return {
       props:{
         data:{}

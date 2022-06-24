@@ -184,7 +184,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
  
     
 
-    return <div className="flex w-full px-2 py-8  space-y-2  border-gray-300 border-t font-[300] ">
+    return <div className="flex w-full px-5 py-8  space-y-2   border-gray-300 border-t font-[300] ">
     
 
     <div className="flex flex-col space-y-2 items-start">
@@ -202,7 +202,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
 
 
     <Link href={`/articles/${data.id}`}>
-    <h1 className="text-primary text-lg font-[400] cursor-pointer">{data.title}</h1>
+    <h1 className="text-primary text-xl font-[600] cursor-pointer">{data.title}</h1>
 
     </Link>
 
