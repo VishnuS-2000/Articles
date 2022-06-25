@@ -99,7 +99,7 @@ const AuthorEdit=({data})=>{
     
                 catch(err){
                     
-                    SetNotification({message:err.response.data.message})
+                    setNotification({message:err.response.data.message})
                 }
     
         

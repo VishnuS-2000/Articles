@@ -201,13 +201,14 @@ export const MoreContainer=({id,name})=>{
         })
 
         console.log(response.data.result)
-        setCount(response.data.result.rows.length)
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
         }))
-     
+        console.log(articles.length)
+        setCount(article.length,articles)
+          
       }
-  
+ 
       catch(err){
   
       }
@@ -228,20 +229,20 @@ export const MoreContainer=({id,name})=>{
 
   return <div className='flex flex-col   '>
   
-  {count&&<div className="flex flex-col   py-10 font-poppins my-10">
+  {(count>0)&&<div className="flex flex-col   py-10 font-poppins my-10">
 
       <div className="flex flex-col   items-center">
       <h1 className="text-lg desktop:text-2xl text-primary font-[500] mb-5">More From {name}</h1>
 
 
-      <div className='hidden tablet:flex'>
+      <div className='hidden tablet:flex flex-col'>
           {articles.slice(0,offset).map((article)=>{
 
             return <ArticleCard data={article}/>
           })}
           </div>
 
-          <div className='flex w-full  tablet:hidden'>
+          <div className='flex flex-col w-full  tablet:hidden'>
 
           {articles.slice(0,offset).map((article)=>{
 
@@ -250,7 +251,7 @@ export const MoreContainer=({id,name})=>{
           </div>
 
       
-{(offset+1<count)&&<button className="text-base text-white bg-primary rounded-[20px] w-[300px] font-[500]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>}
+{(offset+1<count)&&<button className="text-base text-white bg-primary rounded-[20px] w-[250px]  tablet:w-[300px] font-[400]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>}
       </div>
 
   </div>}

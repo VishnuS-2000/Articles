@@ -8,7 +8,7 @@ export const AuthorCard=({name,extras,photo}) => {
                 
                 {photo?
                 <img className='w-[60px] h-[60px] rounded-full' src={photo} alt="avatar" />:
-                <AccountCircleIcon style={{fontSize:'4rem'}}/>}
+                <AccountCircleIcon style={{fontSize:'3rem'}}/>}
               
             </div>
             <div className="user-card__info flex-1">

@@ -172,6 +172,7 @@ return <div className='flex min-h-screen'>
 
         <div className='flex flex-col space-y-1 w-[650px] my-4' >
         <p className='text-[#575767]  font-[600]'>AUTHOR NAME</p>
+        
         <input type='text' value={author.name} className='outline-none border-b border-slate-300 py-5  text-xl' placeholder='Robert Langdon'   onChange={(e)=>{setAuthor({...author,name:e.target.value})}} required={true}/>
                 
         </div>
@@ -180,7 +181,7 @@ return <div className='flex min-h-screen'>
 
         <div className='flex flex-col space-y-1 w-[650px] my-4' >
         <p className='text-[#575767]  font-[600]'>BIO</p>
-        <input type='text' value={author.bio} className='outline-none border-b border-slate-300 py-5  text-xl' placeholder='Professor,Department of Mathematics'   onChange={(e)=>{setAuthor({...author,bio:e.target.value})}} required={true}/>
+        <textarea  value={author.bio} className='outline-none border-b border-slate-300 py-5  text-xl' placeholder='Professor,Department of Mathematics'   onChange={(e)=>{setAuthor({...author,bio:e.target.value})}} required={true}/>
                 
         </div>
 

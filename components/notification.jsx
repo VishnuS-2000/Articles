@@ -13,8 +13,8 @@ export const Notification=({options})=>{
 
 
     setTimeout(()=>{
-      setShow(false)
-    },[3000])
+      setShow(!show)
+    },[5000])
 
   },[])
 

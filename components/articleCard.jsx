@@ -54,7 +54,7 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
         refContainer.current.innerHTML=data.richText
 
         const id=Math.ceil(Math.random()*1000)
-        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src')||`https://picsum.photos/id/${id}/300/300`)
+        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src'))
 
 
 
@@ -115,9 +115,9 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
 
     </div>
 
-    <div className="drop-shadow-sm  max-w-[150px]">
+    {imageUrl&&<div className="drop-shadow-sm  max-w-[150px]">
     <img src={imageUrl} className="float-right cursor-pointer" alt="article-image" />
-    </div>
+    </div>}
 
     <div ref={refContainer} className="hidden"></div>
 
@@ -174,7 +174,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
         refContainer.current.innerHTML=data.richText
 
         const id=Math.ceil(Math.random()*1000)
-        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src')||`https://picsum.photos/id/${id}/300/300`)
+        setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src'))
 
 
 

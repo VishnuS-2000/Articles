@@ -10,6 +10,7 @@ import { useState,useEffect } from "react";
 import {AuthorDetail} from '../../components/authorDetailCard'
 import {MoreContainer} from '../../components/container'
 import {Footer} from '../../components/footer'
+import {LogoCard,LogoCardMobile} from '../../components/logocard'
 
 
 const ArticlePage=({data})=>{
@@ -31,13 +32,16 @@ const ArticlePage=({data})=>{
     },[])
 
 
-return <>
-<div className='flex min-h-screen items-start  pb-10 w-full  '>
-
-<div className="flex-[1]   flex desktop:flex-[0.75]  justify-center w-full  ">
+return  <div className='flex min-h-screen items-start justify-center   w-full   '>
 
 
-<div className=" px-5 desktop:px-8  flex flex-col w-full ">
+<LogoCard/>
+<div className="flex-[1] tablet:flex-[0.90]  desktop:flex-[0.70] justify-center w-full  ">
+
+
+<div className=" px-6 py-12 tablet:px-10 desktop:px-12  flex flex-col w-full ">
+
+<LogoCardMobile/>
         <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
         <Article article={data.result}/>
            <MoreContainer name={data.result.author.name} id={data.result.id}/>
@@ -46,22 +50,21 @@ return <>
 
 <div>
 
-    <AuthorDetail author={data.result.author}/>
-</div>
 </div>
 
 
+<div className="hidden desktop:flex  ">
 
-
-
-
-
+</div>
 
 </div>
 
 
 
-</>
+<AuthorDetail author={data.result.author}/>
+
+
+</div>
 
 }
 
