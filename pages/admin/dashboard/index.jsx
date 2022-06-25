@@ -74,9 +74,10 @@ const Home=({authors , articles , topics , topicwise})=>{
                         <h1 className='text-[20px] font-[500]'>Articles based on topic </h1>
                         <RadialChart
                         data={topicwise}
-                        width={300}
-                        height={300}
+                        width={500}
+                        height={500}
                         showLabels = {true}
+                        animation={true}
                         />
 
                         

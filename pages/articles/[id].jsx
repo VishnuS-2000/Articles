@@ -34,6 +34,7 @@ const ArticlePage=({data})=>{
 
 return  <div className='flex min-h-screen items-start justify-center   w-full   '>
 
+<Footer/>
 
 <LogoCard/>
 <div className="flex-[1] tablet:flex-[0.90]  desktop:flex-[0.70] justify-center w-full  ">
@@ -44,7 +45,8 @@ return  <div className='flex min-h-screen items-start justify-center   w-full   
 <LogoCardMobile/>
         <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
         <Article article={data.result}/>
-           <MoreContainer name={data.result.author.name} id={data.result.id}/>
+        <MoreContainer name={data.result.author.name} id={data.result.id}/>
+        
 
 </div>
 

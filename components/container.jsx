@@ -201,6 +201,7 @@ export const MoreContainer=({id,name})=>{
         })
 
         console.log(response.data.result)
+        
         setArticles(response.data.result.rows.filter((element)=>{
           return element.id!==id
         }))

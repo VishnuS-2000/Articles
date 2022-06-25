@@ -107,7 +107,7 @@ return <div className='flex justify-center items-center w-full min-h-screen font
         <input type="text" className='rounded-[10px] border border-slate-300 p-3 outline-none text-xl' placeholder='Username' value={admin.username} onChange={(e)=>{setAdmin({...admin,username:e.target.value})}} required/>
         <input type="password" className='rounded-[10px] border border-slate-300 p-3 outline-none text-xl' placeholder='Password' value={admin.password} onChange={(e)=>{setAdmin({...admin,password:e.target.value})}} required/>
         
-        <button className='underline cursor-pointer self-start font-[400]' onClick={()=>{setForgotPassword(true); setNotification({})}}>Forgot Password?</button>
+        <button type='button' className='underline cursor-pointer self-start font-[400]' onClick={()=>{setForgotPassword(true); setNotification({})}} >Forgot Password?</button>
         <button type='submit' className='text-xl rounded-xl bg-primary w-[280px] px-10 py-2 font-[400] text-white' onClick={handleSubmit}>Sign In</button>
         </form>:<form className='flex flex-col space-y-8 items-center'>
       

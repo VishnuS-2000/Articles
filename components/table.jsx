@@ -37,7 +37,7 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
 
 
     const { data ,error } = useSWR(args, fetcher)
-    const count=data?data.result.rows.length:0;
+    const count=data?authorsType?data.result.rows.length:data.result.count:0;
     const isLoading=!data &&!error
 
 

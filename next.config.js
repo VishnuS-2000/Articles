@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images:{
-    domains:['picsum.photos','localhost']
+    domains:['localhost','nrmcentre-apw.herokuapp.com','picsum.photos']
   }
 }

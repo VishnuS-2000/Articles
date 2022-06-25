@@ -223,8 +223,8 @@ return <div className='flex min-h-screen'>
         
 
         <div className='flex items-center  '>
-        <input type='text' value={author.bio} className='w-[80%] outline-none border-b border-slate-300 py-5  text-xl' placeholder='Professor,Department of Mathematics'   onChange={(e)=>{setAuthor({...author,bio:e.target.value})}} required={true} disabled={edit.bio?false:true}/>
-        
+      
+        <textarea rows={5}  value={author.bio} className='resize-none w-full outline-none border-b border-slate-300 py-5  text-xl' placeholder='Professor,Department of Mathematics'   onChange={(e)=>{setAuthor({...author,bio:e.target.value})}} required={true} disabled={edit.bio?false:true}/>
 
         {!edit.bio&&<button className='text-lg rounded-[15px] border w-[120px] h-[40px] border-[#757575] outline-none' onClick={()=>{setEdit({...edit,bio:true}); setPrevious({...previous,bio:author.bio})}}>Edit</button>}
         
