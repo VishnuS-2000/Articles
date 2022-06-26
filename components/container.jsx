@@ -7,75 +7,94 @@ import {useSession} from 'next-auth/react'
 
 import {useRouter} from 'next/router'
 
-export const ArticlesContainer=({options,all,articles,setArticles})=>{
+
+
+export const ArticlesContainer=({options,all})=>{
 
 
 
   const[count,setCount]=useState(0)
   const[loading,setLoading]=useState(true)
-
+  const[articles,setArticles]=useState([])
   const router=useRouter()
-  
-  useEffect(()=>{
+
+
+
+
+
+
+  // useEffect(()=>{
 
     
 
-    const fetchData=async()=>{
+  //   // const fetchData=async()=>{
 
 
-         try{
-         const response=await axios.get(options.url,{
-              headers:{
-                orderField:options.orderField,
-                orderType:options.orderType,
-                limit:options.limit,
-                offset:options.offset
-              }
-         })
+  //   //      try{
+  //   //      const response=await axios.get(options.url,{
+  //   //           headers:{
+  //   //             orderField:options.orderField,
+  //   //             orderType:options.orderType,
+  //   //             limit:options.limit,
+  //   //             offset:options.offset
+  //   //           }
+  //   //      })
 
-         setLoading(false)
+  //   //      setLoading(false)
 
 
         
-         setArticles(articles.concat(response.data.result.rows))
+  //   //      setArticles(articles.concat(response.data.result.rows))
 
-         if(count==0){
-           setCount(response.data.result.count)
-         }
+  //   //      if(count==0){
+  //   //        setCount(response.data.result.count)
+  //   //      }
 
        
-       }
+  //   //    }
        
-       catch(err){
+  //   //    catch(err){
           
-          return {response:{}}
-       }
+  //   //       return {response:{}}
+  //   //    }
        
-       }
+  //   //    }
      
 
-       fetchData()
-       },[all,options.offset])
+  //   //    fetchData()
+  //   //    },[all,options.offset])
 
 
   
-
+    return    <InfiniteScroll
+    pageStart={0}
+    loadMore={async() =>await fetchData()}
+    hasMore={true || false}
+    useWindow={false}
+    loader={
+      <div key="loading" className="loader">
+        Loading ...
+      </div>
+    }
+  >
+<h1>Hello</h1>
+  </InfiniteScroll>
     
 
     
-    return<div className="hidden desktop:flex  flex-col  items-center min-h-screen">
+  //   return<div className="hidden desktop:flex  flex-col  items-center min-h-screen">
     
 
-  {loading&&<Spinner/>}
-  {articles&&articles.map((element)=>{
+  // {loading&&<Spinner/>}
+  // {articles&&articles.map((element)=>{
    
-   return <ArticleCard data={element}/>
-  })}
+  //  return <ArticleCard data={element}/>
+  // })}
    
 
 
 
-    </div>
+  //   </div>
 }
 
 
