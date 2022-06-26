@@ -33,7 +33,7 @@ const resultPage=({data})=>{
   },[offset,router.query])
 
   useEffect(()=>{
-    setOffset(3)
+    setOffset(10)
   },[router.query])
 
 
@@ -42,7 +42,7 @@ const resultPage=({data})=>{
 
     const handleScroll=()=>{
       if(window.innerHeight+window.scrollY>=document.body.offsetHeight&&offset<=count){
-        setOffset(offset+3)
+        setOffset(offset+5)
         // console.log("scrolled")
       }
     }
@@ -71,9 +71,9 @@ const resultPage=({data})=>{
           
         <div className="flex w-full   space-x-3 justify-center ">
 
-<div className='flex flex-col w-full'>
+<div className='flex flex-col w-full max-w-[700px]'>
 
-<div className='flex px-10  items-center space-x-3'>
+<div className='flex px-10  items-center space-x-3 '>
 
           
 <Link href='/'>

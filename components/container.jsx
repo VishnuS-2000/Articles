@@ -219,15 +219,15 @@ export const MoreContainer=({id,name})=>{
 
         })
 
-        console.log(response.data.result)
-        console.log(id)
+        // console.log(response.data.result)
+        // console.log(id)
         
 
         if(response.data){
           setArticles(response.data.result.rows.filter((element)=>{
             return element.id!==id
           }))
-          console.log(articles.length)
+          // console.log(articles.length)
           setCount(articles.length)
    
         }
@@ -249,7 +249,7 @@ export const MoreContainer=({id,name})=>{
 
 
 
-  console.log(articles,count)
+  // console.log(articles,count)
 
   return <div className='flex flex-col   '>
   

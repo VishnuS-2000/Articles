@@ -58,7 +58,7 @@ const Home= ({data}) => {
 
 
 
-console.log(articles)
+// console.log(articles)
 
 
 
@@ -131,7 +131,7 @@ console.log(articles)
       
       {articles.map((element)=>{
 
-        return <ArticleCard data={element}/>
+        return <ArticleCard key={element.id} data={element}/>
       })
       }
       </InfiniteScroll>
@@ -184,7 +184,7 @@ console.log(articles)
       
       {articles.map((element)=>{
 
-        return <ArticleCardMobile data={element}/>
+        return <ArticleCardMobile key={element.id} data={element}/>
       })
       }
       </InfiniteScroll>
