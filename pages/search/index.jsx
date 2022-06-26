@@ -65,7 +65,7 @@ const resultPage=({data})=>{
       <LogoCard/>
 
 
-        <div className="hidden desktop:flex flex-[0.65] p-10  justify-center h-full  ">
+        <div className="hidden desktop:flex flex-[0.65] p-5  justify-center h-full  ">
         
           
           

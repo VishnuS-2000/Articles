@@ -40,7 +40,7 @@ const Home=({authors , articles , topics , topicwise})=>{
                 <SideBar active='home'/>
 
                 
-                <div className='flex flex-col w-full p-5'>
+                <div className='flex flex-col w-full p-10'>
                     <h1 className='text-2xl text-[#4C4C4C] font-[400]'>Dashboard</h1>
                     <h1 className='pt-2 text-2xl text-[#4C4C4C] font-[500]'>General Statistics</h1>
 
@@ -71,12 +71,17 @@ const Home=({authors , articles , topics , topicwise})=>{
                         
                         
                         <div className=' flex flex-col w-full h-full'>
-                        <h1 className='text-[20px] font-[500]'>Articles based on topic </h1>
+                        <h1 className='text-[20px] font-[500] mb-10'>Articles based on topic </h1>
 
+                
+                       
                             {topicwise.map((element)=>{
-                                return <li className='text-lg space-x-3'>{element.label} {element.count}</li>
+                                return <div className='text-lg  w-[400px] space-x-5 flex items-center'>
+                                <div className='flex-[0.5]'>{element.label}</div>
+                                <div className='flex-[0.5] font-[600]'>{element.count}</div>
+                                </div>
                             })}
-                        
+             
 
                         </div>
 
