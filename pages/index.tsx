@@ -22,7 +22,8 @@ const Home= () => {
     const handleScroll=()=>{
       
         if(window.innerHeight+window.scrollY>=document.body.offsetHeight){
-          
+          alert('scroll')
+   
           setOptions({...options,offset:options.offset+options.limit})
           
   

@@ -35,13 +35,16 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
     const fetcher = (args)=> axios.get(args.url,args.options).then(res => res.data)
 
 
+    console.log(args)
+
 
     const { data ,error } = useSWR(args, fetcher)
-    const count=data?authorsType?data.result.rows.length:data.result.count:0;
+
+    const count=data?data.result.count:0;
     const isLoading=!data &&!error
 
 
-    console.log(data)
+    data&&console.log(data,count)
 
 
 

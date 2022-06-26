@@ -26,6 +26,7 @@ const AuthorDashBoard=()=>{
     }
 
 
+    console.log((router.query.page-1)*15)
     return <div className='flex  min-h-screen font-poppins'>
                 
     
