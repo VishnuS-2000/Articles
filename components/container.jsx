@@ -220,14 +220,22 @@ export const MoreContainer=({id,name})=>{
         })
 
         console.log(response.data.result)
+        console.log(id)
         
-        setArticles(response.data.result.rows.filter((element)=>{
-          return element.id!==id
-        }))
-        console.log(articles.length)
-        setCount(article.length,articles)
+
+        if(response.data){
+          setArticles(response.data.result.rows.filter((element)=>{
+            return element.id!==id
+          }))
+          console.log(articles.length)
+          setCount(articles.length)
+   
+        }
+   
           
       }
+
+
  
       catch(err){
   
@@ -240,38 +248,34 @@ export const MoreContainer=({id,name})=>{
   },[id])
 
 
-  const handleClick=()=>{
-  
-    setOffset(offset+1)
 
-
-  }
+  console.log(articles,count)
 
   return <div className='flex flex-col   '>
   
-  {(count>0)&&<div className="flex flex-col   py-10 font-poppins my-10">
+  {articles.length>0&&<div className="flex flex-col   py-10 font-poppins my-10">
 
-      <div className="flex flex-col   items-center">
-      <h1 className="text-lg desktop:text-2xl text-primary font-[500] mb-5">More From {name}</h1>
+      <div className="flex flex-col   items-start">
+      <h1 className="text-lg desktop:text-2xl text-primary font-[500] mb-5 ">More From {name}</h1>
 
 
-      <div className='hidden tablet:flex flex-col'>
-          {articles.slice(0,offset).map((article)=>{
+      <div className='hidden tablet:flex flex-col overflow-y-auto overscroll-contain  my-5 h-[400px] w-full'>
+          {articles.map((article)=>{
 
             return <ArticleCard data={article}/>
           })}
           </div>
 
-          <div className='flex flex-col w-full  tablet:hidden'>
+          <div className='flex flex-col w-full overflow-y-auto h-[400px]  tablet:hidden'>
 
-          {articles.slice(0,offset).map((article)=>{
+          {articles.map((article)=>{
 
             return <ArticleCardMobile data={article}/>
           })}
           </div>
 
       
-{(offset+1<count)&&<button className="text-base text-white bg-primary rounded-[20px] w-[250px]  tablet:w-[300px] font-[400]  py-2 my-4" onClick={handleClick}>Read More from {name.split(' ')[0]}</button>}
+
       </div>
 
   </div>}
