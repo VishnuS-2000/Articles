@@ -17,6 +17,7 @@ import {useRouter} from 'next/router'
 
 import {Notification} from '../../../../../components/notification'
 
+import moment from 'moment'
 
 
 
@@ -70,6 +71,14 @@ const ArticleEdit=({authors,topics,data}) => {
         try{
         
         const content=text.replace(/<[^>]+>/g,'')
+
+
+        if(content.length<250){
+            setNotification({'status':'error','message':'content cannot be less than 250 characters',createdAt:moment()})
+
+            return 
+        }    
+
         
         await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/article/${data.result.id}`,{
             title:article.title,
@@ -84,14 +93,14 @@ const ArticleEdit=({authors,topics,data}) => {
             }
         })
 
-        setNotification({status:'success',message:'Article Edited',float:true})
+        setNotification({status:'success',message:'Article Edited',createdAt:moment()})
         router.push('/admin/dashboard/articles/?page=1')
 
         }
 
         catch(err){
 
-            setNotification({status:'error',message:err.message})            
+            setNotification({status:'error',message:err.message,createdAt:moment()})            
         }
 
 
@@ -116,8 +125,28 @@ const ArticleEdit=({authors,topics,data}) => {
 
         catch(err){
             // console.log(err)
-            setNotification({status:'error',message:err.message})
+            setNotification({status:'error',message:err.message,createdAt:moment()})
         }   
+
+
+    }
+
+
+
+    const handleNewTopic=(e)=>{
+
+
+        setArticle({...article,topic:e.target.value})
+
+        topics.map((element)=>{
+            if(element.toLowerCase()===(e.target.value).toLowerCase()){
+ 
+                setNotification({status:'error',message:'Topic already exists',createdAt:moment()})
+            }
+        })
+        
+          
+        
 
 
     }
@@ -128,12 +157,15 @@ const ArticleEdit=({authors,topics,data}) => {
     return (
         <div className='flex w-full h-screen '>
             <SideBar/>
-            <form  onSubmit={handleSubmit} className=' p-5 flex flex-col justify-start  align-top w-[75%] h-full font-poppins'>
-                <div className='flex flex-row-reverse gap-5 mr-5 items-center'>
+            
+            <div className='flex flex-col w-full'>
+            {notification.message&&<Notification options={notification}/>}   
+            <form  onSubmit={handleSubmit} className='p-5 flex flex-col justify-start  align-top w-[75%] h-full font-poppins'>
+     
+            <div className='flex flex-row-reverse gap-5 mr-5 items-center'>
                     
-                {notification.message&&<Notification options={notification}/>}
-                    
-             
+       
+    
 
 
              
@@ -173,7 +205,7 @@ const ArticleEdit=({authors,topics,data}) => {
                     <label className="w-36  text-[#757575] font-[400] text-2xl text-gray-[#757575] bg-tra pr-5 border-r border-gray-300">Topic</label>
                     
                     {newTopic?
-                    <input placeholder='Enter a Topic' value={article.topic} className='w-full px-3 py-2 text-xl focus:outline-none  placeholder-gray-600 font-[400] text-secondary' required onChange={(e)=>{setArticle({...article,topic:e.target.value})}}/>:
+                    <input placeholder='Enter a Topic' value={article.topic} className='w-full px-3 py-2 text-xl focus:outline-none  placeholder-gray-600 font-[400] text-secondary' required onChange={handleNewTopic}/>:
                     <select required={true} name="author_select" className="w-full px-3 py-2 text-xl focus:outline-none text-gray-600 appearance-none bg-white" onChange={(e)=>{setArticle({...article,topic:e.target.value})}} >
                         <option className='text-gray-600' value="">Select a Topic</option>
                      {topics.map((element)=>{
@@ -196,7 +228,8 @@ const ArticleEdit=({authors,topics,data}) => {
                 
                
                 </form>
-
+                     
+                </div>
 
                 <button type='button' className='absolute top-6 right-5' onClick={()=>{handleDelete()}}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +266,7 @@ export async function getServerSideProps({query , context}){
         return {   
             props:{
                 authors:authorResponse.data,
-                topics:uniqueTopics,
+                topics:uniqueTopics.sort(),
                 data:requiredArticle.data
             }
         }

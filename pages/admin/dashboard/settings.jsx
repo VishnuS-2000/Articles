@@ -9,6 +9,7 @@ import { getSession } from 'next-auth/react'
 
 import {Notification} from '../../../components/notification'
 import { fetchData } from 'next-auth/client/_utils'
+import moment from 'moment'
 
 
 const SettingsPage=()=>{
@@ -45,11 +46,11 @@ const SettingsPage=()=>{
                    }
             })
 
-            setNotification({status:'success',message:'Email Updated'})
+            setNotification({status:'success',message:'Email Updated',createdAt:moment()})
         }
 
         catch(err){
-            setNotification({status:'error',message:err.message})
+            setNotification({status:'error',message:err.message,createdAt:moment()})
         }
 
     }
@@ -70,11 +71,11 @@ const SettingsPage=()=>{
                    }
             })
 
-            setNotification({status:'success',message:'Password Updated'})
+            setNotification({status:'success',message:'Password Updated',createdAt:moment()})
         }
 
         catch(err){
-            setNotification({status:'error',message:err.message})
+            setNotification({status:'error',message:'Invalid Credentials',createdAt:moment()})
         }
 
 

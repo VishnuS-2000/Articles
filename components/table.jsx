@@ -19,9 +19,9 @@ import {useState,useRef} from 'react'
 import { useSession } from 'next-auth/react'
 
 import {Notification} from './notification'
+import moment from 'moment'
 
-
-import useSWR from 'swr'
+import useSWR,{ useSWRConfig } from 'swr'
 
 
 
@@ -39,6 +39,7 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
 
 
     const { data ,error } = useSWR(args, fetcher)
+    const {mutate}=useSWRConfig()
 
     const count=data?data.result.count:0;
     const isLoading=!data &&!error
@@ -82,12 +83,15 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
             }
 
 
-            router.push(`${navigationURL}?page=${page}`)            
+            mutate(args)
+
+            router.reload(`${navigationURL}/?page=1`)
+
         }
 
 
         catch(err){
-            // console.log(err)
+            setNotification({status:'error',message:err.message,createdAt:moment()})
         }
 
 
@@ -108,16 +112,21 @@ export const DisplayTable=({args,page,navigationURL,limit,authorsType})=>{
                     'Authorization':`Bearer ${session.accessToken}`}
             }).then(()=>{
             
-    setNotification({status:'warning',message:authorsType?`${multipleDelete.length} authors deleted`:`${multipleDelete.length} articles deleted`})
+    setNotification({status:'warning',message:authorsType?`${multipleDelete.length} authors deleted`:`${multipleDelete.length} articles deleted`,createdAt:moment()})
 
             })
 
        
-        router.push(`${navigationURL}?page=${page}`)      
+            mutate(args) 
+            setMultipleDelete([])
+            router.reload(`${navigationURL}/?page=1`)
+          
+     
+
         }catch(err){
 
             // console.log(err)
-            setNotification({status:'error',float:true,message:err.message})
+            setNotification({status:'error',message:err.message,createdAt:moment()})
         }
 
 

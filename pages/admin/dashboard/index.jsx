@@ -72,14 +72,10 @@ const Home=({authors , articles , topics , topicwise})=>{
                         
                         <div className=' flex flex-col w-full h-full'>
                         <h1 className='text-[20px] font-[500]'>Articles based on topic </h1>
-                        <RadialChart
-                        data={topicwise}
-                        width={500}
-                        height={500}
-                        showLabels = {true}
-                        animation={true}
-                        />
 
+                            {topicwise.map((element)=>{
+                                return <li className='text-lg space-x-3'>{element.label} {element.count}</li>
+                            })}
                         
 
                         </div>
@@ -141,14 +137,14 @@ export async function getServerSideProps(context) {
 
             if(!uniqueTopics.includes(e.topic)){
                 uniqueTopics.push(e.topic)
-                topicWise.push({angle:1,label : e.topic})
+                topicWise.push({count:1,label : e.topic})
             }
 
             else{
                 const index = uniqueTopics.indexOf(e.topic)
                 
                 
-                topicWise[index].angle=topicWise[index].angle+1
+                topicWise[index].count=topicWise[index].count+1
             }
         })
 

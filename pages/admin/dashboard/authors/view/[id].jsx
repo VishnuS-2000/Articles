@@ -12,7 +12,7 @@ import { Notification } from '../../../../../components/notification';
 import {useRouter} from 'next/router'
 
 import {useSession} from 'next-auth/react'
-
+import moment from 'moment'
 
 
 // UI by Sharun
@@ -50,11 +50,11 @@ const AuthorView=({data}) => {
             }
 
             })
-            setNotification({status:'warning',message:'Successfully Deleted',float:true})
+            setNotification({status:'warning',message:'Successfully Deleted',createdAt:moment()})
             router.push('/admin/dashboard/authors/?page=1')
         }
         catch(err){
-            setNotification({status:'error',message:err.message,float:true})
+            setNotification({status:'error',message:err.message,createdAt:moment()})
         }
 
 

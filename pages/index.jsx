@@ -51,7 +51,7 @@ const Home= ({data}) => {
 
   useEffect(()=>{
     fetchData(5)
-    setArticles(data.result.rows)
+    setArticles(data.result?.rows)
 
 
   },[])
@@ -98,13 +98,13 @@ const Home= ({data}) => {
 
       <LogoCard/>
 
-        <div className="hidden tablet:flex-[0.90] desktop:flex  flex-[0.70]   p-5   justify-center  ">
+        <div className="hidden  desktop:flex  flex-[0.65]   p-5   justify-center  ">
 
           
         <div className="flex flex-col   space-x-3  max-w-[700px]">
 
 
-        <div className=" p-8 space-x-3  justify-start w-[700px] ">
+        <div className=" p-8 space-x-3  justify-start w-[500px] ">
       
 
 <button className={` text-lg font-[500] transition duration-200 ${all?'text-primary ':'text-slate-300 '}`} onClick={()=>{setAll(true); setArticles([]); setOptions(!all?{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})}}>All Articles</button>
@@ -120,7 +120,7 @@ const Home= ({data}) => {
 <InfiniteScroll
         pageStart={0}
         loadMore={() =>{fetchData(articles.length+10)}}
-        hasMore={articles.length < count?true:false}
+        hasMore={articles?.length < count?true:false}
         useWindow={true}
         loader={
           <div key="loading" className="flex w-full justify-center">
@@ -129,7 +129,7 @@ const Home= ({data}) => {
         }
       >
       
-      {articles.map((element)=>{
+      {articles && articles.map((element)=>{
 
         return <ArticleCard key={element.id} data={element}/>
       })
@@ -173,7 +173,7 @@ const Home= ({data}) => {
 <InfiniteScroll
         pageStart={0}
         loadMore={() =>{fetchData(articles.length+5)}}
-        hasMore={articles.length < count?true:false}
+        hasMore={articles?.length < count?true:false}
         useWindow={true}
         loader={
           <div key="loading" className="flex w-full justify-center">
@@ -182,7 +182,7 @@ const Home= ({data}) => {
         }
       >
       
-      {articles.map((element)=>{
+      {articles&&articles.map((element)=>{
 
         return <ArticleCardMobile key={element.id} data={element}/>
       })

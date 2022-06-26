@@ -36,10 +36,12 @@ export const AuthorDetail = ({author})=>{
         
         <h1 className='text-2xl font-[500]  '>{author.name}</h1>
         
-        <div>
-        <p className='text-[#757575] text-lg  font-[500]'>{author.bio}</p>
+        <div className='space-y-3'>
+        <p className='text-[#757575] text-base  font-[300]'>{author.bio}</p>
+        
+        {author.specialization!==''&&<h1 className='font-[500]'>Areas of Specialization :</h1>}
         {author.specialization.split(',').map((e)=>{
-            return <p className='text-[#757575]'>{e}</p>
+            return <p className='text-[#757575] text-base font-[500]'>{e}</p>
         })
        
         

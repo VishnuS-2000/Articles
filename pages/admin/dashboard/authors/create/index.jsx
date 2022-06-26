@@ -14,7 +14,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import {Notification} from '../../../../../components/notification'
 import { getSession } from 'next-auth/react'
-
+import moment from 'moment'
 
 const AuthorCreate=()=>{
 
@@ -68,7 +68,7 @@ const AuthorCreate=()=>{
     
                 catch(err){
                     
-                    setNotification({status:'error',message:'Image Upload Failed!'})
+                    setNotification({status:'error',message:'Image Upload Failed!',createdAt:moment()})
                 }
     
         
@@ -108,7 +108,7 @@ const AuthorCreate=()=>{
 
         })  
 
-        setNotification({status:'success',message:'Author Created',float:true})
+        setNotification({status:'success',message:'Author Created',})
         router.push('/admin/dashboard/authors/?page=1')
 
    
@@ -116,7 +116,7 @@ const AuthorCreate=()=>{
         }catch(err){
             
             // console.log(err)
-            setNotification({status:'error',message:err.message})
+            setNotification({status:'error',message:err.message,createdAt:moment()})
 
         }
         

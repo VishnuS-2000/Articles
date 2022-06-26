@@ -10,7 +10,7 @@ import axios from 'axios'
 import {Notification} from '../../../../../components/notification'
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react'
-
+import moment from 'moment'
 
 const AuthorEdit=({data})=>{
 
@@ -99,7 +99,7 @@ const AuthorEdit=({data})=>{
     
                 catch(err){
                     
-                    setNotification({message:err.response.data.message})
+                    setNotification({status:'error',message:err.response.data.message,createdAt:moment()})
                 }
     
         
@@ -139,13 +139,13 @@ const AuthorEdit=({data})=>{
 
         })  
 
-        setNotification({message:'Updated Author',status:'success',float:true})
+        setNotification({message:'Updated Author',status:'success',createdAt:moment()})
         router.push('/admin/dashboard/authors/?page=1')
 
         }catch(err){
             
             // console.log(err)
-            setNotification({message:err.message,status:'error'})
+            setNotification({message:err.message,status:'error',createdAt:moment()})
 
         }
         

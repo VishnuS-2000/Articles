@@ -12,7 +12,7 @@ import {Alert,AlertIcon,AlertTitle,AlertDescription,Switch} from '@chakra-ui/rea
 import {useSession} from 'next-auth/react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-
+import moment from 'moment'
 
 import {Notification} from '../../../../../components/notification'
 
@@ -47,7 +47,15 @@ const ArticleCreate=({authors,topics}) => {
         
         let content=text.replace(/<[^>]+>/g,'')
         content=content.replace(/<p>\s*&nbsp;\s*(\s*&nbsp;\s*)+<\/p>/ig,'')
-    
+
+
+        
+        if(content.length<250){
+            setNotification({'status':'error','message':'Content cannot be less than 250 characters',createdAt:moment()})
+
+            return 
+        }    
+
         
         await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/articles`,{
             title:article.title,
@@ -62,27 +70,48 @@ const ArticleCreate=({authors,topics}) => {
             }
         })
         
-        setNotification({status:'success',message:'Article Created',float:true})
+        setNotification({status:'success',message:'Article Created',createdAt:moment()})
         router.push('/admin/dashboard/articles/?page=1')
 
         }
 
         catch(err){
 
-            setNotification({status:'error',message:err.message})            
+            setNotification({status:'error',message:err.message,createdAt:moment()})            
         }
 
 
     }
 
 
+
+    const handleNewTopic=(e)=>{
+
+
+        setArticle({...article,topic:e.target.value})
+
+        topics.map((element)=>{
+            if(element.toLowerCase()===(e.target.value).toLowerCase()){
+     
+                setNotification({status:'error',message:'Topic already exists',createdAt:moment()})
+            }
+        })
+        
+          
+        
+
+
+    }
+
     return (
         <div className='flex w-full h-screen font-poppins'>
             <SideBar/>
+
             <form  onSubmit={handleSubmit} className=' p-5 flex flex-col justify-start  align-top w-[75%] h-full font-poppins'>
-                <div className='flex flex-row-reverse gap-5 mr-5 items-center'>
+            {notification.message&&<Notification options={notification}/>}    
+            <div className='flex flex-row-reverse gap-5 mr-5 items-center p-5'>
                     
-                {notification.message&&<Notification options={notification}/>}
+           
                     
                     <Link href='/admin/dashboard/articles/?page=1'>
                     <button type='button' className='' href="#">
@@ -127,7 +156,7 @@ const ArticleCreate=({authors,topics}) => {
                     <label className="w-36  text-[#757575] font-[400] text-2xl text-gray-[#757575] bg-tra pr-5 border-r border-gray-300">Topic</label>
                     
                     {newTopic?
-                    <input placeholder='Enter a Topic' value={article.topic} className='w-full px-3 py-2 text-xl focus:outline-none  placeholder-gray-600 font-[400] text-secondary' required onChange={(e)=>{setArticle({...article,topic:e.target.value})}}/>:
+                    <input placeholder='Enter a Topic' value={article.topic} className='w-full px-3 py-2 text-xl focus:outline-none  placeholder-gray-600 font-[400] text-secondary' required={true} onChange={handleNewTopic}/>:
                     <select required={true} name="author_select" className="w-full px-3 py-2 text-xl focus:outline-none text-gray-600 appearance-none bg-white" onChange={(e)=>{setArticle({...article,topic:e.target.value})}}>
                         <option className='text-gray-600' value="">Select a Topic</option>
                      {topics.map((element)=>{
@@ -181,7 +210,13 @@ export async function getServerSideProps(context){
 
     try{
         const uniqueTopics=[]
-        const authorResponse=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors`)
+        const authorResponse=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/authors`,{
+            headers:{
+                'orderfield':'name',
+                ordertype:'ASC'
+
+        }
+        })
         const articleResponse=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`)
 
         articleResponse.data.result.rows.map((e)=>{
@@ -194,7 +229,7 @@ export async function getServerSideProps(context){
         return {   
             props:{
                 authors:authorResponse.data,
-                topics:uniqueTopics
+                topics:uniqueTopics.sort()
             }
         }
 
