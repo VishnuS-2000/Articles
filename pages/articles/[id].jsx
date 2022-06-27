@@ -37,10 +37,10 @@ return  <div className='flex min-h-screen items-start justify-center   w-full   
 <Footer/>
 
 <LogoCard/>
-<div className="flex-[1] tablet:flex-[0.90]  desktop:flex-[0.70] justify-center w-full  ">
+<div className="flex-[1]   desktop:flex-[0.70] flex flex-col items-center w-full  ">
 
 
-<div className=" px-6 py-12 tablet:px-10 desktop:px-12  flex flex-col w-full ">
+<div className="px-6 py-12 w-full tablet:px-10 desktop:max-w-[750px] desktop:py-2 mb-10 flex flex-col  ">
 
 <LogoCardMobile/>
         <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>

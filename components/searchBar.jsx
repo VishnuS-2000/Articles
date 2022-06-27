@@ -100,7 +100,7 @@ export const SearchBar  = () => {
             <input className="rounded-[15px] w-full  border border-slate-300 px-8 py-2 outline-none" type="text" placeholder="Author name" name="author" value={params.author} onChange={(e)=>{setParams({...params,author:e.target.value})}} />
       
           
-            <input className=" rounded-[15px] w-full   border border-slate-300 px-8 py-2 outline-none" type="text" placeholder="Book Title" name="title" value={params.title} onChange={(e)=>{setParams({...params,title:e.target.value})}}/>
+            <input className=" rounded-[15px] w-full   border border-slate-300 px-8 py-2 outline-none" type="text" placeholder="Article Title" name="title" value={params.title} onChange={(e)=>{setParams({...params,title:e.target.value})}}/>
  
             <div className="flex flex-row w-full space-x-2">
                 

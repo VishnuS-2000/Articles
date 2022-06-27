@@ -39,7 +39,7 @@ export const AuthorDetail = ({author})=>{
         <div className='space-y-3'>
         <p className='text-[#757575] text-base  font-[300]'>{author.bio}</p>
         
-        {author.specialization!==''&&<h1 className='font-[500]'>Areas of Specialization :</h1>}
+        {author.specialization!==''&&<h1 className='font-[500]'>Areas of Specialization</h1>}
         {author.specialization.split(',').map((e)=>{
             return <p className='text-[#757575] text-base font-[500]'>{e}</p>
         })

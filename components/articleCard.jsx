@@ -74,7 +74,7 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
     <p className="text-base text-quarternary">{extras.ago}</p>
     </div>
 
-    <div className="flex flex-col justify-start space-y-1 mr-6">
+    <div className="flex flex-col justify-start space-y-1 mr-6 max-w-[600px]">
     
     <Link href={`/articles/${data.id}`}>
     <h1 className="text-primary text-xl font-[400] cursor-pointer">{data.title}</h1>
