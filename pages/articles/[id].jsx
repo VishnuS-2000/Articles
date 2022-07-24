@@ -17,6 +17,7 @@ const ArticlePage=({data})=>{
 
     
     const [extras,setExtras]=useState({})
+    const [readMoreLimit,setReadMoreLimit]=useState(250)
 
 
     useEffect(()=>{

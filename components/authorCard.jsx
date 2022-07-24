@@ -13,7 +13,7 @@ export const AuthorCard=({name,extras,photo}) => {
             </div>
             <div className="user-card__info flex-1">
                 <div className="user-card__name pb-1">
-                    <h1 className="font-[600] text-black text-md tablet:text-lg desktop:text-xl ">{name}</h1>
+                    <h1 className="font-[600] text-black text-sm tablet:text-xl desktop:text-xl ">{name}</h1>
                 </div>
                 <div className="user-card__bio flex">
                     <p className='text-sm   pr-5  text-tertiary font-[400] tablet:text-md'>

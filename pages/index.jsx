@@ -124,9 +124,9 @@ const Home= ({data}) => {
         <div className="flex p-6 space-x-8  w-[85%] ">
       
 
-<button className={` text-lg font-[500] transition duration-200 ${tab=='all'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('all');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})}}>All Articles</button>
-<button className={`text-lg  font-[500] transition duration-200 ${tab=='new'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('new');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
-<button className={`text-lg  font-[500] transition duration-200 ${tab=='stud'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('stud');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/student`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})} }>Students</button>
+<button className={` text-lg font-[500] transition duration-200 ${tab=='all'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('all');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:3,params:null})}}>All Articles</button>
+<button className={`text-lg  font-[500] transition duration-200 ${tab=='new'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('new');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:3,offset:0,params:null})} }>New Articles</button>
+<button className={`text-lg  font-[500] transition duration-200 ${tab=='stud'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('stud');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/student`,orderField:'title',orderType:'ASC',offset:0,limit:3,params:null})} }>Students</button>
 
 
 </div>

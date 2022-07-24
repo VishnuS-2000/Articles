@@ -145,9 +145,7 @@ const resultPage=({data})=>{
           </div>}
 
         
-        <div className='absolute bottom-0'>
-        <Footer/>
-        </div>
+        
       
           </div>
 

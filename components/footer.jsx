@@ -7,12 +7,17 @@ export const Footer=()=>{
        
     
     <div className="flex flex-col items-center w-full">
-    <h1 className='text-xs desktop:text-sm   font-[500]  '>
-           Copyright © 2022 All Rights Reserved ICREP
+    <h1 className='text-sm hidden desktop:flex font-[500]  '>
+           Copyright © 2022 All Rights Reserved PROF NR MADHAVA MENON ICREP
         </h1>
 
+        <h1 className='text-xs desktop:hidden  font-[500]  '>
+        Copyright © 2022 All Rights Reserved  ICREP
+     </h1>
+        
 
-        <h1 className="text-xs desktop:text-sm  font-[500] ">Cochin University of Science and Technology, Kerala, India</h1>
+
+        <h1 className="text-xs desktop:text-sm  font-[500] ">CUSAT, Kerala, India</h1>
         
         <h1 className="text-xs desktop:text-sm   font-[500] ">Designed, Developed & Maintained by FTL</h1>
         </div>

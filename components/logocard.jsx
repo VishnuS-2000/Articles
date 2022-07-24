@@ -1,10 +1,23 @@
 import {useEffect,useState} from 'react'
 import Link from 'next/link'
+import {
+
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,Button,Input,InputGroup,InputRightAddon, InputLeftAddon
+  } from '@chakra-ui/react'
+
+
 export const LogoCard=()=>{
 
 
     const [scroll,setScroll]=useState(false)
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleScroll=(()=>{
 
@@ -24,7 +37,7 @@ export const LogoCard=()=>{
 
     }) 
 
-
+   
 
 
    
@@ -33,9 +46,17 @@ export const LogoCard=()=>{
     return <>
     <div className='flex w-full space-x-5 px-5 bg-primary'>
     
+    <Link href='/'>
+    <h1 className='text-white font-[500] cursor-pointer'>Home</h1>
+    </Link>
+
+    <Link href='/about'>
     <h1 className='text-white font-[500] cursor-pointer'>About Us</h1>
-    <h1 className='text-white font-[500] cursor-pointer'>Contribute</h1>
-    
+    </Link>
+
+
+    <h1 className='text-white font-[500] cursor-pointer' onClick={onOpen}>Contribute</h1>
+ 
     </div>
 
     <div className={`hidden desktop:flex   w-full  items-center  sticky z-50 top-0 right-0 bg-white justify-between ${scroll?"drop-shadow-sm":"shadow-none"} duration-800 `}>
@@ -64,6 +85,53 @@ export const LogoCard=()=>{
     </div>
     
    
+
+    <Modal isOpen={isOpen} onClose={onClose}  isCentered>
+    <ModalOverlay />
+    <ModalContent>
+      <ModalHeader>
+      <div className='space-y-2'>
+        <h1 className='text-lg font-[poppins] desktop:text-xl'>Publish Your Article</h1>
+        <p className='font-[poppins] text-sm'>Please fill your correct details.</p>
+        </div>
+      </ModalHeader>
+ 
+      
+      <ModalCloseButton />
+      <ModalBody>
+      <div className='space-y-5'>
+
+      <Input variant='filled' placeholder='Full Name' />
+
+      <InputGroup>
+      <InputLeftAddon children='+91' />
+      <Input type='tel' placeholder='Phone number' variant='filled'/>
+      </InputGroup>
+
+      <InputGroup>
+    
+      <Input type='email' placeholder='Email' variant='filled'/>
+      <InputRightAddon children='.com' />
+      </InputGroup>
+      
+      </div>
+      </ModalBody>
+
+    
+
+
+      <ModalFooter>
+        <Button colorScheme='red' mr={5} onClick={onClose} className='font-poppins'>
+          Close
+        </Button>
+        <Button colorScheme='blue' className='font-poppins'>Submit</Button>
+      </ModalFooter>
+    </ModalContent>
+
+  </Modal>
+
+
+
 
 
     </>

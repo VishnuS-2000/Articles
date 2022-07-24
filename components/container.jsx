@@ -257,7 +257,7 @@ export const MoreContainer=({id,name})=>{
   {articles.length>0&&<div className="flex flex-col   py-10 font-poppins">
 
       <div className="flex flex-col   items-start">
-      <h1 className="text-lg desktop:text-xl text-black font-[500] mb-5 ">More From Author</h1>
+      <h1 className="text-xl tablet:text-xl desktop:text-xl text-black font-[500] mb-5 ">More From Author</h1>
 
 
   
@@ -386,7 +386,7 @@ useEffect(()=>{
 
 
   <Link href={`/articles/${data.id}`}>
-  <h1 className="text-primary text-lg font-[600] cursor-pointer">{data.title}</h1>
+  <h1 className="text-primary text-xl desktop:text-lg font-[600] cursor-pointer">{data.title}</h1>
 
   </Link>
 

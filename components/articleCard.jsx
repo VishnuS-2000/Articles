@@ -81,7 +81,7 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
   
     <h1 className="text-primary text-xl font-[600] cursor-pointer my-3">{data.title}</h1>
 
-    <p className="text-secondary font-[300]">{data.content.slice(0,240)}...</p>
+    <p className="text-secondary font-[400]">{data.content.slice(0,240)}...</p>
 
 
     </div>
@@ -187,7 +187,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
  
     
 
-    return <div className="flex w-full px-5 py-8  space-y-2 border-t border-slate-300   drop-shadow my-2 font-[300] ">
+    return <div className="flex w-full px-5 py-8  space-y-2 border-t border-slate-300   drop-shadow-sm my-2 font-[300] ">
     
 
     <div className="flex flex-col space-y-2 items-start">
@@ -210,7 +210,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
 
     </Link>
 
-    <p className="text-secondary text-sm font-[300]">{data.content.slice(0,100)} <span className='text-primary font-[400]'>...</span></p>
+    <p className="text-secondary text-sm font-[400]">{data.content.slice(0,100)} <span className='text-primary font-[400]'>...</span></p>
 
     </div>
 
