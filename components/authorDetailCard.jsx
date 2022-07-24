@@ -1,7 +1,11 @@
 import {useRouter} from 'next/router'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export const AuthorDetail = ({author})=>{
+
+import { MoreContainer } from './container';
+
+
+export const AuthorDetail = ({author,id})=>{
 
 
 
@@ -21,7 +25,7 @@ export const AuthorDetail = ({author})=>{
     
     
     return (
-        <div className="hidden desktop:flex  flex-[0.20] flex-col p-5 justify-start  space-y-5  border-l border-[#E6E6E6]   sticky top-0 right-0 h-screen   font-poppins">
+        <div className="hidden desktop:flex  flex-[0.25] flex-col p-5 justify-start  space-y-5  border-l border-[#E6E6E6]   sticky top-0 right-0 h-screen   font-poppins">
         
         <div className='relative'>
         <input type='text' className='flex-[0.60] py-2 px-8 text-base font-[400] rounded-[30px] outline-none border border-slate-300  my-4 placeholder-secondary bg-[#FAFAFA] w-full' placeholder='Search ' onChange={handleChange}/>
@@ -31,24 +35,31 @@ export const AuthorDetail = ({author})=>{
         </svg>
         </div>
         
-        <div className='py-10 px-5 space-y-3'>
-        {author.photo?<img src={author.photo} width='100px' height='100px' className='rounded-[15px]' />:<AccountCircleIcon style={{fontSize:'4rem'}}/>}
+        <div className='py-5 px-3  space-y-1'>
         
-        <h1 className='text-2xl font-[500]  '>{author.name}</h1>
+        {author.photo?<img src={author.photo} width='100px' height='100px' className='rounded-[15px]' />:<AccountCircleIcon style={{fontSize:'5rem',position:'relative',right:'2%'}}/>}
         
-        <div className='space-y-3'>
-        <p className='text-[#757575] text-base  font-[300]'>{author.bio}</p>
+        <h1 className='text-xl font-[500]  '>{author.name}</h1>
+        <p className='text-[#757575] text-base  font-[500]'>{author.bio}</p>
+        <div className='space-y-1'>
+
         
-        {author.specialization!==''&&<h1 className='font-[500]'>Areas of Specialization</h1>}
+        {author.specialization!==''&&<h1 className='font-[500]'>Areas of Specialization :</h1>}
+        <p className='text-[#757575] text-base font-[500] space-x-3'>
         {author.specialization.split(',').map((e)=>{
-            return <p className='text-[#757575] text-base font-[500]'>{e}</p>
+            return <span>{e}</span>
         })
+
+    }
+        </p>
        
         
-    }
+   
     </div>
+        
+    <MoreContainer name={author.name} id={id}/>
     </div>
-    
+
     </div>
        
     )

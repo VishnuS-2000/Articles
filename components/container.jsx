@@ -1,11 +1,12 @@
 import {ArticleCard,ArticleCardMobile} from "./articleCard" 
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 import Link from "next/link";
 import axios from 'axios'
 import { Spinner } from "@chakra-ui/react";
 import {useSession} from 'next-auth/react'
 
 import {useRouter} from 'next/router'
+import moment from "moment";
 
 
 
@@ -253,24 +254,19 @@ export const MoreContainer=({id,name})=>{
 
   return <div className='flex flex-col   '>
   
-  {articles.length>0&&<div className="flex flex-col   py-10 font-poppins my-10">
+  {articles.length>0&&<div className="flex flex-col   py-10 font-poppins">
 
       <div className="flex flex-col   items-start">
-      <h1 className="text-lg desktop:text-2xl text-primary font-[500] mb-5 ">More From {name}</h1>
+      <h1 className="text-lg desktop:text-xl text-black font-[500] mb-5 ">More From Author</h1>
 
 
-      <div className='hidden tablet:flex flex-col overflow-y-auto overscroll-contain  my-5 h-[400px] w-full'>
-          {articles.map((article)=>{
+  
 
-            return <ArticleCard data={article}/>
-          })}
-          </div>
-
-          <div className='flex flex-col w-full overflow-y-auto h-[400px]  tablet:hidden'>
+          <div className='flex flex-col w-full overflow-y-auto h-[400px] '>
 
           {articles.map((article)=>{
 
-            return <ArticleCardMobile data={article}/>
+            return <MoreContainerItem data={article}/>
           })}
           </div>
 
@@ -317,4 +313,112 @@ export const ViewContainer=({data})=>{
 
   </div>
 
+}
+
+
+
+
+
+
+
+export const MoreContainerItem=({data})=>{
+
+  const [extras,setExtras]=useState({
+    ago:'',
+    minRead:''
+})
+
+const [imageUrl,setImageUrl]=useState()
+
+
+
+
+const refContainer=useRef()
+
+useEffect(()=>{
+   
+    const diff=['seconds','minutes','hours','days','months','years']
+    const limits=[60,60,24,30,12,100]
+    const i=0
+    const result=0
+    const ago=''
+    while(i<diff.length){
+        result=moment().diff(data.createdAt,diff[i])
+        if(result<limits[i]){
+            ago=`${result} ${diff[i]} ago`;
+            break;
+        }
+        i=i+1
+    }
+    const minRead=Math.ceil(data.content.split(' ').length/275);
+  
+    setExtras({
+        ...extras,minRead,ago
+    })
+
+
+
+},[])
+
+
+useEffect(()=>{
+
+    refContainer.current.innerHTML=data.richText
+
+    const id=Math.ceil(Math.random()*1000)
+    setImageUrl(refContainer.current.getElementsByTagName('img')[0]?.getAttribute('src'))
+
+
+
+},[])
+
+
+
+  return <div className="flex w-full  py-2  space-y-2   border-gray-300  font-[300] ">
+    
+
+  <div className="flex flex-col space-y-2 items-start">
+
+
+  <div className="flex flex-col justify-start space-y-1 ">
+  
+
+
+
+  <Link href={`/articles/${data.id}`}>
+  <h1 className="text-primary text-lg font-[600] cursor-pointer">{data.title}</h1>
+
+  </Link>
+
+
+
+  </div>
+
+
+  <div className="flex text-xs  text-tertiary justify-between items-start py-2">
+      <div className="flex space-x-3 items-center">
+      <p className="bg-[#F2F2F2] px-2 py-1 rounded-2xl cursor-pointer">{data.topic}</p>
+      <p>{data.minRead}{extras.minRead} min read</p>
+      <p>{extras.ago}</p>
+
+      </div>
+
+
+
+      
+
+
+
+      
+  
+      </div>
+
+  </div>
+
+
+
+  <div ref={refContainer} className="hidden"></div>
+
+
+  </div>
 }

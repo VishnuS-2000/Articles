@@ -9,12 +9,20 @@ import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroller";
 
 
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+import { Box } from '@chakra-ui/react'
+
 const Home= ({data}) => {  
 
-  const [all,setAll]=useState(true)
+
   const [options,setOptions]=useState({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})
   const [articles,setArticles]=useState([])
   const [count,setCount]=useState(0)
+  const [loading,setLoading]=useState(false)
+  const [tab,setTab]=useState('all')
 
 
 
@@ -30,11 +38,12 @@ const Home= ({data}) => {
          }
     })
 
-
+   
 
     setArticles(response.data.result.rows)
     setCount(response.data.result.count)
 
+    
 
   
   }
@@ -46,15 +55,22 @@ const Home= ({data}) => {
   
   }
 
+  useEffect(()=>{
 
+    setArticles(data?.result.rows)
+
+  },[])
 
 
   useEffect(()=>{
-    fetchData(5)
-    setArticles(data.result?.rows)
+    setLoading(true)
+    fetchData(3)
+    setLoading(false)
 
 
-  },[])
+  },[tab])
+
+
 
 
 
@@ -96,19 +112,22 @@ const Home= ({data}) => {
   return (
     <div className="flex items-start  justify-center min-h-screen font-poppins w-full ">
 
-      <LogoCard/>
 
-        <div className="hidden  desktop:flex  flex-[0.65]   p-5   justify-center  ">
+    <div className="hidden desktop:flex flex-col w-full">
+    <LogoCard/>
+      <div className="w-full flex justify-between ">
 
-          
-        <div className="flex flex-col   space-x-3  max-w-[700px]">
+      <div className="flex flex-[0.80] justify-center">
+        <div className="flex flex-col   space-x-3  w-[85%]">
 
 
-        <div className=" p-8 space-x-3  justify-start w-[500px] ">
+        <div className="flex p-6 space-x-8  w-[85%] ">
       
 
-<button className={` text-lg font-[500] transition duration-200 ${all?'text-primary ':'text-slate-300 '}`} onClick={()=>{setAll(true); setArticles([]); setOptions(!all?{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})}}>All Articles</button>
-<button className={`text-lg  font-[500] transition duration-200 ${!all?'text-primary ':'text-slate-300 '}`} onClick={()=>{setAll(false); setArticles([]); setOptions(!all?{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
+<button className={` text-lg font-[500] transition duration-200 ${tab=='all'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('all');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})}}>All Articles</button>
+<button className={`text-lg  font-[500] transition duration-200 ${tab=='new'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('new');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
+<button className={`text-lg  font-[500] transition duration-200 ${tab=='stud'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('stud');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/student`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null})} }>Students</button>
+
 
 </div>
 
@@ -119,21 +138,53 @@ const Home= ({data}) => {
 
 <InfiniteScroll
         pageStart={0}
-        loadMore={() =>{fetchData(articles.length+10)}}
+        loadMore={() =>{fetchData(articles.length+3)}}
         hasMore={articles?.length < count?true:false}
         useWindow={true}
         loader={
-          <div key="loading" className="flex w-full justify-center">
-            <Spinner/>
+          <div key="loading" className="space-y-5">
+          <Box padding='6' boxShadow='lg' bg='white'>
+          <SkeletonCircle size='10' />
+          <SkeletonText mt='4' noOfLines={5} spacing='4' />
+        </Box>
+
+
+
           </div>
         }
       >
-      
+
       {articles && articles.map((element)=>{
 
         return <ArticleCard key={element.id} data={element}/>
-      })
+      })}
+      
+      
+      {loading && <div key="loading" className="space-y-5">
+      <Box padding='6' boxShadow='lg' bg='white'>
+      <SkeletonCircle size='10' />
+      <SkeletonText mt='4' noOfLines={5} spacing='4' />
+    </Box>
+
+    <Box padding='6' boxShadow='lg' bg='white'>
+    <SkeletonCircle size='10' />
+    <SkeletonText mt='4' noOfLines={5} spacing='4' />
+  </Box>
+
+
+  <Box padding='6' boxShadow='lg' bg='white'>
+  <SkeletonCircle size='10' />
+  <SkeletonText mt='4' noOfLines={5} spacing='4' />
+</Box>
+
+  
+
+
+
+      </div>
       }
+
+      
       </InfiniteScroll>
 
 
@@ -146,7 +197,7 @@ const Home= ({data}) => {
 
 
 
-
+      </div>
 
 
 
@@ -155,16 +206,27 @@ const Home= ({data}) => {
 
   
   </div>  
-
+  <SearchBar />
     </div>
+    </div>
+
+
+
 
     <div className='flex flex-col items-center w-full py-12  desktop:hidden'> 
     <LogoCardMobile/>
     <SearchBarMobile/>
 
-    <div className='flex space-x-3 p-5'>
-    <button className={` text-lg font-[500] transition duration-200 ${all?'text-primary ':'text-slate-300 '}`} onClick={()=>{setAll(true); setArticles([]); setOptions(!all?{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})}}>All Articles</button>
-<button className={`text-lg  font-[500] transition duration-200 ${!all?'text-primary ':'text-slate-300 '}`} onClick={()=>{setAll(false); setArticles([]); setOptions(!all?{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:4,params:null}:{url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:4,offset:0,params:null})} }>New Articles</button>
+    <div className='flex space-x-5 p-5'>
+
+  
+<button className={` text-md font-[500] transition duration-200 ${tab=='all'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('all');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'title',orderType:'ASC',offset:0,limit:3,params:null})}}>All Articles</button>
+<button className={`text-md  font-[500] transition duration-200 ${tab=='new'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('new');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles`,orderField:'createdAt',orderType:'DESC',limit:3,offset:0,params:null})} }>New Articles</button>
+<button className={`text-md  font-[500] transition duration-200 ${tab=='stud'?'text-primary ':'text-slate-300 '}`} onClick={()=>{setTab('stud');  setArticles([]); setOptions({url:`${process.env.NEXT_PUBLIC_BACKEND_URL}/articles/student`,orderField:'title',orderType:'ASC',offset:0,limit:3,params:null})} }>Students</button>
+
+
+
+   
 
     </div>
 
@@ -172,7 +234,7 @@ const Home= ({data}) => {
 
 <InfiniteScroll
         pageStart={0}
-        loadMore={() =>{fetchData(articles.length+5)}}
+        loadMore={() =>{fetchData(articles.length+3)}}
         hasMore={articles?.length < count?true:false}
         useWindow={true}
         loader={
@@ -193,11 +255,22 @@ const Home= ({data}) => {
 
     
     </div>
-    <SearchBar />
+
   </div>
   )
   }
 
+
+
+
+
+
+
+
+
+
+
+  
 export async function getServerSideProps(){
 
 try{
@@ -206,7 +279,7 @@ try{
            orderField:'title',
            orderType:'ASC',
            offset:0,
-           limit:5
+           limit:3
          }
     })
 

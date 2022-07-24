@@ -32,21 +32,27 @@ const ArticlePage=({data})=>{
     },[])
 
 
-return  <div className='flex min-h-screen items-start justify-center   w-full   '>
+return  <div className='flex min-h-screen items-start justify-center   w-full  font-[poppins] '>
 
-<Footer/>
+
+
+<div className='flex flex-col w-[100%]'>
 
 <LogoCard/>
-<div className="flex-[1]   desktop:flex-[0.70] flex flex-col items-center w-full  ">
+<div className="flex-[1]   desktop:flex  w-full pb-10   ">
 
+<div className='flex flex-[0.75] justify-center'>
 
-<div className="px-6 py-12 w-full tablet:px-10 desktop:max-w-[750px] desktop:py-2 mb-10 flex flex-col  ">
+<div className="px-6 py-12 w-full tablet:px-10 desktop:max-w-[900px] desktop:py-2 mb-10 flex flex-col  ">
 
 <LogoCardMobile/>
         <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
         <Article article={data.result}/>
+
+        <div className="flex desktop:hidden">
         <MoreContainer name={data.result.author.name} id={data.result.id}/>
         
+        </div>
 
 </div>
 
@@ -61,9 +67,14 @@ return  <div className='flex min-h-screen items-start justify-center   w-full   
 
 </div>
 
+<AuthorDetail author={data.result.author} id={data.result.id}/>
+</div>
+
+<Footer/>
+</div>
 
 
-<AuthorDetail author={data.result.author}/>
+
 
 
 </div>

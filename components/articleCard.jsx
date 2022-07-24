@@ -7,6 +7,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useRouter} from 'next/router'
 import axios from 'axios'
 
+
 //Article Card Component
 
 export const ArticleCard=({data,deleteOption,handleDelete})=>{
@@ -64,7 +65,8 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
  
     
 
-    return <div className="flex  px-2 py-8 max-w-[900px] space-y-2  border-line border-t font-[300] ">
+    return <> <Link href={`/articles/${data.id}`}>
+    <div className="flex cursor-pointer p-6  space-y-2  drop-shadow-md rounded-sm  bg-white my-4  font-[300]  hover:drop-shadow-xl duration-500">
     
 
     <div className="flex flex-col space-y-2 ">
@@ -74,11 +76,11 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
     <p className="text-base text-quarternary">{extras.ago}</p>
     </div>
 
-    <div className="flex flex-col justify-start space-y-1 mr-6 max-w-[600px]">
+    <div className="flex flex-col justify-start space-y-1 mr-6 ">
     
-    <Link href={`/articles/${data.id}`}>
-    <h1 className="text-primary text-xl font-[400] cursor-pointer">{data.title}</h1>
-    </Link>
+  
+    <h1 className="text-primary text-xl font-[600] cursor-pointer my-3">{data.title}</h1>
+
     <p className="text-secondary font-[300]">{data.content.slice(0,240)}...</p>
 
 
@@ -89,8 +91,9 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
         <div className="flex space-x-3 items-center">
         <p className="bg-[#F2F2F2] px-2 py-1 rounded-2xl cursor-pointer">{data.topic}</p>
         <p>{data.minRead}{extras.minRead} min read</p>
-        <p>Selected for you</p>
 
+        {data.author.bio?.toLowerCase().includes('student')&&<p className='bg-green-200 font-[400] p-1 rounded-full text-black'>Student</p>}
+  
         </div>
 
 {deleteOption&&<button onClick={()=>{handleDelete(data.id)}}>
@@ -123,8 +126,8 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
 
 
     </div>
-
-
+    </Link>
+    </>
 }
 
 
@@ -184,7 +187,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
  
     
 
-    return <div className="flex w-full px-5 py-8  space-y-2   border-gray-300 border-t font-[300] ">
+    return <div className="flex w-full px-5 py-8  space-y-2 border-t border-slate-300   drop-shadow my-2 font-[300] ">
     
 
     <div className="flex flex-col space-y-2 items-start">
@@ -196,17 +199,18 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
     </div>
 
 
-    <div className="flex flex-col justify-start space-y-1 mr-6">
+    <div className="flex flex-col justify-start space-y-2 mr-6">
     
 
 
 
     <Link href={`/articles/${data.id}`}>
     <h1 className="text-primary text-xl font-[600] cursor-pointer">{data.title}</h1>
+    
 
     </Link>
 
-
+    <p className="text-secondary text-sm font-[300]">{data.content.slice(0,100)} <span className='text-primary font-[400]'>...</span></p>
 
     </div>
 
@@ -215,7 +219,7 @@ export const ArticleCardMobile=({data,deleteOption,handleDelete})=>{
         <div className="flex space-x-3 items-center">
         <p className="bg-[#F2F2F2] px-2 py-1 rounded-2xl cursor-pointer">{data.topic}</p>
         <p>{data.minRead}{extras.minRead} min read</p>
-        <p>Selected for you</p>
+        {data.author.bio?.toLowerCase().includes('student')&&<p className='bg-green-200 font-[400] p-1 rounded-full text-black'>Student</p>}
 
         </div>
 

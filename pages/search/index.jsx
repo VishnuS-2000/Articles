@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import Link from "next/link";
 import { LogoCard, LogoCardMobile } from '../../components/logocard';
-
+import {Footer} from '../../components/footer'
 
 const resultPage=({data})=>{
 
@@ -61,19 +61,19 @@ const resultPage=({data})=>{
   return <div className="flex min-h-screen items-start justify-center font-poppins ">
       
       
+  <div className="hidden desktop:flex flex-col w-full ">
+  <LogoCard/>
+    <div className="w-full flex justify-between pb-10 ">
 
-      <LogoCard/>
-
-
-        <div className="hidden desktop:flex flex-[0.65] p-5  justify-center h-full  ">
+    <div className="flex flex-[0.80] justify-center">
         
           
           
         <div className="flex w-full   space-x-3 justify-center ">
 
-<div className='flex flex-col w-full max-w-[700px]'>
+<div className='flex flex-col  w-[85%]'>
 
-<div className='flex px-10  items-center space-x-3 '>
+<div className='flex py-8  items-center space-x-3 '>
 
           
 <Link href='/'>
@@ -83,7 +83,7 @@ const resultPage=({data})=>{
 </Link>
 
 <h1 className='text-xl text-primary font-[500]'>Results</h1>
-<p className="text-lg  text-quarternary  font-[200]">Total Count:{count}</p>
+<p className="text-lg  text-quarternary  font-[200]">Total Count: {count}</p>
 
 </div>
 
@@ -107,16 +107,22 @@ const resultPage=({data})=>{
             
         </div>
  
+        </div>  
+         
+        <SearchBar />
+
+        </div>
+        <Footer/>
         </div>
 
 
 
-        <div className='flex flex-[1] flex-col items-center py-12  desktop:hidden'>
+        <div className='flex flex-[1] flex-col items-center py-12 min-h-screen desktop:hidden'>
         <LogoCardMobile/>
 
         <SearchBarMobile/>
 
-        <div className='flex  p-1 items-center justify-start px-5 w-full space-x-3 '>
+        <div className='flex  p-1 items-center justify-start px-5 w-full space-x-3  '>
       
       <Link href='/'><KeyboardBackspaceRoundedIcon sx={{ fontSize: 30 }}/></Link>
       <h1 className='text-lg text-primary font-[500]'>Results</h1>
@@ -138,11 +144,13 @@ const resultPage=({data})=>{
           
           </div>}
 
-
-
+        
+        <div className='absolute bottom-0'>
+        <Footer/>
+        </div>
+      
           </div>
- 
-          <SearchBar />
+
   </div>  
 
 
