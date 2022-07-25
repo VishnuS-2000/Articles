@@ -1,36 +1,26 @@
 
-import {useRef,useEffect} from 'react'
-//Article Body
+import {useRef,useEffect,useState} from 'react'
 
 
-const Article=({article,limit}) => {
+
+const Article=({article,limit,setLimit}) => {
 
 const refContainer=useRef()
 
-const checkScroll=()=>{
-
-    console.log(document.scrollTop)
-    console.log(document.scrollHeight)
-    console.log(window.clientWidth)
-
-
-}
 
 
 useEffect(()=>{
-
+// console.log(limit)
 refContainer.current.innerHTML=article.richText.slice(0,limit);
 
-},[article.id])
-
+},[article.id,limit])
 
 useEffect(()=>{
-
-    window.addEventListener('scroll',checkScroll)
-
-    return ()=>window.removeEventListener('scroll',checkScroll)
-
-})
+    
+    setLimit(10480)
+    
+    },[article.id])
+    
 
 
 
@@ -38,6 +28,8 @@ useEffect(()=>{
 
     return (
         <div className="article-content space-y-2  font-poppins flex flex-col w-full">
+        
+        
             {/* Article Heading */}
             <h1 className='text-primary font-[600] w-full text-xl tablet:text-3xl desktop:text-3xl  pb-4 '>{article.title}</h1>
           

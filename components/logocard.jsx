@@ -13,14 +13,18 @@ import {
   } from '@chakra-ui/react'
 
 
+
 export const LogoCard=()=>{
 
 
     const [scroll,setScroll]=useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+
+
     const handleScroll=(()=>{
 
+  
         if(window.scrollY>0){
             setScroll(true)
         }
@@ -82,6 +86,7 @@ export const LogoCard=()=>{
     <img src='/assets/index/cusat-logo.png' className='max-w-[120px] cursor-pointer  '/>
     </Link>
 
+    
     </div>
     
    
@@ -132,8 +137,7 @@ export const LogoCard=()=>{
 
 
 
-
-
+   
     </>
 }
 
