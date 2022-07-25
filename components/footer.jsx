@@ -19,7 +19,7 @@ export const Footer=()=>{
 
         <h1 className="text-xs desktop:text-sm  font-[500] ">CUSAT, Kerala, India</h1>
         
-        <h1 className="text-xs desktop:text-sm   font-[500] ">Designed, Developed & Maintained by FTL</h1>
+        <h1 className="text-xs desktop:text-sm   font-[500] ">Designed, Developed & Maintained by FLG</h1>
         </div>
     </div>
 }
