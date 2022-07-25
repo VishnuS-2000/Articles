@@ -106,7 +106,7 @@ return  <div className='flex min-h-screen items-start justify-center   w-full  f
 <div className="px-6 py-12 w-full  tablet:px-10 desktop:relative max-w-[900px] desktop:py-2 mb-10 flex flex-col  ">
 
 
-{visible&&<button className="fixed right-[30px] z-50 bottom-[20px] bg-primary text-white p-2 rounded-full hover:bg-slate-600 duration-500 desktop:right-[28%] " onClick={handleScrollToTop}>
+{visible&&<button className="fixed right-[5px] z-50 bottom-[20px] bg-primary text-white p-2 rounded-full hover:bg-slate-600 duration-500 desktop:right-[28%] " onClick={handleScrollToTop}>
 <KeyboardArrowUpIcon/>
 </button>}
 
