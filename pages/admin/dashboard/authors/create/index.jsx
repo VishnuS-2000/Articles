@@ -56,7 +56,7 @@ const AuthorCreate=()=>{
         
             try{
     
-                const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/upload`,{file:image.raw},{
+                const response=await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/upload/image`,{file:image.raw},{
                     headers:{
                         "Content-Type": "multipart/form-data",
                         "Authorization":'Bearer '+session.accessToken

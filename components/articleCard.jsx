@@ -26,7 +26,7 @@ export const ArticleCard=({data,deleteOption,handleDelete})=>{
     
     useEffect(()=>{
        
-        const diff=['seconds','minutes','hours','days','months','years']
+        const diff=['second','minute','hour','day','month','year']
         const limits=[60,60,24,30,12,100]
         const i=0
         const result=0

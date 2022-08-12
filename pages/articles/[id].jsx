@@ -116,7 +116,7 @@ return  <div className='flex min-h-screen items-start justify-center   w-full  f
         <AuthorCard name={data.result.author.name} photo={data.result.author.photo} extras={extras}/>
         <Article article={data.result} limit={readMoreLimit} setLimit={setReadMoreLimit}/>
         
-        {readMoreLimit<=data.result.richText.length&&<div className='flex justify-center items-center  relative bottom-8 h-[80px] desktop:absolute  w-full backdrop-blur bg-black/10 left-[0] desktop:h-[150px] max-w-full desktop:left-[20px] desktop:bottom-0'>
+        {readMoreLimit<=data.result.richText.length&&<div className='flex justify-center items-center  relative bottom-8 h-[80px] desktop:absolute  w-full backdrop-blur bg-black/20 left-[0] desktop:h-[150px] max-w-full desktop:left-[20px] desktop:bottom-0'>
         <button className="flex items-center justify-center p-2  h-full w-full rounded-xl font-[600] text-primary desktop:hidden" onClick={()=>{handleLimit(10240)}}>Read More</button>
         <button className="hidden p-2  h-[50px] w-[120px] rounded-xl font-[600] text-primary desktop:flex" onClick={()=>{handleLimit(20480)}}>Read More</button>
         </div>}
