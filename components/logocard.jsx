@@ -82,11 +82,9 @@ export const LogoCard=()=>{
     <div className='flex flex-col justify-center items-center '>
 
 
+     <p className='text-2xl font-[600]'>JOURNAL OF INTERDISCIPLINARY STUDIES</p>
 
-
-    <h1 className='text-xl font-[600] '>Prof NR Madhava Menon </h1>
-    <p className='text-xl font-[600]'>Interdisciplinary Centre for Research Ethics and Protocol</p>
-    <p className='text-sm font-[400] text-secondary '>An Interuniversity center of excellence</p>
+ 
     </div>
     
     <Link href={'https://www.cusat.ac.in'}>
@@ -146,8 +144,7 @@ export const LogoCardMobile=()=>{
 
     <div className='flex flex-col justify-center items-center '>
 
-    <h1 className='text-sm font-[600] tablet:text-lg'>Prof NR Madhava Menon </h1>
-    <p className='text-sm font-[600] tablet:text-lg'>ICREP</p>
+       <p className='text-sm font-[600] tablet:text-lg'>JOURNAL OF INTERDISCIPLINARY STUDIES</p>
 
     </div>
     
