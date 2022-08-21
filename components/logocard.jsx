@@ -75,7 +75,7 @@ export const LogoCard=()=>{
     
  
     
-    <Link href={'/'}>
+    <Link href={'https://icrep.cusat.ac.in'}>
     <img src='/assets/logo/icrep-desktop.png' className='max-w-[20%] cursor-pointer   '/>
     </Link>
     
@@ -139,8 +139,9 @@ export const LogoCardMobile=()=>{
     {!scroll&&<button className='fixed left-[2px] ' onClick={()=>setShow(true)}><MoreVertIcon/></button>}
 
 
-
+    <Link href={'https://icrep.cusat.ac.in'}>
     <img src='/assets/logo/icrep.png' className='max-w-[80px]   '/>
+    </Link>
 
     <div className='flex flex-col justify-center items-center '>
 
