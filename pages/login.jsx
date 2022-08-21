@@ -116,7 +116,7 @@ return <div className='flex justify-center items-center w-full min-h-screen font
 <div className="flex flex-col space-y-5  min-h-[500px] p-10 justify-center border border-black drop-shadow">
 {notification.message&&<Notification options={notification}/>}
 
-<Image src='/assets/logo/logo.png' height='250px' width='100px'/>
+<Image src='/assets/logo/icrep.png' height='250px' width='180px'/>
     
     {!forgotPassword?<form onSubmit={handleSubmit} className='flex flex-col space-y-8 items-center'>
        
