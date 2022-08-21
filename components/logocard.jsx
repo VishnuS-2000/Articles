@@ -86,7 +86,7 @@ export const LogoCard=()=>{
     <div className='flex flex-col justify-center items-center '>
 
 
-     <p className='text-2xl font-[600] text-center'>JOURNAL OF INTERDISCIPLINARY STUDIES</p>
+     <p className='text-4xl font-[600] text-center'>JOURNAL OF INTERDISCIPLINARY STUDIES</p>
 
  
     </div>
