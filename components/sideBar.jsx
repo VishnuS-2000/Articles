@@ -39,7 +39,7 @@ export const SideBar = ({active})=>{
                 
         
                <div className="flex flex-col items-center  px-2 py-2  max-w-[80%]">
-                    <Image className="" src='/assets/logo/logo.svg' width='140px' height='88px' ></Image>
+                    <Image className="" src='/assets/logo/logo.png' width='250px' height='180px' ></Image>
                   
             
                 </div>

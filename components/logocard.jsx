@@ -70,13 +70,13 @@ export const LogoCard=()=>{
  
     </div>
 
-    <div className={`hidden desktop:flex   w-full  items-center  sticky z-50 top-0 right-0 bg-white justify-between ${scroll?"drop-shadow-sm":"shadow-none"} duration-800 `}>
+    <div className={`hidden desktop:flex   w-full p-3  items-center sticky z-50 top-0 right-0 bg-white justify-between ${scroll?"drop-shadow-sm":"shadow-none"} duration-800 `}>
 
     
  
     
     <Link href={'/'}>
-    <img src='/assets/logo/logo.png' className='max-w-[120px] cursor-pointer   '/>
+    <img src='/assets/logo/icrep-desktop.png' className='max-w-[20%] cursor-pointer   '/>
     </Link>
     
     <div className='flex flex-col justify-center items-center '>
@@ -88,7 +88,7 @@ export const LogoCard=()=>{
     </div>
     
     <Link href={'https://www.cusat.ac.in'}>
-    <img src='/assets/index/cusat-logo.png' className='max-w-[120px] cursor-pointer  '/>
+    <img src='/assets/logo/cusat-desktop.png' className='max-w-[20%] cursor-pointer  '/>
     </Link>
 
     
@@ -140,7 +140,7 @@ export const LogoCardMobile=()=>{
 
 
 
-    <img src='/assets/logo/logo.png' className='max-w-[80px]   '/>
+    <img src='/assets/logo/icrep.png' className='max-w-[80px]   '/>
 
     <div className='flex flex-col justify-center items-center '>
 
@@ -149,7 +149,7 @@ export const LogoCardMobile=()=>{
     </div>
     
     <Link href={'https://www.cusat.ac.in'}>
-    <img src='/assets/index/cusat-logo.png' className='max-w-[80px] cursor-pointer  '/>
+    <img src='/assets/logo/cusat.png' className='max-w-[80px] cursor-pointer  '/>
     </Link>
         
     {show&&
