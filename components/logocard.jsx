@@ -61,12 +61,16 @@ export const LogoCard=()=>{
     <h1 className='text-white font-[500] cursor-pointer'>Home</h1>
     </Link>
 
-    <Link href='/about'>
-    <h1 className='text-white font-[500] cursor-pointer'>About Us</h1>
+    <Link href='/editors'>
+    <h1 className='text-white font-[500] cursor-pointer'>Editorial</h1>
     </Link>
 
 
     <h1 className='text-white font-[500] cursor-pointer' onClick={onOpen}>Contribute</h1>
+
+    <Link href='/about'>
+    <h1 className='text-white font-[500] cursor-pointer'>About Us</h1>
+    </Link>
  
     </div>
 
@@ -171,6 +175,12 @@ export const LogoCardMobile=()=>{
           Contribute
           </button>
           </li>
+          <li>
+          <Link href={`/editors`}>
+          Editorial
+          </Link>
+          </li>
+
           <li>
           <Link href={`/about`}>
           About Us

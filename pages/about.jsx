@@ -1,4 +1,3 @@
-
 import { LogoCard,LogoCardMobile } from '../components/logocard';
 import {Footer} from '../components/footer'
  
