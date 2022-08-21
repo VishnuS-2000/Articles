@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps:{
 
 
   return  <ChakraProvider>
-  <SessionProvider session={session}>
+  <SessionProvider session={session} basePath="/jis/api/auth">
     <Component {...pageProps} />
   </SessionProvider> 
   </ChakraProvider>
